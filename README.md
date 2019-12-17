@@ -16,3 +16,8 @@ git add -A //adds everything in current directory and all subdirectory
 
  git checkout -b "index.html_and_index.js"
 
+ --created index files and saved
+
+ git add -A
+
+ git commit -m "create my web files"
