@@ -28,4 +28,15 @@ git add -A //adds everything in current directory and all subdirectory
 
  --now you can create a new branch
 
+
+
+ //add repo on git site then..
+ git remote add origin git@github.com:GabrielQSherman/nodeapp1.git
+
+ git push --all -u origin
+
+ //this will push all commits in all branches
+
+
+
  
