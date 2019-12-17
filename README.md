@@ -21,3 +21,11 @@ git add -A //adds everything in current directory and all subdirectory
  git add -A
 
  git commit -m "create my web files"
+
+ git checkout master
+
+ git merge 'new branch name'
+
+ --now you can create a new branch
+
+ 
