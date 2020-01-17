@@ -7,7 +7,6 @@ const express = require('express'),
     require('dotenv/config');
 
 
-    
     //MiddleWare 'seperation of concern' 
 
     //get the code from the post.js file and use it for the /post route
