@@ -62,12 +62,37 @@ Router.delete('/:postId', async (req, res) => {
     } catch (err) {
         
         res.json({
-            message: "post could not be found",
+            message: "post could not be deleted",
             error: err
         })
     }
     
     
+})
+
+//PATCH A POST
+Router.patch('/:postId', async (req, res) => {
+    try {
+        
+        const updatedPost = await postSchema.updateOne(
+            { _id: req.params.postId }, 
+            { $set: {title: req.body.title} }
+        );
+
+        console.log('Post Updated: id', req.params.postId);
+
+        res.json(updatedPost);
+        
+
+    } catch (err) {
+        
+        res.json({
+            message: "post could not updated",
+            error: err
+        })
+    }
+
+
 })
 
 
