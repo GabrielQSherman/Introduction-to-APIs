@@ -3,10 +3,25 @@ const express = require('express'),
 
       postSchema = require('../models/Post');
 
-route.get('/', (req, res) => {
+route.get('/', async (req, res) => {
+
+   try {
+
+    const allPost = await postSchema.find();
+
     res.json({
-        message: "you are on the post page"
+        All_Post: allPost
     })
+       
+   } catch (err) {
+
+        console.log(err);
+        
+        res.status(500).json({
+            message: err
+        })
+       
+   }
 })
 
 route.post('/', async (req, res) => {
