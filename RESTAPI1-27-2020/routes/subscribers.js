@@ -1,10 +1,34 @@
 const express = require('express'),
       mongoose = require('mongoose'),
-      subRouter = express.Router();
+      router = express.Router();
 
+      //Routes to create...
 
-      subRouter.get('/', (req, res) => {
-          res.json({message: "welcome to the sub page!"});
-      })
+      //1. get all subs
+      router.get('/', (req, res) => {
 
-module.exports = subRouter;
+        res.json({message: "you are looking at all subs"});
+        
+      });
+
+      //2. create a sub
+      router.post('/', (req, res) => {
+        
+      });
+      
+      //3. update a sub
+      router.patch('/:id', (req, res) => {
+        
+      });
+
+      //4. delete a sub
+      router.delete('/:id', (req, res) => {
+        
+      });
+
+      //5. get specific sub
+      router.get('/:id', (req, res) => {
+        
+      });
+
+module.exports = router;
