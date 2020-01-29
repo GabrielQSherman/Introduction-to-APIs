@@ -2,6 +2,10 @@ const express = require('express'),
       mongoose = require('mongoose'),
       router = express.Router();
 
+//importing schema
+
+const subscriberSchema = require('../models/Sub');
+
       //Routes to create...
 
       //1. get all subs
