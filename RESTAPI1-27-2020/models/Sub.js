@@ -14,8 +14,8 @@ const mongoose = require('mongoose'),
         },
 
         subDate: {
-            type: Date,
-            default: Date.now
+            type: String,
+            default:  Date(Date.now()).toString().substr(0,15)
         }
       });
 
