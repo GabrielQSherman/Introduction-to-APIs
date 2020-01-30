@@ -21,3 +21,9 @@ after the file is created I can add a npm command for starting up the server and
 It will be within the 'scripts' object in my package.json. my commands are start and dev and will start the program in either client mode or developer mode. 
 
 npm start will start the server using node.js while npm dev will start the server using nodemon. nodemon will restart the server every time a change to my apis code is changed
+
+First Express Request
+inside the index.js use the instance of express 'app' and the GET method to send 'Hello World' to the user when on the root route
+
+Request on specific route
+using the GET method I allow the client to sucessfully request the api/courses route and receieve a json object with an array inside

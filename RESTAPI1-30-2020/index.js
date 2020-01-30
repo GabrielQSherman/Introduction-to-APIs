@@ -17,5 +17,10 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 });
 
+//handling request on a specific route
+app.get('/api/courses', (req, res) => {
+    res.json({courses: [3.14, 7, 42]});
+})
+
 app.listen(3000, () => {console.log('Listening on Port 3000');
 })
