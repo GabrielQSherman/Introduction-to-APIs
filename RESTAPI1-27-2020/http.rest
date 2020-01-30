@@ -20,3 +20,8 @@ Content-Type: application/json
 GET http://localhost:3000/subs:3145
 
 ###
+
+
+DELETE  http://localhost:3000/subs/5e31155399689063c0d19887
+
+###

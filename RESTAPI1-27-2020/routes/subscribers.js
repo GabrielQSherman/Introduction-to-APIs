@@ -49,7 +49,22 @@ const subscriberSchema = require('../models/Sub');
       });
 
       //4. delete a sub
-      router.delete('/:id', (req, res) => {
+      router.delete('/:id', getSubscriber, async (req, res) => {
+
+        try {
+            
+            const deletedPost = await subscriberSchema.deleteOne({_id: res.subscriberRequestedData.id});
+
+            res.send(deletedPost);
+
+        } catch (err) {
+
+            console.log('\nAn error occured trying to delete the sub with an id of', res.subscriberRequestedData.id );
+            
+            
+            res.json({message: err.message});
+            
+        }
         
       });
 
@@ -69,26 +84,31 @@ const subscriberSchema = require('../models/Sub');
 //MIDDLEWARE FOR GETTING USER BY ID
 async function getSubscriber(req, res, next) {
 
+    //the id given by the client to the api then passed to through the model to retrieve a specific peice of data from the database
     const userId = req.params.id;
 
     console.log('\nGetting request for', userId);
     
+    //this variable will store the data retreived from the database
     let userSubscription;
 
     try {
         
-        userSubscription =  await subscriberSchema.findById(userId);
+        userSubscription = await subscriberSchema.findById(userId);
 
         if (userSubscription == null) {
+
+            console.log('User tried to request a non-existant sub');
 
             return res.status(404).json({message: "There is no suscriber with this id"});
         }
 
     } catch (err) {
 
+        console.log(`Request for ${userId} was not successful\n`);
+
         return res.status(500).send({message: err.message});
 
-        console.log(`Request for ${userId} was not successful\n`);
     }
 
     res.subscriberRequestedData = userSubscription;
@@ -96,4 +116,6 @@ async function getSubscriber(req, res, next) {
     next()
 }
 
+
+//EXPORTING /sub middleware to server.js
 module.exports = router;
