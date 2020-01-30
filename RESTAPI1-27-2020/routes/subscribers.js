@@ -27,6 +27,9 @@ const subscriberSchema = require('../models/Sub');
       //2. create a sub
       router.post('/', async (req, res) => {
 
+            console.log('\nClient is attempting to post...');
+            
+
             const newPost = subscriberSchema({
                 name: req.body.name,
                 subToChannel: req.body.subToChannel
@@ -41,11 +44,41 @@ const subscriberSchema = require('../models/Sub');
             } catch (err) {
                 res.status(400).json({message: err.message}); //status 400 indicates user/client gave bad data to server/api
             }
+
+            console.log('POST REQUEST SUCCESS\n');
       });
       
       //3. update a sub
-      router.patch('/:id', (req, res) => {
-        
+      router.patch('/:id', getSubscriber, async (req, res) => {
+
+        //update the object in database only if the properties are present in the the req.body
+            if (req.body.name != null) {
+
+                let newData = req.body.name;
+
+                res.subscriberRequestedData.name = newData;
+            }
+
+            if (req.body.subToChannel != null) {
+
+                let newData = req.body.subToChannel;
+
+                res.subscriberRequestedData.subToChannel = newData;
+            }
+
+            try {
+
+                const updatedPost = await res.subscriberRequestedData.save()
+
+                res.json(updatedPost);
+
+                console.log('PATCH REQUEST SUCCESS\n');
+                
+            } catch (err) {
+
+                res.json({message: err.message});
+            }
+
       });
 
       //4. delete a sub
@@ -53,9 +86,20 @@ const subscriberSchema = require('../models/Sub');
 
         try {
             
-            const deletedPost = await subscriberSchema.deleteOne({_id: res.subscriberRequestedData.id});
+            const deleteReport = await subscriberSchema.deleteOne({_id: res.subscriberRequestedData.id});
+            //alt use .remove()
 
-            res.send(deletedPost);
+            res.json({
+                message: "subscriber was sucessfully deleted from database",
+                name: res.subscriberRequestedData.name,
+                channel_name: res.subscriberRequestedData.subToChannel,
+                date_subscribed: res.subscriberRequestedData.subDate,
+                date_unsubscribed: Date(Date.now()).toString().substr(0,15)
+
+            });
+
+            console.log(deleteReport);
+            
 
         } catch (err) {
 
@@ -65,6 +109,8 @@ const subscriberSchema = require('../models/Sub');
             res.json({message: err.message});
             
         }
+
+        console.log('DELETE REQUEST SUCCESS\n');
         
       });
 
@@ -77,6 +123,8 @@ const subscriberSchema = require('../models/Sub');
         
 
         res.json({name: subscriberName});
+
+        console.log('GET SUB BY ID REQUEST SUCCESS\n');
 
       });
 
@@ -105,7 +153,7 @@ async function getSubscriber(req, res, next) {
 
     } catch (err) {
 
-        console.log(`Request for ${userId} was not successful\n`);
+        console.log(`Request for ${userId} was not success\nful\n`);
 
         return res.status(500).send({message: err.message});
 

@@ -1,10 +1,10 @@
 //this will return all subscribers to the user
 GET http://localhost:3000/subs
-
+//get all data
 ###
 
-GET http://localhost:3000/subs/5e31155399689063c0d19887
-
+GET http://localhost:3000/subs/5e323e890571cd261c180864
+//get specific data
 ###
 
 POST http://localhost:3000/subs
@@ -14,14 +14,18 @@ Content-Type: application/json
     "name": "new_user01",
     "subToChannel": "jre"
 }
+//add an object to database
+###
+
+DELETE http://localhost:3000/subs/5e3245558024d55cd437a008
 
 ###
 
-GET http://localhost:3000/subs:3145
+PATCH  http://localhost:3000/subs/5e32461f8024d55cd437a009
+Content-Type: application/json
 
-###
-
-
-DELETE  http://localhost:3000/subs/5e31155399689063c0d19887
-
+{
+    "name": "test",
+    "subToChannel": "jre"
+}
 ###
