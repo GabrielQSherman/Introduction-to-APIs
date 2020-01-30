@@ -3,10 +3,20 @@ GET http://localhost:3000/subs
 
 ###
 
+GET http://localhost:3000/subs/5e31155399689063c0d19887
+
+###
+
 POST http://localhost:3000/subs
 Content-Type: application/json
 
 {
-    "name": "gabe",
+    "name": "new_user01",
     "subToChannel": "jre"
 }
+
+###
+
+GET http://localhost:3000/subs:3145
+
+###

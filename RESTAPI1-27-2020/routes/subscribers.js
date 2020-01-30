@@ -54,8 +54,46 @@ const subscriberSchema = require('../models/Sub');
       });
 
       //5. get specific sub
-      router.get('/:id', (req, res) => {
+      router.get('/:id', getSubscriber, async (req, res) => {
+
+        let subscriberName = res.subscriberRequestedData.name;
+
+        console.log(subscriberName);
         
+
+        res.json({name: subscriberName});
+
       });
+
+
+//MIDDLEWARE FOR GETTING USER BY ID
+async function getSubscriber(req, res, next) {
+
+    const userId = req.params.id;
+
+    console.log('\nGetting request for', userId);
+    
+    let userSubscription;
+
+    try {
+        
+        userSubscription =  await subscriberSchema.findById(userId);
+
+        if (userSubscription == null) {
+
+            return res.status(404).json({message: "There is no suscriber with this id"});
+        }
+
+    } catch (err) {
+
+        return res.status(500).send({message: err.message});
+
+        console.log(`Request for ${userId} was not successful\n`);
+    }
+
+    res.subscriberRequestedData = userSubscription;
+    
+    next()
+}
 
 module.exports = router;
