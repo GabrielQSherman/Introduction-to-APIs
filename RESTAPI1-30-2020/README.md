@@ -73,4 +73,6 @@ configuration files will be in json format and will be held in the 'config' fold
 install the package 'debug' this will allow the program to log to the console more dynamicly than with console.log
 in this program I require debug twice to have one set up debug logs pertaining to startup and one for logs pertaining to my database. then before I start my applicataion i can choose what logs i want to be displayed or not displayed in the console.
 
+install the package 'pug' this will send dynamic html pages to the client and will handle everything that is stored in the views folder
+
 

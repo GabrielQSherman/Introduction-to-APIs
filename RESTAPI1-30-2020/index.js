@@ -52,7 +52,7 @@ const courses = [{id:1, name: "intro"},
 
 //handling the root route/home route
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.render('index', {title: "Homepage", message: "You are on the homepage"})
 });
 
 //handling get all request on /api/courses
