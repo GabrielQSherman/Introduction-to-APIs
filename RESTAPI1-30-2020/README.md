@@ -27,3 +27,10 @@ inside the index.js use the instance of express 'app' and the GET method to send
 
 Request on specific route
 using the GET method I allow the client to sucessfully request the api/courses route and receieve a json object with an array inside
+
+USING ROUTE AND QUERY PARAMERTERS
+apis use route parameters to get data from the client that is required to complete the request
+and example of this: webadress/post/:id -- the id will be a number that is given by the client to get a specifc response, the javascript uses the colon to disiguish a route parameter
+
+another way to get a specific request is by using query parameters, this is for requests that are optional and will be formated: webaddress/post/123?sortBy=Date -- in this case the response can be sorted by date if the client request that it is
+
