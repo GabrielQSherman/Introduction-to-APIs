@@ -33,4 +33,4 @@ apis use route parameters to get data from the client that is required to comple
 and example of this: webadress/post/:id -- the id will be a number that is given by the client to get a specifc response, the javascript uses the colon to disiguish a route parameter
 
 another way to get a specific request is by using query parameters, this is for requests that are optional and will be formated: webaddress/post/123?sortBy=Date -- in this case the response can be sorted by date if the client request that it is
-
+query parameters are stored as key/value pairs in the req.query object
