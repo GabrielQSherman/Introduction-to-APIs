@@ -8,10 +8,13 @@ As always the first steps are to use the command 'npm init' in the command line,
 
 Packages used in this tutorial:
 
-nodemon
-express
-mongoose
-dotenv
+"dotenv": "^8.2.0",
+"express": "^4.17.1",
+"helmet": "^3.21.2",
+"joi": "^14.3.1",
+"mongoose": "^5.8.10",
+"morgan": "^1.9.1",
+"nodemon": "^2.0.2"
 
 
 after setting up the package.json file I will add a file to my project that will act as a juction for all my route handling. this file will be named 'index.js' and will be the main js file used at every route on the site.
@@ -52,4 +55,12 @@ to complete a put method safely one must validate the req.body as well as confim
 USING DELETE METHOD
 
 in order to delete a resource you must only require a resources unique id. if the id returns an existing resource then it can be removed from the database
+
+
+//INSTALING MORE MIDDLEWARE/PACKAGES
+install morgan & helemet, then require them in the index.js file as a const and write the code app.use(morgan()) app.use(helment())
+
+morgan will log every request to the console. this helps in testing but would not be recomended in production, i will pass 'tiny' into the parameters so that it logs a shortened message of each request
+
+helmet is a bunch of smaller middleware that help secure express apps
 

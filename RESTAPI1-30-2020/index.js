@@ -9,29 +9,41 @@ require('dotenv/config');
 
 const express = require('express'),
       mongoose = require('mongoose'),
-      Joi = require('joi');
-
+      Joi = require('joi'),
+      helmet = require('helmet'),
+      morgan = require('morgan'),
       app = express();
 
-//json parsing for all request
-app.use(express.json());
+     
 
+//2. set middleware used on every request
+
+app.use(express.json()); //json parsing for all request
+app.use(express.urlencoded()); //allows form data parsing instead of json
+app.use(helmet()); //some securing for this express app
+app.use(express.static('public')); //allows access to static html files in the /public folder of this directory
+
+if (app.get('env') == 'development') {
+    app.use(morgan('tiny')); //logs a short message for every request, this logic allows only developers to get the morgan logging
+}
 
 const courses = [{id:1, name: "intro"},
                {id:2, name: "interm"},
                {id:3, name: "adv"}];
+
+//3. set up middleware for specific routes
 
 //handling the root route/home route
 app.get('/', (req, res) => {
     res.send('Hello World!')
 });
 
-//handling request on a specific route
+//handling get all request on /api/courses
 app.get('/api/courses', (req, res) => {
     res.json({courses});
 });
 
-//get request for specific course by id
+//get request for specific course by id on /api/courses
 app.get('/api/courses/:id', (req, res) => {
     const searchedCourse = courses.find(c => c.id === parseInt(req.params.id));
 
@@ -42,7 +54,7 @@ app.get('/api/courses/:id', (req, res) => {
 
 });
 
-//POST HANDLING
+//POST HANDLING on /api/courses
 app.post('/api/courses', (req, res) => {
 
     const { error } = validate_course(req.body);
@@ -60,7 +72,7 @@ app.post('/api/courses', (req, res) => {
 
 });
 
-//PUT update a post
+//PUT update a post on /api/courses
 app.put('/api/courses/:id', (req, res) => {
 
     const searchedCourse = courses.find(c => c.id === parseInt(req.params.id));
@@ -78,7 +90,7 @@ app.put('/api/courses/:id', (req, res) => {
 
 })
 
-//DELETE REQUEST    
+//DELETE REQUEST on /api/courses
 app.delete('/api/courses/:id', (req, res) => {
     const searchedCourse = courses.find(c => c.id === parseInt(req.params.id));
 
@@ -92,7 +104,7 @@ app.delete('/api/courses/:id', (req, res) => {
 })
 
 
-//validation middleware
+//validation middleware for /api/courses
 function validate_course(course) {
     const schema = {
         name: Joi.string().min(3).required()
