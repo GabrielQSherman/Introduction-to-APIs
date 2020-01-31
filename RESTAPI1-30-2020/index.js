@@ -13,6 +13,8 @@ const express = require('express'),
       Joi = require('joi'),
       helmet = require('helmet'),
       morgan = require('morgan'),
+      startupDebuger = require('debug')('app:startup'),
+      dbDebuger = require('debug')('app:db'),
       app = express();
 
 //CONFIGURATION
@@ -32,11 +34,12 @@ app.use(express.static('public')); //allows access to static html files in the /
 
 if (app.get('env') == 'development') {
     app.use(morgan('tiny')); //logs a short message for every request, this logic allows only developers to get the morgan logging
-    console.log('\n-Morgan enabled-\n');
+    startupDebuger('-Morgan enabled-');
     
-} else {
-    console.log('\n-Morgan disabled-\n');
 }
+
+//Database debug
+dbDebuger('Connected to database')
 
 const courses = [{id:1, name: "intro"},
                {id:2, name: "interm"},
