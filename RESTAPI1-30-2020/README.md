@@ -1,6 +1,6 @@
-This is my repo for my REST Api while I follow along
+This is my repo for my REST Api
 
-the tutorial I'm following along with a tutorial by Programing with Mosh
+the tutorial I'm basing this project off of is by Programing with Mosh
 
 you can find the video here; https://www.youtube.com/watch?v=pKd0Rpw7O48;
 
@@ -8,6 +8,7 @@ As always the first steps are to use the command 'npm init' in the command line,
 
 Packages used in this tutorial:
 
+"config": "^3.2.5",
 "dotenv": "^8.2.0",
 "express": "^4.17.1",
 "helmet": "^3.21.2",
@@ -60,7 +61,13 @@ in order to delete a resource you must only require a resources unique id. if th
 //INSTALING MORE MIDDLEWARE/PACKAGES
 install morgan & helemet, then require them in the index.js file as a const and write the code app.use(morgan()) app.use(helment())
 
-morgan will log every request to the console. this helps in testing but would not be recomended in production, i will pass 'tiny' into the parameters so that it logs a shortened message of each request
+morgan will log every request to the console. this helps in testing but would not be recomended in production, i will pass 'tiny' into the parameters so that it logs a shortened message of each request. This program will only run morgan for request if it the env returns that it is in development mode. if the code export NODE_ENV=production(or anything but development) is run in the command line then morgan will not be enabled
 
-helmet is a bunch of smaller middleware that help secure express apps
+helmet is a bunch of smaller middleware that help secure this express application
+
+install the npm package 'config' --- npm i config
+this will be for configuring this project, another propular repo is called 'rc'
+configuration files will be in json format and will be held in the 'config' folder for this project 
+
+
 

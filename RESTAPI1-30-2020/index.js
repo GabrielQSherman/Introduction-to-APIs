@@ -9,22 +9,33 @@ require('dotenv/config');
 
 const express = require('express'),
       mongoose = require('mongoose'),
+      config = require('config'),
       Joi = require('joi'),
       helmet = require('helmet'),
       morgan = require('morgan'),
       app = express();
+
+//CONFIGURATION
+
+//log the name and host of the application
+console.log(`Application Name: ${config.get('name')}`);
+console.log(`Host Name: ${config.get('mail.host')}`);
 
      
 
 //2. set middleware used on every request
 
 app.use(express.json()); //json parsing for all request
-app.use(express.urlencoded()); //allows form data parsing instead of json
+app.use(express.urlencoded({extended: true})); //allows form data parsing instead of json
 app.use(helmet()); //some securing for this express app
 app.use(express.static('public')); //allows access to static html files in the /public folder of this directory
 
 if (app.get('env') == 'development') {
     app.use(morgan('tiny')); //logs a short message for every request, this logic allows only developers to get the morgan logging
+    console.log('\n-Morgan enabled-\n');
+    
+} else {
+    console.log('\n-Morgan disabled-\n');
 }
 
 const courses = [{id:1, name: "intro"},
