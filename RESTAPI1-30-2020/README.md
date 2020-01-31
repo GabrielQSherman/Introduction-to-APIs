@@ -69,5 +69,7 @@ install the npm package 'config' --- npm i config
 this will be for configuring this project, another propular repo is called 'rc'
 configuration files will be in json format and will be held in the 'config' folder for this project 
 
+install the package 'debug' this will allow the program to log to the console more dynamicly than with console.log
+in this program I require debug twice to have one set up debug logs pertaining to startup and one for logs pertaining to my database. then before I start my applicataion i can choose what logs i want to be displayed or not displayed in the console.
 
 
