@@ -9,14 +9,15 @@ As always the first steps are to use the command 'npm init' in the command line,
 Packages used in this tutorial:
 
 "config": "^3.2.5",
+"debug": "^4.1.1",
 "dotenv": "^8.2.0",
 "express": "^4.17.1",
 "helmet": "^3.21.2",
 "joi": "^14.3.1",
 "mongoose": "^5.8.10",
 "morgan": "^1.9.1",
-"nodemon": "^2.0.2"
-
+"nodemon": "^2.0.2",
+"pug": "^2.0.4"
 
 after setting up the package.json file I will add a file to my project that will act as a juction for all my route handling. this file will be named 'index.js' and will be the main js file used at every route on the site.
 

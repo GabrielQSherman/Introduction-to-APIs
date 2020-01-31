@@ -17,6 +17,9 @@ const express = require('express'),
       dbDebuger = require('debug')('app:db'),
       app = express();
 
+//SET TEMPLATING ENGINE
+app.set('view engine', 'pug'); //by default templates will be stored in ./views
+
 //CONFIGURATION
 
 //log the name and host of the application
