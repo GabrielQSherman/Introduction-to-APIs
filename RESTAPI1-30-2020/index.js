@@ -17,9 +17,9 @@ const express = require('express'),
 app.use(express.json());
 
 
-const courses = [{id:1, course: "intro"},
-               {id:2, course: "interm"},
-               {id:3, course: "adv"}];
+const courses = [{id:1, name: "intro"},
+               {id:2, name: "interm"},
+               {id:3, name: "adv"}];
 
 //handling the root route/home route
 app.get('/', (req, res) => {
@@ -35,28 +35,19 @@ app.get('/api/courses', (req, res) => {
 app.get('/api/courses/:id', (req, res) => {
     const searchedCourse = courses.find(c => c.id === parseInt(req.params.id));
 
-    if (searchedCourse) {
-        res.status(200).send(searchedCourse);
-    } else {
-        res.status(404).send('That course could not be found');
-    }
+    if (!searchedCourse) return res.status(404).send('That course could not be found');
+
+
+    res.status(200).send(searchedCourse);
 
 });
 
 //POST HANDLING
 app.post('/api/courses', (req, res) => {
 
-    const PostSchema = {
-        name: Joi.string().min(3).required()
-    };
-
-    const result = Joi.validate(req.body, PostSchema);
-
+    const { error } = validate_course(req.body);
     
-
-    if (req.body.name.length < 4) {
-        res.status(400).send('The name of the course must be at least 3 characters');
-    }
+    if (error) return res.status(400).json({ message: error });
 
     const newCourse = {
         id: courses.length+1,
@@ -67,7 +58,49 @@ app.post('/api/courses', (req, res) => {
 
     res.status(200).json({newCourse: newCourse})
 
+});
+
+//PUT update a post
+app.put('/api/courses/:id', (req, res) => {
+
+    const searchedCourse = courses.find(c => c.id === parseInt(req.params.id));
+
+    if (!searchedCourse) return res.status(404).send('That course could not be found');
+
+    const { error } = validate_course(req.body);
+    
+    if (error) return res.status(400).json({ message: error });
+
+    //now that the potential erros have been handled, update the data
+    searchedCourse.name = req.body.name;
+
+    res.send(searchedCourse);
+
 })
+
+//DELETE REQUEST    
+app.delete('/api/courses/:id', (req, res) => {
+    const searchedCourse = courses.find(c => c.id === parseInt(req.params.id));
+
+    if (!searchedCourse) return res.status(404).send('That course could not be found');
+
+    //now that the potential erros have been handled, delete the desired data
+    courses.splice(courses.indexOf(searchedCourse), 1);
+
+    res.send(searchedCourse);
+
+})
+
+
+//validation middleware
+function validate_course(course) {
+    const schema = {
+        name: Joi.string().min(3).required()
+    };
+
+    return Joi.validate(course, schema);
+
+}
 
 
 //PRACTICE ROUTES
