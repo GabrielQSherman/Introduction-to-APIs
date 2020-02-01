@@ -57,6 +57,10 @@ app.get('/', homeRouter);
 const coursesRouter = require('./routes/courses');
 app.use('/api/courses', coursesRouter);
 
+//Genres Router
+const genresRouter = require('./routes/genres');
+app.use('/api/genres', genresRouter);
+
 
 //PRACTICE ROUTES
 //example query params use case
