@@ -30,7 +30,7 @@ const express = require('express'),
       //route for the homepage (root route), aka what the public sees
       const homeRoute = require('./routes/home');
 
-      app.get('/', homeRoute) //this will be the root-route or homepage
+      app.get('/', data_base_condition, homeRoute) //this will be the root-route or homepage
 
       //ADMIN ROUTE -has acces to make changes to database
 
@@ -41,7 +41,7 @@ const express = require('express'),
 
       let indexPassword = process.env.ADMINPASSWORD || 321;
 
-      app.get('/admin/:key', (req, res) => {
+      app.get('/admin/:key', data_base_condition, (req, res) => {
 
         if (req.params.key == indexPassword){
             
@@ -64,24 +64,41 @@ const express = require('express'),
     
       const mongopass = process.env.MONGOPASS,
             
-      uri = `mongodb+srv://user314:${mongopass}@cluster0-ichxa.mongodb.net/test?retryWrites=true&w=majority`;
+            uri = `mongodb+srv://user314:${mongopass}@cluster0-ichxa.mongodb.net/graduate_students?retryWrites=true&w=majority`;
 
-      const MongoClient = require('mongodb').MongoClient;
+            mongoose.connect(uri, ({ useNewUrlParser: true, useUnifiedTopology: true } ));
 
-      const client = new MongoClient(uri, { useUnifiedTopology: true , useNewUrlParser: true });
-      
-      client.connect()
-        client.on('error', console.error.bind(console, 'connection error:'));
-        client.once('open', function callback () {
-        console.log("Database Connected");
-        });
+            let db = mongoose.connection;
+                db.on('error', console.error.bind(console, 'connection error:'));
+                db.once('open', function callback () {
+
+                console.log("\nDatabase Connected\n");
+
+                databaseConnected = true;
+
+                });
 
       const port = process.env.PORT;
 
       app.listen(port, () => {
           console.log('Listening on port:', port);
           
-      })
+      });
+
+      function data_base_condition(req, res, next) {
+          
+            if (databaseConnected === true) {
+                
+                next()
+
+            } else {
+
+                res.status(500).json({
+                    message: "Server not connected to database, please try again in a moment"
+                })
+            }
+      }
+
 
 //parameters that change the look of the site and logs dependening on client_type and who is developing on the project, 
       
