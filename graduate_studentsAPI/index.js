@@ -30,35 +30,13 @@ const express = require('express'),
       //route for the homepage (root route), aka what the public sees
       const homeRoute = require('./routes/home');
 
-      app.get('/', data_base_condition, homeRoute) //this will be the root-route or homepage
+      app.use('/', data_base_condition, homeRoute) //this will be the root-route or homepage
 
       //ADMIN ROUTE -has acces to make changes to database
 
       const adminRoute = require('./routes/admin');
 
-      //passwords could be stored in admin enviorment files that store passwords. 
-      //this password will be 34567 for an example
-
-      let indexPassword = process.env.ADMINPASSWORD || 321;
-
-      app.get('/admin/:key', data_base_condition, (req, res) => {
-
-        if (req.params.key == indexPassword){
-            
-            app.use('/admin', adminRoute);
-
-            res.send('You can use the admin Route');
-
-        } else {
-
-            console.log('access denied');
-
-            res.send('An incorrect key was given, access denied');
-
-        }
-
-            
-      })
+      app.use('/admin', data_base_condition, adminRoute)
 
       //this connects to my mongodb, it get my password from my hidden enviorment or 'dot e.n.v.' file. 
     
