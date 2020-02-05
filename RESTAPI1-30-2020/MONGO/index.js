@@ -98,6 +98,43 @@ const mongoose = require('mongoose'),
         }
     })
 
+    //Path or update a post by id
+
+    app.patch('/courses_patch/:id', get_doc_by_id, async (req, res) => {
+
+        try {
+
+            if (req.body.name != undefined) {
+                
+                req.document.name = req.body.name;
+            }
+
+            if (req.body.author != undefined) {
+                
+                req.document.author = req.body.author;
+            }
+
+            if (req.body.isPublished != undefined) {
+                
+                req.document.isPublished = req.body.isPublished;
+            }
+
+            if (req.body.tags != undefined) {
+                
+                req.document.tags = req.body.tags;
+            }
+
+            let updated = await req.document.save()
+
+            res.json(updated)
+            
+        } catch (err) {
+
+            res.status(500).json( {message: err.message} )
+
+        }
+    })
+
 
     //MIDDLEWARE TO GET A COURSE BY ID
     async function get_doc_by_id(req, res, next) {
