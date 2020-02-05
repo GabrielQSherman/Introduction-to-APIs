@@ -41,10 +41,34 @@ const mongoose = require('mongoose'),
 
     app.get('/showcourses/:id', get_doc_by_id, (req, res) => {
 
-        console.log(req.document);
+        console.log(req.document._id);
         
-        res.send('complete')
+        res.json(200, {
+            name_of_course: req.document.name,
+            author_of_course: req.document.author
+        });
         // res.send(req.document)
+    })
+
+    app.post('/courses_post', async (req, res) => {
+
+        let new_upload = new Course({
+            name: req.body.name,
+            author: req.body.author,
+            tags: req.body.tags
+        })
+
+        try {
+
+            savedPost = await new_upload.save();
+
+            res.json({
+                NEWPOST: savedPost
+            })
+            
+        } catch (err) {
+            res.json(400, {message: err.message})
+        }
     })
 
 
