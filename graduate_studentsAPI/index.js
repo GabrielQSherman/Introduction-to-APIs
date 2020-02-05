@@ -32,20 +32,29 @@ const express = require('express'),
 
       app.get('/', homeRoute) //this will be the root-route or homepage
 
+      //ADMIN ROUTE -has acces to make changes to database
+
+      const adminRoute = require('./routes/admin');
+
       //passwords could be stored in admin enviorment files that store passwords. 
       //this password will be 34567 for an example
 
-      let indexPassword = process.env.ADMINPASSWORD || 34567;
+      let indexPassword = process.env.ADMINPASSWORD || 321;
 
       app.get('/admin/:key', (req, res) => {
 
         if (req.params.key == indexPassword){
-            console.log('unlocked');
             
+            app.use('/admin', adminRoute);
+
+            res.send('You can use the admin Route');
+
         } else {
+
             console.log('access denied');
 
-            res.send('An incorrect key was given, access denied')
+            res.send('An incorrect key was given, access denied');
+
         }
 
             
