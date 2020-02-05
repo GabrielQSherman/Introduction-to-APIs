@@ -26,10 +26,11 @@ const mongoose = require('mongoose'),
 
     // gabe_course.save()
 
+    //HOMEROUTE
+
     app.get('/', (req, res) => {
         res.send('hello')
     })
-
 
     app.get('/showcourses', async (req, res) => {
 
@@ -39,16 +40,21 @@ const mongoose = require('mongoose'),
 
     })
 
+    //GET COURSE BY ID
+
     app.get('/showcourses/:id', get_doc_by_id, (req, res) => {
 
-        console.log(req.document._id);
-        
-        res.json(200, {
+        res.status(200).json({
             name_of_course: req.document.name,
             author_of_course: req.document.author
         });
-        // res.send(req.document)
+
+        console.log('Get Post by Id success');
+        
+        
     })
+
+    //POST A NEW COURSE
 
     app.post('/courses_post', async (req, res) => {
 
@@ -62,34 +68,69 @@ const mongoose = require('mongoose'),
 
             savedPost = await new_upload.save();
 
-            res.json({
+            res.status(200).json({
                 NEWPOST: savedPost
             })
             
         } catch (err) {
-            res.json(400, {message: err.message})
+            res.status(400).json( {message: err.message})
+        }
+    });
+
+    //DELETE A COURSE BY ID
+
+    app.delete('/courses_delete/:id', get_doc_by_id, async (req, res) => {
+
+        try {
+
+            let deletedPost = req.document,
+                deletedCourseReport = await Course.deleteOne({_id: req.document._id});
+
+            res.status(200).json(deletedPost)
+
+            console.log('\n\nDeletion report; number of documents deleted succesfuly', deletedCourseReport.deletedCount);
+            
+            
+        } catch (err) {
+
+            res.status(500).json( {message: err.message} )
+            
         }
     })
 
 
+    //MIDDLEWARE TO GET A COURSE BY ID
     async function get_doc_by_id(req, res, next) {
 
-        console.log(req.params.id);
-
         let id = req.params.id
-        
-        req.document = await Course.findOne({_id: id});
-        
-        next()
+
+        try {
+
+            req.document = await Course.findOne({_id: id})
+            
+            if (req.document.name == undefined) {
+                res.status(404).json( {message: 'Request not complete at this time'})
+            }
+
+            next()
+            
+        } catch (err) {
+
+            res.status(404).json( {message: 'Can not find a document of that id'})
+            console.log('Get Post by Id failed');
+            
+
+        }
+  
+       
     }
 
-
+//LISTEN TO A PORT ON THE LOCAL HOST
 app.listen(3000, () => {
 
     console.log('\nListening on 3000\n');
     
 })
-
 
 mongoose.connect('mongodb+srv://user314:31415@cluster0-ichxa.mongodb.net/playground?retryWrites=true&w=majority', ( { useNewUrlParser: true , useUnifiedTopology: true})) //this creates a promise
     .then(() => console.log('Connected to Database')) //if everything goes well
