@@ -31,7 +31,7 @@ const express = require('express'),
 
             allGrads = await StudentSchema.find();
 
-            res.send(allGrads)
+            res.status(200).json(allGrads)
             
         } catch (err) {
 
@@ -40,6 +40,8 @@ const express = require('express'),
         }
 
       })
+
+      //
 
 
 

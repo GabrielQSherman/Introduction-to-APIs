@@ -6,34 +6,37 @@ const express = require('express'),
       //this is how this file will interact with the database
       const StudentSchema = require('../models/students');
 
+//PASSWORD LOCKING THE ADMIN ROUTE (in progress)
       //checks for password to have been correct at least one time
 
        //passwords could be stored in admin enviorment files that store passwords. 
       //this password will be 34567 for an example
 
-      let indexPassword = process.env.ADMINPASSWORD || 321,
-          adminPrivleges = false;
+    //   let indexPassword = process.env.ADMINPASSWORD || 321,
+    //       adminPrivleges = false;
 
-      router.get('/admin/:key', (req, res) => {
+    //   router.get('/admin/:key', (req, res) => {
 
-        if (req.params.key == indexPassword || adminPrivleges == true){
+    //     if (req.params.key == indexPassword || adminPrivleges == true){
             
-            app.use('/admin', adminRoute);
+    //         app.use('/admin', adminRoute);
 
-            res.send('You can use the admin Route');
+    //         res.send('You can use the admin Route');
 
-            adminPrivleges = true
+    //         adminPrivleges = true
 
-        } else {
+    //     } else {
 
-            console.log('access denied');
+    //         console.log('access denied');
 
-            res.send('An incorrect key was given, access denied');
+    //         res.send('An incorrect key was given, access denied');
 
-        }
+    //     }
 
             
-      })
+    //   })
+
+    
 
 
     //sets up the admin page as options, served as json
@@ -71,9 +74,10 @@ const express = require('express'),
 
         const allDocuments = await StudentSchema.find();
 
-        console.log('Docs', allDocuments);
+        // console.log('Docs', allDocuments);
+
+        req.allStudent = allDocuments;
 
       }
-
 
 module.exports = router;

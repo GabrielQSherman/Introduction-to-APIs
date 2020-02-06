@@ -40,12 +40,13 @@ const express = require('express'),
 
       //this connects to my mongodb, it get my password from my hidden enviorment or 'dot e.n.v.' file. 
     
-      const mongopass = process.env.MONGOPASS,
+      //GET UNQIUE URI FOR MONGODB TO CONNECT TO 
+            const uri = process.env.MONGO_URI;
             
-            uri = `mongodb+srv://user314:${mongopass}@cluster0-ichxa.mongodb.net/graduate_students?retryWrites=true&w=majority`;
-
+            //connect to database with uri enviorment variable
             mongoose.connect(uri, ({ useNewUrlParser: true, useUnifiedTopology: true } ));
 
+            //when the connection occurs these promises will fire
             let db = mongoose.connection;
                 db.on('error', console.error.bind(console, 'connection error:'));
                 db.once('open', function callback () {
@@ -55,13 +56,16 @@ const express = require('express'),
                 databaseConnected = true;
 
                 });
-
+                
+      //LOCAL PORT THAT SERVER IS HOSTED ON
       const port = process.env.PORT;
 
       app.listen(port, () => {
           console.log('Listening on port:', port);
           
       });
+
+      //MAKING SURE DATABASE IS CONNECTED (MIDDLEWARE)
 
       function data_base_condition(req, res, next) {
           
