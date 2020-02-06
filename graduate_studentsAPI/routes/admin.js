@@ -74,6 +74,9 @@ const express = require('express'),
 
 module.exports = router;
 
+
+//MIDDLEWARE FUNCTIONS FOR REQUEST
+
 //need to add hapijoi to validate the student schema better
 function validateStudent(req, res, next) {
 
@@ -101,23 +104,40 @@ function validateStudent(req, res, next) {
 
 }
 
-
+//middleware used for all request that require a unique id, delete one post, find one post, update one post
 async function get_by_id(req, res, next) {
 
-    const searchedDoc = await StudentSchema.findById(req.params.id);
+    try {
 
-    if (searchedDoc) {
-        
-        console.log(searchedDoc);
+        const searchedDoc = await StudentSchema.findById(req.params.id);
+
+        if (searchedDoc === null) {
+            throw new Error('ID is in the correct format, but no document with this id could be found')
+        }
 
         req.searched_document = searchedDoc;
-
+        
         next()
         
-    } else {
+    } catch (err) {
 
-        res.status(404).json({message: 'A Document with that id could not be found'})
+        let statusCode = 404;
+
+        if ( err.message.substring(0,4) == 'Cast') {
+
+           err.message = 'ID is not in the correct format';
+
+           statusCode = 400;
+
+        }
+
+        res.status(statusCode).json({
+            message: 'Invalid Id',
+            error: err.message
+        })
+        
     }
+
 }
 
 

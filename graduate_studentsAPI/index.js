@@ -15,6 +15,8 @@ const express = require('express'),
 
       app = express(); //this is an instance of express
 
+      ///////////////////////////////////////////////////////////////
+
       //middleware uses for all routes called through the localhost at port found in the enviorment file. or 3000 as a fallback
 
       app.use(morgan('tiny')); //displays a short console message that includes the method type that was use such as 'GET' or 'POST'. also the time and status code are displayed
