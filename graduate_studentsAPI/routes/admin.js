@@ -4,39 +4,7 @@ const express = require('express'),
       mongoose = require('mongoose');
 
       //this is how this file will interact with the database
-      const StudentSchema = require('../models/students');
-
-//PASSWORD LOCKING THE ADMIN ROUTE (in progress)
-      //checks for password to have been correct at least one time
-
-       //passwords could be stored in admin enviorment files that store passwords. 
-      //this password will be 34567 for an example
-
-    //   let indexPassword = process.env.ADMINPASSWORD || 321,
-    //       adminPrivleges = false;
-
-    //   router.get('/admin/:key', (req, res) => {
-
-    //     if (req.params.key == indexPassword || adminPrivleges == true){
-            
-    //         app.use('/admin', adminRoute);
-
-    //         res.send('You can use the admin Route');
-
-    //         adminPrivleges = true
-
-    //     } else {
-
-    //         console.log('access denied');
-
-    //         res.send('An incorrect key was given, access denied');
-
-    //     }
-
-            
-    //   })
-
-    
+      const StudentSchema = require('../models/Student');
 
 
     //sets up the admin page as options, served as json
@@ -70,14 +38,82 @@ const express = require('express'),
             
       })
 
+
+      router.post('/post', async (req, res) => {
+
+        const newGraduate = StudentSchema({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            gradYear: req.body.gradYear,
+            gradMonth: req.body.gradMonth,
+            job_title: req.body.job_title,
+            company_name: req.body.company_name,
+            key_Skills: req.body.key_Skills,
+            github: req.body.github,
+            linkedin: req.body.linkedin,
+            twitter: req.body.twitter,
+            photo: req.body.photo,
+
+        })
+
+            try {
+
+                const newPostSaved = await newGraduate.save()
+                res.status(200).json({newpost: newPostSaved})
+            } catch (err) {
+                res.status(500).json({"message": err})
+            }
+
+      })
+
+      router.get('/getall', display_all_grads, (req, res) => {
+
+        res.json(req.allStudents)
+          
+      })
+
       async function display_all_grads(req, res, next) {
 
         const allDocuments = await StudentSchema.find();
 
         // console.log('Docs', allDocuments);
 
-        req.allStudent = allDocuments;
+        req.allStudents = allDocuments;
 
       }
 
 module.exports = router;
+
+
+
+//PASSWORD LOCKING THE ADMIN ROUTE (in progress)
+      //checks for password to have been correct at least one time
+
+       //passwords could be stored in admin enviorment files that store passwords. 
+      //this password will be 34567 for an example
+
+    //   let indexPassword = process.env.ADMINPASSWORD || 321,
+    //       adminPrivleges = false;
+
+    //   router.get('/admin/:key', (req, res) => {
+
+    //     if (req.params.key == indexPassword || adminPrivleges == true){
+            
+    //         app.use('/admin', adminRoute);
+
+    //         res.send('You can use the admin Route');
+
+    //         adminPrivleges = true
+
+    //     } else {
+
+    //         console.log('access denied');
+
+    //         res.send('An incorrect key was given, access denied');
+
+    //     }
+
+            
+    //   })
+
+
