@@ -3,25 +3,26 @@ const mongoose = require('mongoose'),
 
     studentSchema = mongoose.Schema({
 
-        FirstName: String,
-        LastName: String,
+        firstName: {type: String, required: true},
 
-        GradYear: Number,
-        GradMonth: Number,
+        lastName: {type: String, required: true},
 
-        Job_Title:String ,
+        gradYear: {type: String, required: true},
+        gradMonth: {type: String, required: true},
 
-        Company_Name: String,
+        job_Title: {type: String, required: true},
 
-        Key_Skills: [String],
+        company_Name: {type: String, required: true},
 
-        GitHub:String ,
+        key_Skills: {type: [String], required: true},
 
-        LinkedIn: String,
+        gitHub: {type: String, required: true},
 
-        Twitter: String,
+        linkedIn: {type: String, required: true},
 
-        LinkedIn: String
+        twitter: {type: String, required: true},
+
+        linkedInIMG: {type: String, required: true}
 
     })
 

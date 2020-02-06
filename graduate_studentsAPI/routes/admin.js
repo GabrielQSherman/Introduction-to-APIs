@@ -39,50 +39,62 @@ const express = require('express'),
       })
 
 
-      router.post('/post', async (req, res) => {
-
-        const newGraduate = StudentSchema({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            gradYear: req.body.gradYear,
-            gradMonth: req.body.gradMonth,
-            job_title: req.body.job_title,
-            company_name: req.body.company_name,
-            key_Skills: req.body.key_Skills,
-            github: req.body.github,
-            linkedin: req.body.linkedin,
-            twitter: req.body.twitter,
-            photo: req.body.photo,
-
-        })
+      router.post('/post', validateStudent, async (req, res) => {
 
             try {
 
-                const newPostSaved = await newGraduate.save()
+                const newPostSaved = await req.newpost.save()
                 res.status(200).json({newpost: newPostSaved})
+
             } catch (err) {
-                res.status(500).json({"message": err})
+
+                res.status(500).json({"message": err.message})
+
             }
 
       })
 
-      router.get('/getall', display_all_grads, (req, res) => {
+      //GET REQUEST FOR ALL GRADUATES IN THE DATABASE
 
-        res.json(req.allStudents)
-          
-      })
-
-      async function display_all_grads(req, res, next) {
+      router.get('/getall', async (req, res) => {
 
         const allDocuments = await StudentSchema.find();
 
-        // console.log('Docs', allDocuments);
+        console.log('Docs', allDocuments);
 
-        req.allStudents = allDocuments;
-
-      }
+        res.json({allDocuments});
+          
+      })
 
 module.exports = router;
+
+
+function validateStudent(req, res, next) {
+
+    console.log(req.body);
+    
+
+    const newGraduate = StudentSchema({
+
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        gradYear: req.body.gradYear,
+        gradMonth: req.body.gradMonth,
+        job_Title: req.body.job_Title,
+        company_Name: req.body.company_Name,
+        key_Skills: req.body.key_Skills,
+        gitHub: req.body.gitHub,
+        linkedIn: req.body.linkedIn,
+        twitter: req.body.twitter,
+        linkedInIMG: req.body.linkedInIMG,
+
+    })
+
+    req.newpost = newGraduate;
+
+    next()
+
+}
 
 
 
