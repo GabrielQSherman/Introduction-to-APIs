@@ -2,7 +2,7 @@ const express = require('express'),
       router = express.Router(),
       mongoose = require('mongoose'),
 
-      StudentSchema = require('../models/students');
+      StudentSchema = require('../models/Student');
 
       port = process.env.PORT;
 
