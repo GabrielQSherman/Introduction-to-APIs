@@ -38,6 +38,7 @@ const express = require('express'),
             
       })
 
+      //POST REQUEST
 
       router.post('/post', validateStudent, async (req, res) => {
 
@@ -53,6 +54,22 @@ const express = require('express'),
             }
 
       })
+
+      
+        //DELETE A POST BY ID
+
+        router.get('/delete/:id', get_by_id, (req, res) => {
+
+            const id = req.searched_document._id;
+
+            console.log(id);
+
+            res.send('testing')
+            
+
+            // deleteReport = await StudentSchema.deleteOne({_id: })
+        })
+
 
       //GET REQUEST FOR ALL GRADUATES IN THE DATABASE
 
@@ -71,9 +88,6 @@ const express = require('express'),
       router.get('/getid/:id', get_by_id, (req, res) => {
           res.json({Found_Post: req.searched_document})
       })
-
-module.exports = router;
-
 
 //MIDDLEWARE FUNCTIONS FOR REQUEST
 
@@ -141,7 +155,6 @@ async function get_by_id(req, res, next) {
 }
 
 
-
 //PASSWORD LOCKING THE ADMIN ROUTE (in progress)
       //checks for password to have been correct at least one time
 
@@ -172,4 +185,5 @@ async function get_by_id(req, res, next) {
             
     //   })
 
-
+//export all the functions to the index.js file
+    module.exports = router;
