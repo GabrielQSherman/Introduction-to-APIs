@@ -66,14 +66,19 @@ const express = require('express'),
           
       })
 
+      //GET REQUEST FOR INDIVUIDUAL DOCUMENTS
+
+      router.get('/getid/:id', get_by_id, (req, res) => {
+          res.json({Found_Post: req.searched_document})
+      })
+
 module.exports = router;
 
-
+//need to add hapijoi to validate the student schema better
 function validateStudent(req, res, next) {
 
     console.log(req.body);
     
-
     const newGraduate = StudentSchema({
 
         firstName: req.body.firstName,
@@ -94,6 +99,25 @@ function validateStudent(req, res, next) {
 
     next()
 
+}
+
+
+async function get_by_id(req, res, next) {
+
+    const searchedDoc = await StudentSchema.findById(req.params.id);
+
+    if (searchedDoc) {
+        
+        console.log(searchedDoc);
+
+        req.searched_document = searchedDoc;
+
+        next()
+        
+    } else {
+
+        res.status(404).json({message: 'A Document with that id could not be found'})
+    }
 }
 
 
