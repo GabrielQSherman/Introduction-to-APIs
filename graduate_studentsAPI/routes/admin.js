@@ -77,6 +77,8 @@ const express = require('express'),
 
             try {
 
+                req.body.lastUpdated = Date(Date.now()).toString().substr(4,15);
+
                 const updatedDocument = await StudentSchema.updateOne({_id: req.id}, req.body);
 
                 res.status(200).json(updatedDocument);
@@ -125,7 +127,8 @@ function validateStudent(req, res, next) {
         firstName: req.body.firstName,     
         lastName: req.body.lastName   ,    
         gradYear: req.body.gradYear    ,  
-        gradMonth: req.body.gradMonth   ,   
+        gradMonth: req.body.gradMonth   ,
+        job_Title: req.body.job_Title,
         company_Name: req.body.company_Name,
         key_Skills: req.body.key_Skills ,
         gitHub: req.body.gitHub          ,  

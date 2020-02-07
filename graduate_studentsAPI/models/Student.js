@@ -22,7 +22,11 @@ const mongoose = require('mongoose'),
 
         twitter: {type: String, required: true},
 
-        linkedInIMG: {type: String, required: true}
+        linkedInIMG: {type: String, required: true},
+
+        dateAdded: {type: String, default: Date(Date.now()).toString().substr(4,15)},
+
+        lastUpdated: {type: String, default: Date(Date.now()).toString().substr(4,15)}
 
     })
 
