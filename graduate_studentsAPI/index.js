@@ -25,24 +25,32 @@ const express = require('express'),
 
       app.use(express.urlencoded({extended: true})); //allows form data 
 
-      let databaseConnected = false;
+      app.use(express.static('./public'));
 
-      //middleware uses for other routes will be below here
+      let databaseConnected = false; //this is used in middleware and will disallow routes to be called until the database is connected
 
-      //route for the homepage (root route), aka what the public sees
+
+
+      //middleware uses for specific routes are below here...
+
+      //route for the HOMEPAGE (root route), aka what the public sees
       const homeRoute = require('./routes/home');
 
       app.use('/', data_base_condition, homeRoute) //this will be the root-route or homepage
+
+
+
 
       //ADMIN ROUTE -has acces to make changes to database
 
       const adminRoute = require('./routes/admin');
 
-      app.use('/admin', data_base_condition, adminRoute)
+      app.use('/admin', data_base_condition, adminRoute);
+
 
       //this connects to my mongodb, it get my password from my hidden enviorment or 'dot e.n.v.' file. 
     
-      //GET UNQIUE URI FOR MONGODB TO CONNECT TO 
+      //GET MY UNQIUE URI FOR MONGODB TO CONNECT TO 
             const uri = process.env.MONGO_URI;
             
             //connect to database with uri enviorment variable
@@ -51,18 +59,27 @@ const express = require('express'),
             //when the connection occurs these promises will fire
             let db = mongoose.connection;
                 db.on('error', console.error.bind(console, 'connection error:'));
-                db.once('open', function callback () {
+                db.once('open', (err) => {
 
-                console.log("\nDatabase Connected\n");
+                    if (err) {
+                        console.log(err); 
+                    }
 
-                databaseConnected = true;
+                    console.log("\nDatabase Connected\n");
+
+                    databaseConnected = true;
 
                 });
                 
       //LOCAL PORT THAT SERVER IS HOSTED ON
       const port = process.env.PORT;
 
-      app.listen(port, () => {
+      app.listen(port, (err) => {
+
+        if (err) {
+            console.log(err); 
+        }
+
           console.log('Listening on port:', port);
           
       });
