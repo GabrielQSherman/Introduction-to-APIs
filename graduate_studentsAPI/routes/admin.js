@@ -84,13 +84,11 @@ const express = require('express'),
             } catch (err) {
 
                 console.log(err);
-                
 
                 res.status(500).json({message: 'The server was unable to update the document'})
                 
             }
 
-           
         
         })
 
