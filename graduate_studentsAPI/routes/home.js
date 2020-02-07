@@ -1,30 +1,41 @@
 const express = require('express'),
       router = express.Router(),
-      mongoose = require('mongoose'),
+    //   mongoose = require('mongoose'),
 
       StudentSchema = require('../models/Student');
 
       port = process.env.PORT;
 
       
-
+    //HOMEPAGE
       router.get('/', (req, res) => {
 
-            res.status(200).json({
-                message: "You are home",
-                options: `go to the http://localhost:${port}/find/all to see all graduates`
-            });
-            
+        let absolutePath = __dirname.replace('\\routes', '') + '\\public\\home.html';
+
+        // console.log(absolutePath);
+
+        res.sendFile(absolutePath)
+
       });
 
-      //all the post can be found individualy by id
-      router.get('/find/graduateid/:id', (req, res) => {
+      //FIND BY ID
+      router.get('/find/graduateid/:id', async (req, res) => {
 
+        try {
 
+            foundGraduate = await StudentSchema.find({_id: req.params.id});
+
+            res.status(200).json(foundGraduate)
+            
+        } catch (err) {
+
+            res.status(500).json({message: err});
+
+        }
 
       })
 
-      //all the post in the database
+      //REQUEST ALL
       router.get('/find/all', async (req, res) => {
 
         try {
@@ -40,8 +51,6 @@ const express = require('express'),
         }
 
       })
-
-      //
 
 
 
