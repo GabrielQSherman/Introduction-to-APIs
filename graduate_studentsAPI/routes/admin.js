@@ -58,16 +58,19 @@ const express = require('express'),
       
         //DELETE A POST BY ID
 
-        router.get('/delete/:id', get_by_id, (req, res) => {
+        router.delete('/delete/:id', get_by_id, async (req, res) => {
 
             const id = req.searched_document._id;
 
-            console.log(id);
+            deleteReport = await StudentSchema.deleteOne({_id: id});
 
-            res.send('testing')
-            
+            res.status(200).json({
+                message: "Item successfuly deleted from database",
+                document: req.searched_document
+            })
 
-            // deleteReport = await StudentSchema.deleteOne({_id: })
+            console.log('\nnumber of items deleted from database: ', deleteReport.deletedCount);
+        
         })
 
 
@@ -77,7 +80,7 @@ const express = require('express'),
 
         const allDocuments = await StudentSchema.find();
 
-        console.log('Docs', allDocuments);
+        // console.log('Docs', allDocuments); //logs all documents in database to the request of this router method
 
         res.json({allDocuments});
           
