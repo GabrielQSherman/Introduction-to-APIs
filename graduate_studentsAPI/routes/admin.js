@@ -3,66 +3,63 @@ const express = require('express'),
       router = express.Router(),
       mongoose = require('mongoose');
 
-      //this is how this file will interact with the database
-      const StudentSchema = require('../models/Student');
+        //this is how this file will interact with the database
+        const StudentSchema = require('../models/Student');
 
-
-    //sets up the admin page as options, served as json
-    let firstTimeRan = true, 
-        firstMessage = {
-            message: "You have been granted access to the administrator route",
-            hint: "Refresh the page to see options as an administrator"
-        },
-        optionsMessage = {
-            message: "You have options to change what is in the database.",
-            POST: "route to use: admin/post",
-            GET: "route to use: admin/getall or admin/getid/:id",
-            DELETE: "route to use: admin/delete/:id",
-            PATCH: "route to use: admin/patch/id"
-        }
+        //sets up the admin page as options, served as json
+        let firstTimeRan = true, 
+            firstMessage = {
+                message: "You have been granted access to the administrator route",
+                hint: "Refresh the page to see options as an administrator"
+            },
+            optionsMessage = {
+                message: "You have options to change what is in the database.",
+                POST: "route to use: admin/post",
+                GET: "route to use: admin/getall or admin/getid/:id",
+                DELETE: "route to use: admin/delete/:id",
+                put: "route to use: admin/put/id"
+            }
 
         //the /admin route will be for showing the options of what the admin can do
         router.get('/', (req, res) => {
 
-        if (firstTimeRan) {
+            if (firstTimeRan) {
 
-            res.status(200).json(firstMessage);
+                res.status(200).json(firstMessage);
 
-            firstTimeRan = false
-            
-        } else {
-            
-            res.status(200).json(optionsMessage);
-
-        }
-            
-      })
-
-      //POST REQUEST
-
-      router.post('/post', validateStudent, async (req, res) => {
-
-            try {
-
-                const newPostSaved = await req.newpost.save()
-                res.status(200).json({newpost: newPostSaved})
-
-            } catch (err) {
-
-                res.status(500).json({"message": err.message})
+                firstTimeRan = false
+                
+            } else {
+                
+                res.status(200).json(optionsMessage);
 
             }
+                
+        })
 
-      })
+        //POST REQUEST
+
+        router.post('/post', validateStudent, async (req, res) => {
+
+                try {
+
+                    const newPostSaved = await req.newpost.save()
+                    res.status(200).json({newpost: newPostSaved})
+
+                } catch (err) {
+
+                    res.status(500).json({"message": err.message})
+
+                }
+
+        })
 
       
         //DELETE A POST BY ID
 
         router.delete('/delete/:id', get_by_id, async (req, res) => {
 
-            const id = req.searched_document._id;
-
-            deleteReport = await StudentSchema.deleteOne({_id: id});
+            deleteReport = await StudentSchema.deleteOne({_id: req.id});
 
             res.status(200).json({
                 message: "Item successfuly deleted from database",
@@ -70,6 +67,30 @@ const express = require('express'),
             })
 
             console.log('\nnumber of items deleted from database: ', deleteReport.deletedCount);
+        
+        })
+
+
+        //PUT A SINGLE POST
+
+        router.put('/put/:id', get_by_id, async (req, res) => {
+
+            try {
+
+                const updatedDocument = await StudentSchema.updateOne({_id: req.id}, req.body);
+
+                res.status(200).json(updatedDocument);
+                
+            } catch (err) {
+
+                console.log(err);
+                
+
+                res.status(500).json({message: 'The server was unable to update the document'})
+                
+            }
+
+           
         
         })
 
@@ -92,26 +113,28 @@ const express = require('express'),
           res.json({Found_Post: req.searched_document})
       })
 
+
+
 //MIDDLEWARE FUNCTIONS FOR REQUEST
 
 //need to add hapijoi to validate the student schema better
 function validateStudent(req, res, next) {
 
-    console.log(req.body);
+    // console.log(req.body);
     
     const newGraduate = StudentSchema({
 
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        gradYear: req.body.gradYear,
-        gradMonth: req.body.gradMonth,
-        job_Title: req.body.job_Title,
+        firstName: req.body.firstName,     
+        lastName: req.body.lastName   ,    
+        gradYear: req.body.gradYear    ,  
+        gradMonth: req.body.gradMonth   ,   
         company_Name: req.body.company_Name,
-        key_Skills: req.body.key_Skills,
-        gitHub: req.body.gitHub,
-        linkedIn: req.body.linkedIn,
-        twitter: req.body.twitter,
-        linkedInIMG: req.body.linkedInIMG,
+        key_Skills: req.body.key_Skills ,
+        gitHub: req.body.gitHub          ,  
+        linkedIn: req.body.linkedIn      ,
+        twitter: req.body.twitter        ,
+        linkedInIMG: req.body.linkedInIMG , 
+
 
     })
 
@@ -121,7 +144,9 @@ function validateStudent(req, res, next) {
 
 }
 
-//middleware used for all request that require a unique id, delete one post, find one post, update one post
+//middleware used for all request that require a unique id, delete one post, find one post, put/update one document
+
+// tries to find a document in the students database and if it can not find it, the appropriate error will be thrown
 async function get_by_id(req, res, next) {
 
     try {
@@ -133,12 +158,14 @@ async function get_by_id(req, res, next) {
         }
 
         req.searched_document = searchedDoc;
-        
+
+        req.id = req.searched_document._id;
+            
         next()
         
     } catch (err) {
 
-        let statusCode = 404;
+        let statusCode = 401;
 
         if ( err.message.substring(0,4) == 'Cast') {
 
