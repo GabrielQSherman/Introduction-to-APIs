@@ -6,27 +6,12 @@ const express = require('express'),
         //this is how this file will interact with the database
         const StudentSchema = require('../models/Student');
 
-        //sets up the admin page as options, served as json
-        let firstTimeRan = true, 
-            firstMessage = {
-                message: "You have been granted access to the administrator route",
-                hint: "Refresh the page to see options as an administrator"
-            },
-            optionsMessage = {
-                message: "You have options to change what is in the database.",
-                POST: "route to use: admin/post",
-                GET: "route to use: admin/getall or admin/getid/:id",
-                DELETE: "route to use: admin/delete/:id",
-                put: "route to use: admin/put/id"
-            }
-
         //the /admin route will be for showing the options of what the admin can do
         router.get('/', (req, res) => {
 
             let absolutePath = __dirname.replace('\\routes', '') + '\\database_frontend\\admin.html';
 
             res.sendFile(absolutePath)
-    
                 
         })
 
@@ -54,10 +39,10 @@ const express = require('express'),
 
             deleteReport = await StudentSchema.deleteOne({_id: req.id});
 
-            res.status(200).json({
-                message: "Item successfuly deleted from database",
-                document: req.searched_document
-            })
+            // res.status(200).json({
+            //     message: "Item successfuly deleted from database",
+            //     document: req.searched_document
+            // })
 
             console.log('\nnumber of items deleted from database: ', deleteReport.deletedCount);
         
@@ -118,16 +103,16 @@ function compile_student_doc(req, res, next) {
     const newGraduate = StudentSchema({
 
         firstName: req.body.firstName,     
-        lastName: req.body.lastName   ,    
-        gradYear: req.body.gradYear    ,  
-        gradMonth: req.body.gradMonth   ,
+        lastName: req.body.lastName,    
+        gradYear: req.body.gradYear,  
+        gradMonth: req.body.gradMonth,
         job_Title: req.body.job_Title,
         company_Name: req.body.company_Name,
-        key_Skills: req.body.key_Skills ,
-        gitHub: req.body.gitHub          ,  
-        linkedIn: req.body.linkedIn      ,
-        twitter: req.body.twitter        ,
-        linkedInIMG: req.body.linkedInIMG , 
+        key_Skills: req.body.key_Skills,
+        gitHub: req.body.gitHub,  
+        linkedIn: req.body.linkedIn,
+        twitter: req.body.twitter,
+        linkedInIMG: req.body.linkedInIMG, 
 
 
     })

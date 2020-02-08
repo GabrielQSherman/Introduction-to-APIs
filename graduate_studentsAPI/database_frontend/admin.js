@@ -1,38 +1,31 @@
     
     //event listeners
-    document.getElementById('submitPost').addEventListener('click', get_all_graduates);
+    document.getElementById('submitPost').addEventListener('click', postRequest);
 
-    document.getElementById('submitUpdate').addEventListener('click', (get_individual_graduates));
+    document.getElementById('submitUpdate').addEventListener('click', (putRequest));
 
-    document.getElementById('submitDelete').addEventListener('click', (delete_one_document));
+    document.getElementById('submitDelete').addEventListener('click', (deleteRequest));
 
 
-    //button function
+    //fetch request function
 
-     function get_all_graduates() {
+     function postRequest() {
 
         try {
 
-            document.getElementById('graduate_layout').innerHTML = 'loading...';
+           fetch('http://localhost:3000/admin/post', {
+               method: 'POST',
+               body: {
 
-           fetch('http://localhost:3000/find/all')
+               }
+           })
 
             .then(response => {
                 return response.json();
             })
+
             .then(parsedData => {
-                // console.log(parsedData);
-
-                document.getElementById('graduate_layout').innerHTML = '';
-
-                for (let i = 0; i < parsedData.length; i++) {
-
-                    graduateDoc = create_student_data_layout(parsedData[i])
-          
-                    document.getElementById('graduate_layout').appendChild(graduateDoc);
-                    
-                }
-
+                console.log(parsedData);
                 
             })
 
@@ -40,24 +33,13 @@
         } catch (err) {
 
             console.log(err);  
-            document.getElementById('graduate_layout').innerHTML = err.message;
 
         }
-
-        // document.getElementById('graduate_layout').appendChild()
-        
+ 
     }
 
-
-
-   async function get_individual_graduates() {
-
-    console.log('test');
-    
-        
-   }
-
-    function delete_one_document() {
+    //DELETE REQUEST FOR A SPECIFIC POST (ID)
+    function deleteRequest() {
 
         try {
 
@@ -68,19 +50,29 @@
             })
 
             
-            .then(response => console.log(response))
+            .then(response => {
 
+                delete_id.value = '';
 
-            
+                if (response.status == 200) {
+                    
+                    
+                    delete_id.placeholder = 'Succesfully deleted document';
+                    
+                } else {
+
+                    delete_id.placeholder = 'Request Error: ' + response.status;
+                    console.log(response);
+                    
+                }
+            })
+
             
         } catch (err) {
 
             console.log(err);
             
-            
         }
-
-
         
    }
 

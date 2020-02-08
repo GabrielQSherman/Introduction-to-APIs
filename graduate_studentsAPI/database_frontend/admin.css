@@ -7,7 +7,7 @@
 
 .buttons>postElms{
     background-color: aqua;
-    display: flex;
+    display: flex grid;
 
     margin: 10%;
 }
