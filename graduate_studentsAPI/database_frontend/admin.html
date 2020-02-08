@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" type="text/css" href="admin.css">
-    
+    <link rel="stylesheet" type="text/css" href="./admin.css">
+
     <title>DataBaseAdminPage</title>
 </head>
 <body>
@@ -18,20 +18,21 @@
 
             <form>Post</form>
 
-            <button>Click to Submit Post Form</button>
+            <button id="submitPost">Click to Submit Post Form</button>
         </div>
 
         <div class="updateElms">
             
             <form>Update</form>
-            <button>Press to update</button>
+            <button id="submitUpdate">Press to update</button>
 
         </div>
 
         <div class="deleteElms">
-            <input type="text" placeholder="Enter an Id of a post to delete">
 
-            <button>Delete Post</button>
+            <input id="delete_id" type="text" placeholder="Enter an Id of a post to delete" style="width: 250px;">
+
+            <button id="submitDelete">Delete Post</button>
         </div>
 
     </div>

@@ -1,3 +1,27 @@
 .buttons {
+    background-color: black;
     display: flex;
+
+    margin: 10px;
+}
+
+.buttons>postElms{
+    background-color: aqua;
+    display: flex;
+
+    margin: 10%;
+}
+
+.buttons>updateElms{
+    background-color: khaki; 
+    display: flex;
+
+    margin: 10%;
+}
+
+.buttons>deleteElms{
+    background-color: hotpink;
+    display: flex;
+
+    margin: 10%;
 }

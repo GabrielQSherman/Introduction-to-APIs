@@ -27,6 +27,8 @@ const express = require('express'),
 
       app.use(express.static('./public'));
 
+      app.use(express.static('./database_frontend'));
+
       let databaseConnected = false; //this is used in middleware and will disallow routes to be called until the database is connected
 
 
