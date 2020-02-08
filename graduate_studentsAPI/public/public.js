@@ -83,7 +83,8 @@
             
             Name = document.createElement('h3'),
             jobTitle_Company = document.createElement('h5'),
-            graduationDate = document.createElement('p');
+            graduationDate = document.createElement('p'),
+            keySkills = document.createElement('ul');
 
 
             //set their values
@@ -94,11 +95,24 @@
 
             graduationDate.innerText = data.gradMonth +" "+ data.gradYear;
 
-            //append them to the parent element
+
+            //creating key skills list
+            keySkills.innerText = 'Key Skills:  '
+            for (let i = 0; i < data.key_Skills.length; i++) {
+                
+                let listElement = document.createElement('li');
+                listElement.innerText = data.key_Skills[i];
+
+                keySkills.appendChild(listElement);
+                
+            }
+
+            //append them to the parent element (individual student post)
     
             newDiv.appendChild(Name);
             newDiv.appendChild(jobTitle_Company);
             newDiv.appendChild(graduationDate);
+            newDiv.appendChild(keySkills);
 
 
 
