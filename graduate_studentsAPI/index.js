@@ -34,7 +34,7 @@ const express = require('express'),
       //middleware uses for specific routes are below here...
 
       //route for the HOMEPAGE (root route), aka what the public sees
-      const homeRoute = require('./routes/home');
+      const homeRoute = require('./routes/homeRouter');
 
       app.use('/', data_base_condition, homeRoute) //this will be the root-route or homepage
 
@@ -43,7 +43,7 @@ const express = require('express'),
 
       //ADMIN ROUTE -has acces to make changes to database
 
-      const adminRoute = require('./routes/admin');
+      const adminRoute = require('./routes/adminRouter');
 
       app.use('/admin', data_base_condition, adminRoute);
 

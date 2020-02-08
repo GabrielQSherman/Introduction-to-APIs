@@ -7,9 +7,7 @@ const express = require('express'),
     //HOMEPAGE
       router.get('/', (req, res) => {
 
-        let absolutePath = __dirname.replace('\\routes', '') + '\\public\\home.html';
-
-        // console.log(absolutePath);
+        let absolutePath = __dirname.replace('\\routes', '') + '\\public\\public.html';
 
         res.sendFile(absolutePath)
 

@@ -23,23 +23,16 @@ const express = require('express'),
         //the /admin route will be for showing the options of what the admin can do
         router.get('/', (req, res) => {
 
-            if (firstTimeRan) {
+            let absolutePath = __dirname.replace('\\routes', '') + '\\database_frontend\\admin.html';
 
-                res.status(200).json(firstMessage);
-
-                firstTimeRan = false
-                
-            } else {
-                
-                res.status(200).json(optionsMessage);
-
-            }
+            res.sendFile(absolutePath)
+    
                 
         })
 
         //POST REQUEST
 
-        router.post('/post', validateStudent, async (req, res) => {
+        router.post('/post', compile_student_doc, async (req, res) => {
 
                 try {
 
@@ -118,7 +111,7 @@ const express = require('express'),
 //MIDDLEWARE FUNCTIONS FOR REQUEST
 
 //need to add hapijoi to validate the student schema better
-function validateStudent(req, res, next) {
+function compile_student_doc(req, res, next) {
 
     // console.log(req.body);
     

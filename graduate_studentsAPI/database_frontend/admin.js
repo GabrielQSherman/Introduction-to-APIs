@@ -1,10 +1,10 @@
     
     //event listeners
-    document.getElementById('get_all').addEventListener('click', get_all_graduates);
+    document.getElementById('post').addEventListener('click', get_all_graduates);
 
-    document.getElementById('get_individual').addEventListener('click', (get_individual_graduates));
+    document.getElementById('put').addEventListener('click', (get_individual_graduates));
 
-    document.getElementById('get_recent').addEventListener('click', (get_recent_graduates));
+    document.getElementById('delete').addEventListener('click', (get_recent_graduates));
 
 
     //button function
