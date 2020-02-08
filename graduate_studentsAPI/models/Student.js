@@ -24,9 +24,9 @@ const mongoose = require('mongoose'),
 
         linkedInIMG: {type: String, required: true},
 
-        dateAdded: {type: String, default: Date(Date.now()).toString().substr(4,15)},
+        dateAdded: {type: String, default: Date(Date.now()).toString().substr(4,11)},
 
-        lastUpdated: {type: String, default: Date(Date.now()).toString().substr(4,15)}
+        lastUpdated: {type: String, default: Date(Date.now()).toString().substr(4,11)}
 
     })
 
