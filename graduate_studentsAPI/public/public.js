@@ -73,7 +73,10 @@
             Name = document.createElement('h3'),
             jobTitle_Company = document.createElement('h5'),
             graduationDate = document.createElement('p'),
-            keySkills = document.createElement('ul');
+            keySkills = document.createElement('ul'),
+            gitHubHL = document.createElement('a'),
+            twitterHL = document.createElement('a'),
+            linkedInHL = document.createElement('a');
 
 
             //set their values
@@ -89,6 +92,14 @@
 
             graduationDate.innerText = data.gradMonth +" "+ data.gradYear;
 
+            gitHubHL.href = data.gitHub;
+            gitHubHL.innerHTML = 'GitHub<br>';
+
+            twitterHL.href = data.twitter;
+            twitterHL.innerHTML = 'Twitter<br>';
+
+            linkedInHL.href = data.linkedIn;
+            linkedInHL.innerHTML = 'LinkedIn<br>';
 
             //creating key skills list
             keySkills.innerText = 'Key Skills:  '
@@ -108,6 +119,9 @@
             newDiv.appendChild(jobTitle_Company);
             newDiv.appendChild(graduationDate);
             newDiv.appendChild(keySkills);
+            newDiv.appendChild(gitHubHL);
+            newDiv.appendChild(twitterHL);
+            newDiv.appendChild(linkedInHL);
 
 
         return newDiv
