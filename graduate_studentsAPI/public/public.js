@@ -11,6 +11,8 @@
 
         try {
 
+            document.getElementById('graduate_layout').innerHTML = 'loading...';
+
            fetch('http://localhost:3000/find/all')
 
             .then(response => {
@@ -21,21 +23,10 @@
 
                 document.getElementById('graduate_layout').innerHTML = '';
 
-
                 for (let i = 0; i < parsedData.length; i++) {
 
-                    console.log('\n\nNext Doc');
-
                     graduateDoc = create_student_data_layout(parsedData[i])
-                    
-                    // graduateDoc = document.createElement('div');
-    
-                    // for (const key in parsedData[i]) {
-                       
-                    //     console.log(parsedData[i][key]);
-                        
-                    // }
-    
+          
                     document.getElementById('graduate_layout').appendChild(graduateDoc);
                     
                 }
@@ -43,14 +34,11 @@
                 
             })
 
-           
-
-          
-
             
         } catch (err) {
 
             console.log(err);  
+            document.getElementById('graduate_layout').innerHTML = err.message;
 
         }
 
@@ -76,11 +64,12 @@
 
    function create_student_data_layout(data) {
 
-    console.log(data);
-        //create the elements
+    // console.log(data); //shows the document object for the individual student being displayed
 
+        //create the elements
         let newDiv = document.createElement('div'),
             
+            image = document.createElement('img'),
             Name = document.createElement('h3'),
             jobTitle_Company = document.createElement('h5'),
             graduationDate = document.createElement('p'),
@@ -88,6 +77,11 @@
 
 
             //set their values
+
+            image.style = "width:100px;height:100px;"
+            image.src = data.linkedInIMG;
+            image.alt = 'Student Portrait';
+            
 
             Name.innerText = data.firstName +" "+ data.lastName;
 
@@ -108,12 +102,12 @@
             }
 
             //append them to the parent element (individual student post)
-    
+
+            newDiv.appendChild(image);
             newDiv.appendChild(Name);
             newDiv.appendChild(jobTitle_Company);
             newDiv.appendChild(graduationDate);
             newDiv.appendChild(keySkills);
-
 
 
         return newDiv
