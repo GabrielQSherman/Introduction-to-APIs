@@ -77,7 +77,7 @@ const express = require('express'),
 
             try {
 
-                req.body.lastUpdated = Date(Date.now()).toString().substr(4,15);
+                req.body.lastUpdated = Date(Date.now()).toString().substr(4,11);
 
                 const updatedDocument = await StudentSchema.updateOne({_id: req.id}, req.body);
 

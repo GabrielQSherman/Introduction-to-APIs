@@ -34,7 +34,7 @@ const express = require('express'),
       //middleware uses for specific routes are below here...
 
       //route for the HOMEPAGE (root route), aka what the public sees
-      const homeRoute = require('./public/home');
+      const homeRoute = require('./routes/home');
 
       app.use('/', data_base_condition, homeRoute) //this will be the root-route or homepage
 
