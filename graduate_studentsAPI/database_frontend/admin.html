@@ -16,28 +16,46 @@
 
         <div class="postElms">
 
-            <form>
-                <input type="text" name="first" placeholder="First Name">
-                <input type="text" name="last" placeholder="Last Name">
-                <input type="text" name="curComp" placeholder="Current Employer">
-                <input type="text" name="curJT" placeholder="Current Job Title">
-                <input type="text" name="git" placeholder="Personal GitHub Link">
+            <form action="http://localhost:3000/admin/post" method="POST">
+
+                <input type="text" name="firstName" placeholder="First Name">
+                <input type="text" name="lastName" placeholder="Last Name">
+                <input type="text" name="gradYear" placeholder="Year of Graduation">
+                <input type="text" name="gradMonth" placeholder="Month of Graduation">
+                <input type="text" name="company_Name" placeholder="Current Employer">
+                <input type="text" name="job_Title" placeholder="Current Job Title">
+                <input type="text" name="gitHub" placeholder="Personal GitHub Link">
+                <input type="text" name="linkedIn" placeholder="Personal LinkedIn Link">
+                <input type="text" name="twitter" placeholder="Personal Twitter Link">
+                <input type="text" name="linkedInIMG" placeholder="Personal LinkedIn Profile Img Link">
+                <input type="text" name="key_Skills" placeholder="Your best skills">
+
+                <input id="submitPost" type="submit">
 
             </form>
 
-            <button id="submitPost">Click to Submit Post Form</button>
         </div>
 
         <div class="updateElms">
             
             <form>
-                <input type="text" name="first" placeholder="First Name">
-                <input type="text" name="last" placeholder="Last Name">
-                <input type="text" name="curComp" placeholder="Current Employer">
-                <input type="text" name="curJT" placeholder="Current Job Title">
-                <input type="text" name="git" placeholder="Personal GitHub Link">
+
+                <input type="text" name="firstName" placeholder="First Name">
+                <input type="text" name="lastName" placeholder="Last Name">
+                <input type="text" name="gradYear" placeholder="Year of Graduation">
+                <input type="text" name="gradMonth" placeholder="Month of Graduation">
+                <input type="text" name="company_Name" placeholder="Current Employer">
+                <input type="text" name="job_Title" placeholder="Current Job Title">
+                <input type="text" name="gitHub" placeholder="Personal GitHub Link">
+                <input type="text" name="linkedIn" placeholder="Personal LinkedIn Link">
+                <input type="text" name="twitter" placeholder="Personal Twitter Link">
+                <input type="text" name="linkedInIMG" placeholder="Personal LinkedIn Profile Img Link">
+                <input type="text" name="key_Skills" placeholder="Your best skills">
+
+                <input type="submit">
 
             </form>
+
             <button id="submitUpdate">Press to update</button>
 
         </div>
@@ -49,6 +67,8 @@
             <button id="submitDelete">Delete Post</button>
 
         </div>
+
+        <h3 id="request_message"> Awaiting http request submition</h3>
 
     </div>
 

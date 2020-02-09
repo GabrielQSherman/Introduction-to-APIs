@@ -9,33 +9,14 @@
 
     //fetch request function
 
-     function postRequest() {
+    function postRequest() {
+        console.log('test');
+        
+    }
 
-        try {
-
-           fetch('http://localhost:3000/admin/post', {
-               method: 'POST',
-               body: {
-
-               }
-           })
-
-            .then(response => {
-                return response.json();
-            })
-
-            .then(parsedData => {
-                console.log(parsedData);
-                
-            })
-
-            
-        } catch (err) {
-
-            console.log(err);  
-
-        }
- 
+    function putRequest() {
+        console.log('test');
+        
     }
 
     //DELETE REQUEST FOR A SPECIFIC POST (ID)
@@ -48,7 +29,15 @@
             fetch('http://localhost:3000/admin/delete/' + id, {
                 method: 'DELETE'
             })
+            
+            .then(response => {
+                return response.json();
+            })
 
+            .then(parsedData => {
+                console.log(parsedData);
+                
+            })
             
             .then(response => {
 

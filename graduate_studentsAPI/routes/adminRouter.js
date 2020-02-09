@@ -22,11 +22,16 @@ const express = require('express'),
                 try {
 
                     const newPostSaved = await req.newpost.save()
-                    res.status(200).json({newpost: newPostSaved})
+                    // res.status(200).json({newpost: newPostSaved})
+
+                    // res._final()
 
                 } catch (err) {
 
-                    res.status(500).json({"message": err.message})
+                    console.log(err.message);
+                    
+
+                    // res.status(500).json({"message": err.message})
 
                 }
 
