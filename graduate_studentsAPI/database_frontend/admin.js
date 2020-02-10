@@ -50,8 +50,9 @@
 
                 body: JSON.stringify(postFormData)
             })
+            const PostResponse = await Post.json();
 
-            console.log(Post);
+            console.log(PostResponse);
 
             document.getElementById('request_message').innerText = 'post submitied';
             
@@ -70,18 +71,41 @@
 
     function putRequest() {
 
+          let postForm = document.getElementById('putForm'),
+
+              postFormData = {},
+
+              docId;
+        
+        // console.log(postForm);
+
+        for (const key of postForm) {
+
+            if (key.name == 'docid' && key.value != '') {
+                console.log('Document Id', key.value);
+                
+                docId = key.value
+                
+            } else if (key.value != '') {
+                console.log('appending', key.name, key.value);
+            
+                postFormData[key.name] = key.value
+            }
+            
+        }
+
         (async () => {
-            const rawResponse = await fetch('http://localhost:3000/admin/', {
-              method: 'POST',
+            const Update = await fetch('http://localhost:3000/admin/put/' + docId, {
+              method: 'PUT',
               headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
               },
-              body: testData
+              body: JSON.stringify(postFormData)
             });
-            const content = await rawResponse.json();
+            const UpdateResponse = await Update.json();
           
-            console.log(content);
+            console.log(UpdateResponse);
           })();
 
 
