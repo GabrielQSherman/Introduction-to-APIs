@@ -11,12 +11,16 @@
 </head>
 <body>
 
+    <h3 id="request_message"> Awaiting http request submition</h3>
+
 
     <div class='buttons'>
 
         <div class="postElms">
 
-            <form action="http://localhost:3000/admin/post" method="POST">
+            <!-- action="http://localhost:3000/admin" method="POST" -->
+
+            <form id = 'postForm' >
 
                 <input type="text" name="firstName" placeholder="First Name">
                 <input type="text" name="lastName" placeholder="Last Name">
@@ -35,6 +39,8 @@
             </form>
 
         </div>
+
+        
 
         <div class="updateElms">
             
@@ -68,7 +74,7 @@
 
         </div>
 
-        <h3 id="request_message"> Awaiting http request submition</h3>
+        
 
     </div>
 
