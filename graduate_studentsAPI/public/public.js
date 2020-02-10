@@ -84,7 +84,7 @@
             //set their values
 
             image.style = "width:100px;height:100px;"
-            image.src = data.linkedInIMG;
+            image.src = data.linkedInIMG || './defaultIcon.png';
             image.alt = 'Student Portrait';
             
 

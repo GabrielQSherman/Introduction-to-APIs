@@ -1,7 +1,11 @@
 
     //event listeners
-    document.getElementById('postForm').addEventListener('submit', postRequest);
 
+    
+
+    document.getElementById('subPostBtn').addEventListener('click', postRequest);
+
+    
     document.getElementById('submitUpdate').addEventListener('click', (putRequest));
 
     document.getElementById('submitDelete').addEventListener('click', (deleteRequest));
@@ -11,39 +15,53 @@
 
     async function postRequest() {
 
-        postFormData = new FormData(document.getElementById('postForm'));
+        let postForm = document.getElementById('postForm'),
 
-        console.log(postFormData);
+            postFormData = {}
+        
+        // console.log(postForm);
+
+        for (const key of postForm) {
+
+            console.log('appending', key.name, key.value);
+            
+            postFormData[key.name] = key.value
+        }
+
+        // const 
+        
+
+        // console.log(postFormData);
         
         
 
         document.getElementById('request_message').innerText = 'Summiting';
 
-        // try {
+        try {
 
-        //     const Post = await fetch('http://localhost:3000/admin/', {
+            const Post = await fetch('http://localhost:3000/admin/', {
 
-        //         method: 'POST',
+                method: 'POST',
 
-        //         headers: {
-        //             'Accept': 'application/json',
-        //             'Content-Type': 'application/json'
-        //           },
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
 
-        //         body: testData
-        //     })
+                body: JSON.stringify(postFormData)
+            })
 
-        //     console.log(Post);
+            console.log(Post);
 
-        //     document.getElementById('request_message').innerText = 'post submitied';
+            document.getElementById('request_message').innerText = 'post submitied';
             
 
-        // } catch (err) {
+        } catch (err) {
 
-        //     console.log(err);
+            console.log(err);
             
             
-        // }
+        }
 
 
 
@@ -104,8 +122,6 @@
                     document.getElementById('request_message').innerText = 'Delete Request Successful'
                     
                 } else {
-
-
 
                     document.getElementById('request_message').innerText = 'Delete Request Not Successful'
 

@@ -49,6 +49,9 @@ const express = require('express'),
 
         router.delete('/delete/:id', get_by_id, async (req, res) => {
 
+            console.log('deleting');
+            
+
             deleteReport = await StudentSchema.deleteOne({_id: req.id});
 
             res.status(200).json({
