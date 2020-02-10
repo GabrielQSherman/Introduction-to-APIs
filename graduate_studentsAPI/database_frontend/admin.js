@@ -1,6 +1,6 @@
-    
+
     //event listeners
-    document.getElementById('submitPost').addEventListener('click', postRequest);
+    document.getElementById('postForm').addEventListener('submit', postRequest);
 
     document.getElementById('submitUpdate').addEventListener('click', (putRequest));
 
@@ -9,12 +9,64 @@
 
     //fetch request function
 
-    function postRequest() {
-        console.log('test');
+    async function postRequest() {
+
+        postFormData = new FormData(document.getElementById('postForm'));
+
+        console.log(postFormData);
+        
+        
+
+        document.getElementById('request_message').innerText = 'Summiting';
+
+        // try {
+
+        //     const Post = await fetch('http://localhost:3000/admin/', {
+
+        //         method: 'POST',
+
+        //         headers: {
+        //             'Accept': 'application/json',
+        //             'Content-Type': 'application/json'
+        //           },
+
+        //         body: testData
+        //     })
+
+        //     console.log(Post);
+
+        //     document.getElementById('request_message').innerText = 'post submitied';
+            
+
+        // } catch (err) {
+
+        //     console.log(err);
+            
+            
+        // }
+
+
+
         
     }
 
     function putRequest() {
+
+        (async () => {
+            const rawResponse = await fetch('http://localhost:3000/admin/', {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: testData
+            });
+            const content = await rawResponse.json();
+          
+            console.log(content);
+          })();
+
+
         console.log('test');
         
     }
@@ -27,14 +79,22 @@
             let id = delete_id.value;
 
             fetch('http://localhost:3000/admin/delete/' + id, {
+
                 method: 'DELETE'
+
             })
             
             .then(response => {
+
+                console.log(response);
+                
+
                 return response.json();
+
             })
 
             .then(parsedData => {
+
                 console.log(parsedData);
                 
             })
@@ -44,7 +104,6 @@
                 delete_id.value = '';
 
                 if (response.status == 200) {
-                    
                     
                     delete_id.placeholder = 'Succesfully deleted document';
                     
@@ -66,3 +125,27 @@
    }
 
 
+   const testData = JSON.stringify({
+    firstName: "New",
+
+     lastName: "Student",
+
+     gradYear: "2024",
+     
+     gradMonth: "07",
+
+     job_Title: "head-chef",
+
+     company_Name: "5-start-resturant",
+
+     key_Skills: ["cook", "clean", "do-it-all"],
+
+     gitHub: "github/mygit.com",
+
+     linkedIn: "mylinkedin.linkedin",
+
+     twitter: "twitter/newstudent.com",
+
+     linkedInIMG: "test"
+
+})
