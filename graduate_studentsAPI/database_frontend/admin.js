@@ -76,6 +76,8 @@
 
         try {
 
+            document.getElementById('request_message').innerText = 'Sending Delete Request'
+
             let id = delete_id.value;
 
             fetch('http://localhost:3000/admin/delete/' + id, {
@@ -93,27 +95,24 @@
 
             })
 
-            .then(parsedData => {
-
-                console.log(parsedData);
-                
-            })
-            
             .then(response => {
-
-                delete_id.value = '';
 
                 if (response.status == 200) {
                     
-                    delete_id.placeholder = 'Succesfully deleted document';
+                    delete_id.placeholder = 'Deletion Success';
+
+                    document.getElementById('request_message').innerText = 'Delete Request Successful'
                     
                 } else {
 
-                    delete_id.placeholder = 'Request Error: ' + response.status;
-                    console.log(response);
-                    
+
+
+                    document.getElementById('request_message').innerText = 'Delete Request Not Successful'
+
                 }
             })
+
+
 
             
         } catch (err) {
