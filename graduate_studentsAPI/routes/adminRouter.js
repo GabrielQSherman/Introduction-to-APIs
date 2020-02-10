@@ -17,21 +17,28 @@ const express = require('express'),
 
         //POST REQUEST
 
-        router.post('/post', compile_student_doc, async (req, res) => {
+        router.post('/', compile_student_doc, async (req, res) => {
 
                 try {
 
                     const newPostSaved = await req.newpost.save()
-                    // res.status(200).json({newpost: newPostSaved})
 
-                    // res._final()
+                    // let refreshAdmin = __dirname.replace('\\routes', '') + '\\database_frontend\\admin.html';
 
+                    // res.sendFile(refreshAdmin);
+
+                    res.status(200).send({newpost: newPostSaved})
+                    console.log(newPostSaved);
+
+                    // res.status(200).end()
+                    
+                   
                 } catch (err) {
 
                     console.log(err.message);
                     
-
-                    // res.status(500).json({"message": err.message})
+                    // res.status(500).end()
+                    res.status(500).json({"message": err.message})
 
                 }
 
@@ -44,10 +51,10 @@ const express = require('express'),
 
             deleteReport = await StudentSchema.deleteOne({_id: req.id});
 
-            // res.status(200).json({
-            //     message: "Item successfuly deleted from database",
-            //     document: req.searched_document
-            // })
+            res.status(200).json({
+                message: "Item successfuly deleted from database",
+                document: req.searched_document
+            })
 
             console.log('\nnumber of items deleted from database: ', deleteReport.deletedCount);
         
