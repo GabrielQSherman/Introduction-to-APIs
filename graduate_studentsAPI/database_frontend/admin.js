@@ -17,24 +17,12 @@
             postFormData = create_obj_with_formdata(postForm);
 
             postJson = JSON.stringify(postFormData);
-        
-        // console.log(postForm);
-
-        for (const key of postForm) {
-
-            console.log('appending', key.name, key.value);
-            
-            postFormData[key.name] = key.value
-        }
-
-        // console.log(postFormData);
-    
 
         document.getElementById('request_message').innerText = 'Summiting';
 
         try {
 
-            const Post = await fetch('http://localhost:3000/admin/', {
+            await fetch('http://localhost:3000/admin/', {
 
                 method: 'POST',
 
@@ -45,15 +33,21 @@
 
                 body: postJson
             })
-            const PostResponse = await Post.json();
 
-            console.log(PostResponse);
+            .then((response) => {
+                return response.json()
+            })
+            .then((json) => {
+                console.log(json.newpost);
 
-            document.getElementById('request_message').innerText = 'post submitied';
+                document.getElementById('responseElm').innerText = json.newpost;
 
-            clear_formData(postForm)
-            
+                document.getElementById('request_message').innerText = 'post submitied';
 
+                clear_formData(postForm) //sets all the input values to blank
+                
+            })
+        
         } catch (err) {
 
             console.log(err); 
@@ -106,6 +100,9 @@
 
             let id = delete_id.value;
 
+            console.log(id);
+            
+
             fetch('http://localhost:3000/admin/delete/' + id, {
 
                 method: 'DELETE'
@@ -114,13 +111,16 @@
             
             .then(response => {
 
-                console.log(response);
-
                 return response.json();
 
             })
 
             .then(response => {
+
+                console.log(response.status, response.message);
+
+                document.getElementById('request_message').innerText = 'Completed Deletion Request';
+
 
                 if (response.status == 200) {
 
@@ -128,11 +128,12 @@
                     
                     delete_id.placeholder = 'Deletion Success';
 
-                    document.getElementById('request_message').innerText = 'Delete Request Successful'
+                    document.getElementById('responseElm').innerText = response.message;
+
                     
                 } else {
 
-                    document.getElementById('request_message').innerText = 'Delete Request Not Successful'
+                    document.getElementById('responseElm').innerText = response.message;
 
                 }
             })
