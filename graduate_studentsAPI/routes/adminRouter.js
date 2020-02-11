@@ -23,19 +23,13 @@ const express = require('express'),
 
                     const newPostSaved = await req.newpost.save()
 
-                    // let refreshAdmin = __dirname.replace('\\routes', '') + '\\database_frontend\\admin.html';
-
-                    // res.sendFile(refreshAdmin);
-
-                    res.status(200).send({newpost: newPostSaved})
-                    // console.log(newPostSaved);
-                    
-                   
+                    res.status(200).send({newpost: newPostSaved, status: 200})
+          
                 } catch (err) {
 
                     console.log(err.message);
                     
-                    res.status(500).json({"message": err.message})
+                    res.status(500).json({"message": err.message, status: 500})
 
                 }
 
@@ -46,7 +40,6 @@ const express = require('express'),
 
         router.delete('/:id', get_by_id, async (req, res) => {
 
-            // console.log('deleting');
 
             try {
 
@@ -84,13 +77,25 @@ const express = require('express'),
 
                 const updatedDocument = await StudentSchema.updateOne({_id: req.id}, req.body);
 
-                res.status(200).json(updatedDocument);
+                res.status(200).json({ 
+
+                    document: await StudentSchema.findById(req.id), 
+                    // changes: req.body,
+                    message: "the post was updated successfully", 
+                    status: 200
+
+                });
                 
             } catch (err) {
 
                 console.log(err);
 
-                res.status(500).json({message: 'The server was unable to update the document'})
+                res.status(500).json({
+
+                    message: 'The server was unable to update the document',
+                    status: 500,
+                    error: 'Api did not function properly'
+                })
                 
             }
 
@@ -106,21 +111,24 @@ const express = require('express'),
 
         // console.log('Docs', allDocuments); //logs all documents in database to the request of this router method
 
-        res.json({allDocuments});
+        res.status(200).json({All_Documents_in_DB: allDocuments, status: 200});
           
       })
 
       //GET REQUEST FOR INDIVUIDUAL DOCUMENTS
 
       router.get('/getid/:id', get_by_id, (req, res) => {
-          res.json({Found_Post: req.searched_document})
+          res.status(200).json({
+              document: req.searched_document,
+              status: 200,
+              message: 'Post sucessfully retreived from database'
+          })
       })
 
 
 
 //MIDDLEWARE FUNCTIONS FOR REQUEST
 
-//need to add hapijoi to validate the student schema better
 function compile_student_doc(req, res, next) {
 
     // console.log(req.body);
@@ -180,7 +188,7 @@ async function get_by_id(req, res, next) {
         }
 
         res.status(statusCode).json({
-            message: 'Invalid Id',
+            message: 'Invalid Id, this id was not connected to any document in the database',
             error: err.message,
             status: statusCode
         })

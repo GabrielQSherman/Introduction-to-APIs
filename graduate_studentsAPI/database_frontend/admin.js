@@ -3,9 +3,9 @@
 
     document.getElementById('subPostBtn').addEventListener('click', postRequest);
     
-    document.getElementById('submitUpdate').addEventListener('click', (putRequest));
+    document.getElementById('submitUpdate').addEventListener('click', putRequest);
 
-    document.getElementById('submitDelete').addEventListener('click', (deleteRequest));
+    document.getElementById('submitDelete').addEventListener('click', deleteRequest);
 
 
     //fetch request function
@@ -17,6 +17,8 @@
             postFormData = create_obj_with_formdata(postForm);
 
             postJson = JSON.stringify(postFormData);
+
+            //do some check on client provided data to catch errors before data is sent to API
 
         document.getElementById('request_message').innerText = 'Summiting';
 
@@ -42,7 +44,7 @@
 
                     // console.log(response.json());
                     
-                    throw new Error(`The students post failed Status: ${response.status}`)
+                    throw new Error(`Request failed, Status: ${response.status}`)
 
   
                 }
@@ -58,11 +60,11 @@
 
                 document.getElementById('request_message').innerText = 'Student Successfully Posted';
 
-                // clear_formData(postForm) //sets all the input values to blank
-                
+                setTimeout(reset_req_mes, 3000)
+
             })
 
-            .catch( (err) => {
+            .catch( err => {
 
                 document.getElementById('responseElm').innerHTML = `Failed to Post, Error: ${err}`;
 
@@ -76,19 +78,30 @@
     }
     
 
-    function putRequest() {
+   async function putRequest() {
 
           let putForm = document.getElementById('putForm'),
 
-              docId,
-    
+              putIdTextInput = document.getElementById('put_id'),
+
               putFormDataObj = create_obj_with_formdata(putForm),
 
               putJson = JSON.stringify(putFormDataObj);
 
-        (async () => {
+            if (putIdTextInput.value.length != 24) { //check to make sure the client input is at least in the correct format
 
-            const Update = await fetch('http://localhost:3000/admin/put/' + docId, {
+                putIdTextInput.value = ''
+                putIdTextInput.placeholder = 'Id will be 24 characters'
+
+                return
+                
+            }
+
+            putIdTextInput = putIdTextInput.value;
+    
+              
+
+       await fetch('http://localhost:3000/admin/put/' + putIdTextInput, {
               method: 'PUT',
               headers: {
                 'Accept': 'application/json',
@@ -97,18 +110,51 @@
 
               body: putJson
 
-            });
-            
-            const UpdateResponse = await Update.json();
-          
-            console.log(UpdateResponse);
+       })
 
-        })();
+            //returns the response from the api and parses from readableStream to JSON
+            .then( readable_stream_res => {
 
+                return readable_stream_res.json()
+            })
 
-        console.log('test');
-        
-    }
+            //the json response is used to display status code/errors to the client
+            .then( (parsedResponse) => {
+
+                if (!checkStatusOk(parsedResponse)) {
+                    return 
+                }
+
+                console.log(parsedResponse.document);
+
+                let updatedDocObj = parsedResponse.document,
+
+                updatedDoc = '';
+
+                // console.log(updatedDocObj);
+                
+                for (const key in updatedDocObj) {
+
+                    updatedDoc += `<br><br>  ${key}: ${updatedDocObj[key]}`;
+                    
+                }
+                
+                document.getElementById('responseElm').innerHTML = `Updated Post:${updatedDoc}`;
+
+                document.getElementById('request_message').innerText = 'Student Successfully Updated';
+
+                
+
+            })
+
+            .catch( err => {
+
+                console.log(err);
+                
+            })
+
+            .finally( () => {clear_formData(putForm); setTimeout(reset_req_mes, 3000)})
+   }
 
     //DELETE REQUEST FOR A SPECIFIC POST (ID)
     function deleteRequest() {
@@ -118,7 +164,7 @@
                 delete_id.value = ''
                 delete_id.placeholder = 'The Id must be 24 characters'
 
-                // return
+                return
                 
             }
 
@@ -133,16 +179,19 @@
 
             })
             
-            .then(response => {
+            .then(readable_stream => {
 
-                return response.json();
+                return readable_stream.json();
 
             })
 
-            .then(response => {
+            .then(parsedResponse => {
 
+                    if (!checkStatusOk(parsedResponse)) {
+                        return 
+                    }
 
-                if (response.status == 200) {
+                    reset_req_mes() 
 
                     delete_id.value = '';
                     
@@ -150,23 +199,12 @@
 
                     document.getElementById('request_message').innerText = 'Completed Deletion Request';
 
-                    document.getElementById('responseElm').innerText = response.message;
-
+                    document.getElementById('responseElm').innerText = parsedResponse.message;
                     
-                } else {
 
-                    document.getElementById('request_message').innerText = 'Unsuccessful Deletion Request';
-
-                    document.getElementById('responseElm').innerHTML = `Message: ${response.message}<br>Status: ${response.status}`;
-
-                    if (response.error) {
-
-                        document.getElementById('responseElm').innerHTML += `<br>Error: ${response.error}`;
-                        
-                    }
-
-                }
             })
+
+            .finally( setTimeout(reset_req_mes, 3000))//resets the requestmessage element back to its original state
 
         
    }
@@ -181,18 +219,19 @@
 
    }
 
+   function reset_req_mes() {
+
+    document.getElementById('request_message').innerText = 'Awaiting HTTP Request Submition'
+       
+   }
+
    function create_obj_with_formdata(rawFormData) {
 
         let newObj = {};
 
         for (const key of rawFormData) {
 
-            if (key.name == 'docid' && key.value != '') {
-                // console.log('Document Id', key.value);
-                
-                docId = key.value
-                
-            } else if (key.value != '') {
+            if (key.value != '') {
 
                 // console.log('appending', key.name, key.value);
             
@@ -204,4 +243,28 @@
 
         return newObj
        
+   }
+
+   function checkStatusOk(response) {
+
+    // console.log(response.status);
+
+        if (response.status != 200) { //if a status other than 'OK/200' is received
+
+            let clientMessage = document.getElementById('responseElm');
+
+            document.getElementById('request_message').innerText = 'Unsuccessful Request';
+
+            clientMessage.innerHTML = `Status Code: ${response.status}`;
+
+            if (response.message) clientMessage.innerHTML += `<br>Message: ${response.message}`;
+
+            if (response.error) clientMessage.innerHTML += `<br>Error: ${response.error}`; 
+
+            return false
+
+        }
+
+        return true
+
    }
