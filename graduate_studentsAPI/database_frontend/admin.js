@@ -1,10 +1,7 @@
 
     //event listeners
 
-    
-
     document.getElementById('subPostBtn').addEventListener('click', postRequest);
-
     
     document.getElementById('submitUpdate').addEventListener('click', (putRequest));
 
@@ -17,7 +14,7 @@
 
         let postForm = document.getElementById('postForm'),
 
-            postFormData = {}
+            postFormData = create_obj_with_formdata(postForm);
         
         // console.log(postForm);
 
@@ -32,8 +29,7 @@
         
 
         // console.log(postFormData);
-        
-        
+    
 
         document.getElementById('request_message').innerText = 'Summiting';
 
@@ -55,6 +51,8 @@
             console.log(PostResponse);
 
             document.getElementById('request_message').innerText = 'post submitied';
+
+            clear_formData(postForm)
             
 
         } catch (err) {
@@ -63,36 +61,19 @@
             
             
         }
-
-
-
         
     }
+    
 
     function putRequest() {
 
-          let postForm = document.getElementById('putForm'),
+          var putForm = document.getElementById('putForm'),
 
-              postFormData = {},
+              docId,
+    
+              putFormData = create_obj_with_formdata(putForm);
 
-              docId;
-        
-        // console.log(postForm);
-
-        for (const key of postForm) {
-
-            if (key.name == 'docid' && key.value != '') {
-                console.log('Document Id', key.value);
-                
-                docId = key.value
-                
-            } else if (key.value != '') {
-                console.log('appending', key.name, key.value);
-            
-                postFormData[key.name] = key.value
-            }
-            
-        }
+       
 
         (async () => {
             const Update = await fetch('http://localhost:3000/admin/put/' + docId, {
@@ -101,7 +82,7 @@
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
               },
-              body: JSON.stringify(postFormData)
+              body: JSON.stringify(putFormData)
             });
             const UpdateResponse = await Update.json();
           
@@ -131,7 +112,6 @@
             .then(response => {
 
                 console.log(response);
-                
 
                 return response.json();
 
@@ -140,6 +120,8 @@
             .then(response => {
 
                 if (response.status == 200) {
+
+                    delete_id.value = '';
                     
                     delete_id.placeholder = 'Deletion Success';
 
@@ -152,8 +134,6 @@
                 }
             })
 
-
-
             
         } catch (err) {
 
@@ -164,27 +144,36 @@
    }
 
 
-   const testData = JSON.stringify({
-    firstName: "New",
 
-     lastName: "Student",
+   function clear_formData(formElement) {
+       
+        for (const key of formElement) {
+            key.value = ''
+        }
 
-     gradYear: "2024",
-     
-     gradMonth: "07",
+   }
 
-     job_Title: "head-chef",
+   function create_obj_with_formdata(rawFormData) {
 
-     company_Name: "5-start-resturant",
+        let newObj = {};
 
-     key_Skills: ["cook", "clean", "do-it-all"],
+        for (const key of rawFormData) {
 
-     gitHub: "github/mygit.com",
+            if (key.name == 'docid' && key.value != '') {
+                // console.log('Document Id', key.value);
+                
+                docId = key.value
+                
+            } else if (key.value != '') {
 
-     linkedIn: "mylinkedin.linkedin",
+                // console.log('appending', key.name, key.value);
+            
+                newObj[key.name] = key.value;
 
-     twitter: "twitter/newstudent.com",
+            }
+            
+        }
 
-     linkedInIMG: "test"
-
-})
+        return newObj
+       
+   }
