@@ -29,15 +29,12 @@ const express = require('express'),
 
                     res.status(200).send({newpost: newPostSaved})
                     console.log(newPostSaved);
-
-                    // res.status(200).end()
                     
                    
                 } catch (err) {
 
                     console.log(err.message);
                     
-                    // res.status(500).end()
                     res.status(500).json({"message": err.message})
 
                 }
@@ -51,14 +48,28 @@ const express = require('express'),
 
             // console.log('deleting');
 
-            deleteReport = await StudentSchema.deleteOne({_id: req.id});
+            try {
 
-            res.status(200).json({
-                message: "Item successfuly deleted from database",
-                document: req.searched_document
-            })
+                deleteReport = await StudentSchema.deleteOne({_id: req.id});
 
-            console.log('\nnumber of items deleted from database: ', deleteReport.deletedCount);
+                res.status(200).json({
+                    message: "Item successfuly deleted from database",
+                    document: req.searched_document,
+                    status: 200
+                })
+                
+            } catch (err) {
+
+                res.status(400).json({
+                    message: "Item could not be deleted from database",
+                    status: 400
+                })
+
+                console.log(err);
+                
+            }
+
+            // console.log('\number of items deleted from database: ', deleteReport.deletedCount);
         
         })
 
