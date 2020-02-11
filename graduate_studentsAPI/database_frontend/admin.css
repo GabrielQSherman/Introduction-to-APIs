@@ -7,13 +7,18 @@
 
 .buttons>postElms{
     background-color: aqua;
-    display: flex grid;
+    display: flex;
 
     margin: 10%;
 }
 
+.buttons>postElms>form>input{
+    display: flexbox;
+}
+
 .buttons>updateElms{
     background-color: khaki; 
+    color: aqua;
     display: flex;
 
     margin: 10%;
@@ -25,3 +30,4 @@
 
     margin: 10%;
 }
+
