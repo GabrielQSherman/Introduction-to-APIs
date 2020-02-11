@@ -15,6 +15,8 @@
         let postForm = document.getElementById('postForm'),
 
             postFormData = create_obj_with_formdata(postForm);
+
+            postJson = JSON.stringify(postFormData);
         
         // console.log(postForm);
 
@@ -24,9 +26,6 @@
             
             postFormData[key.name] = key.value
         }
-
-        // const 
-        
 
         // console.log(postFormData);
     
@@ -44,7 +43,7 @@
                     'Content-Type': 'application/json'
                   },
 
-                body: JSON.stringify(postFormData)
+                body: postJson
             })
             const PostResponse = await Post.json();
 
@@ -57,8 +56,7 @@
 
         } catch (err) {
 
-            console.log(err);
-            
+            console.log(err); 
             
         }
         
@@ -67,27 +65,32 @@
 
     function putRequest() {
 
-          var putForm = document.getElementById('putForm'),
+          let putForm = document.getElementById('putForm'),
 
               docId,
     
-              putFormData = create_obj_with_formdata(putForm);
+              putFormDataObj = create_obj_with_formdata(putForm),
 
-       
+              putJson = JSON.stringify(putFormDataObj);
 
         (async () => {
+
             const Update = await fetch('http://localhost:3000/admin/put/' + docId, {
               method: 'PUT',
               headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
               },
-              body: JSON.stringify(putFormData)
+
+              body: putJson
+
             });
+            
             const UpdateResponse = await Update.json();
           
             console.log(UpdateResponse);
-          })();
+
+        })();
 
 
         console.log('test');

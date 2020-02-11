@@ -49,7 +49,6 @@
     }
 
 
-
    async function get_individual_graduates() {
 
     console.log('test');
@@ -83,23 +82,35 @@
 
             //set their values
 
+            //Profile image
             image.style = "width:100px;height:100px;"
-            image.src = data.linkedInIMG || './defaultIcon.png';
-            image.alt = 'Student Portrait';
-            
 
+            image.src = data.linkedInIMG;
+
+            image.onerror = () => {
+                image.src = './defaultIcon.png';
+            }
+
+            image.alt = 'Student Portrait';
+        
+            //First and Last Name
             Name.innerText = data.firstName +" "+ data.lastName;
 
+            //Employment information
             jobTitle_Company.innerText = data.company_Name +": "+ data.job_Title;
 
-            graduationDate.innerText = data.gradMonth +" "+ data.gradYear;
+            //Students graduation info
+            graduationDate.innerHTML = `Graduation;<br> Month: ${data.gradMonth},<br> Year: ${data.gradYear}`;
 
+            //gitHub
             gitHubHL.href = data.gitHub;
             gitHubHL.innerHTML = 'GitHub<br>';
 
+            //twitter
             twitterHL.href = data.twitter;
             twitterHL.innerHTML = 'Twitter<br>';
 
+            //linkedIn
             linkedInHL.href = data.linkedIn;
             linkedInHL.innerHTML = 'LinkedIn<br>';
 
@@ -124,7 +135,6 @@
             newDiv.appendChild(gitHubHL);
             newDiv.appendChild(twitterHL);
             newDiv.appendChild(linkedInHL);
-
 
         return newDiv
        
