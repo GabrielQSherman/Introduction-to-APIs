@@ -14,22 +14,38 @@
     <h3 id="request_message"> Awaiting http request submition</h3>
 
 
-    <div class='buttons'>
+    <div class='requestForms'>
 
-        <div class="postElms">
+        <div class="postElms" style="flex: 1">
+
+            <h3>Post a New Student's Information</h3>
 
             <form id = 'postForm' >
                
+                <!-- <label>Student Name</label> -->
                 <input type="text" name="firstName" placeholder="First Name">
                 <input type="text" name="lastName" placeholder="Last Name">
+                <br>
+
+                <!-- <label for="gradYear">Graduation Date</label> -->
                 <input type="text" name="gradYear" placeholder="Year of Graduation">
                 <input type="text" name="gradMonth" placeholder="Month of Graduation">
+                <br>
+
+                <!-- <label for="company_Name">Current Employment</label> -->
                 <input type="text" name="company_Name" placeholder="Current Employer">
                 <input type="text" name="job_Title" placeholder="Current Job Title">
+                <br>
+
+                <!-- <label>Links</label> -->
                 <input type="text" name="gitHub" placeholder="Personal GitHub Link">
                 <input type="text" name="linkedIn" placeholder="Personal LinkedIn Link">
+                <br>
+
                 <input type="text" name="twitter" placeholder="Personal Twitter Link">
                 <input type="text" name="linkedInIMG" placeholder="Personal LinkedIn Profile Img Link">
+                <br>
+
                 <input type="text" name="key_Skills" placeholder="Your best skills">
 
             </form>
@@ -40,30 +56,52 @@
 
         
 
-        <div class="updateElms">
+        <div class="updateElms" style="flex: 1">
+
+            <h3>Update a Student's Information</h3>
             
             <form id='putForm'>
-
+                <!-- <label for="docid">Student Id</label> -->
                 <input type="text" name="docid" placeholder="Student Document Id">
+                <br>
+
+                <!-- <label>Student Name</label> -->
                 <input type="text" name="firstName" placeholder="First Name">
                 <input type="text" name="lastName" placeholder="Last Name">
+                <br>
+
+                <!-- <label for="gradYear">Graduation Date</label> -->
                 <input type="text" name="gradYear" placeholder="Year of Graduation">
                 <input type="text" name="gradMonth" placeholder="Month of Graduation">
+                <br>
+
+                <!-- <label for="company_Name">Current Employment</label> -->
                 <input type="text" name="company_Name" placeholder="Current Employer">
                 <input type="text" name="job_Title" placeholder="Current Job Title">
+                <br>
+
+                <!-- <label>Links</label> -->
                 <input type="text" name="gitHub" placeholder="Personal GitHub Link">
                 <input type="text" name="linkedIn" placeholder="Personal LinkedIn Link">
+                <br>
+
                 <input type="text" name="twitter" placeholder="Personal Twitter Link">
                 <input type="text" name="linkedInIMG" placeholder="Personal LinkedIn Profile Img Link">
+                <br>
+
                 <input type="text" name="key_Skills" placeholder="Your best skills">
 
             </form>
 
-            <button id="submitUpdate">Press to update</button>
+            <button id="submitUpdate">Submit Update Request</button>
 
         </div>
 
-        <div class="deleteElms">
+
+
+        <div class="deleteElms" style="flex: 1">
+
+            <h3>Delete A Students Information From Database</h3>
 
             <input id="delete_id" type="text" placeholder="Enter an Id of a post to delete" style="width: 250px;">
 
@@ -71,10 +109,8 @@
 
         </div>
 
-        
 
     </div>
-
 
     <script type="text/javascript" src="admin.js"></script>
     
