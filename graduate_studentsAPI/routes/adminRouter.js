@@ -28,7 +28,7 @@ const express = require('express'),
                     // res.sendFile(refreshAdmin);
 
                     res.status(200).send({newpost: newPostSaved})
-                    console.log(newPostSaved);
+                    // console.log(newPostSaved);
                     
                    
                 } catch (err) {
@@ -44,7 +44,7 @@ const express = require('express'),
       
         //DELETE A POST BY ID
 
-        router.delete('/delete/:id', get_by_id, async (req, res) => {
+        router.delete('/:id', get_by_id, async (req, res) => {
 
             // console.log('deleting');
 
@@ -181,7 +181,8 @@ async function get_by_id(req, res, next) {
 
         res.status(statusCode).json({
             message: 'Invalid Id',
-            error: err.message
+            error: err.message,
+            status: statusCode
         })
         
     }

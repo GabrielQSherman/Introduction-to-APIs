@@ -20,8 +20,6 @@
 
         document.getElementById('request_message').innerText = 'Summiting';
 
-        try {
-
             await fetch('http://localhost:3000/admin/', {
 
                 method: 'POST',
@@ -40,17 +38,17 @@
             .then((response) => {
                 console.log(response.status);
 
-                if (response.status != 200) { //if a status other than 'OK' is receivedS
+                    if (response.status != 200) { //if a status other than 'OK' is receivedS
 
-                    console.log(response.json());
+                    // console.log(response.json());
                     
                     throw new Error(`The students post failed Status: ${response.status}`)
-                    
-                }
-                
-                return response.json()
-            })
 
+  
+                }
+                return response.json()
+                
+            })
 
             //after the response is parsed to json its properties can be used in the DOM and a success message is sent to the client
             .then((json) => {
@@ -60,17 +58,20 @@
 
                 document.getElementById('request_message').innerText = 'Student Successfully Posted';
 
-                clear_formData(postForm) //sets all the input values to blank
+                // clear_formData(postForm) //sets all the input values to blank
                 
             })
-        
-        } catch (err) {
 
-            document.getElementById('responseElm').innerText = err;
+            .catch( (err) => {
 
-            document.getElementById('request_message').innerText = 'Student Info Could Not Be Posted';
-            
-        }
+                document.getElementById('responseElm').innerHTML = `Failed to Post, Error: ${err}`;
+
+                document.getElementById('request_message').innerText = 'Student Not Posted';
+
+            })
+
+            .finally( clear_formData(postForm) )
+
         
     }
     
@@ -112,16 +113,21 @@
     //DELETE REQUEST FOR A SPECIFIC POST (ID)
     function deleteRequest() {
 
-        try {
+            if (delete_id.value.length != 24) {
 
-            document.getElementById('request_message').innerText = 'Sending Delete Request'
+                delete_id.value = ''
+                delete_id.placeholder = 'The Id must be 24 characters'
+
+                // return
+                
+            }
 
             let id = delete_id.value;
 
-            console.log(id);
-            
+            document.getElementById('request_message').innerText = 'Sending Delete Request'
 
-            fetch('http://localhost:3000/admin/delete/' + id, {
+
+            fetch('http://localhost:3000/admin/' + id, {
 
                 method: 'DELETE'
 
@@ -135,10 +141,6 @@
 
             .then(response => {
 
-                console.log(response.status, response.message);
-
-                document.getElementById('request_message').innerText = 'Completed Deletion Request';
-
 
                 if (response.status == 200) {
 
@@ -146,22 +148,26 @@
                     
                     delete_id.placeholder = 'Deletion Success';
 
+                    document.getElementById('request_message').innerText = 'Completed Deletion Request';
+
                     document.getElementById('responseElm').innerText = response.message;
 
                     
                 } else {
 
-                    document.getElementById('responseElm').innerText = response.message;
+                    document.getElementById('request_message').innerText = 'Unsuccessful Deletion Request';
+
+                    document.getElementById('responseElm').innerHTML = `Message: ${response.message}<br>Status: ${response.status}`;
+
+                    if (response.error) {
+
+                        document.getElementById('responseElm').innerHTML += `<br>Error: ${response.error}`;
+                        
+                    }
 
                 }
             })
 
-            
-        } catch (err) {
-
-            console.log(err);
-            
-        }
         
    }
 
