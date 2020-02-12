@@ -1,3 +1,7 @@
+body {
+    background-color: lightskyblue;
+} 
+
 .forms {
     background-color: rgb(254, 255, 188);
     display: flex;
@@ -5,26 +9,33 @@
     margin: 1%;
 }
 
-.forms>postElms{
+.postElms{
     background-color: aqua;
-    display: flex;
+    display: flexbox;
 
-    margin: 10%;
+    margin: 2%;
 }
 
 
-.forms>updateElms{
-    background-color: khaki; 
-    display: flex;
+.updateElms{
+    background-color: rgb(69, 255, 36); 
+    display: flexbox;
 
-    margin: 10%;
+    margin: 2%;
 }
 
-.forms>deleteElms{
-    background-color: hotpink;
-    display: flex;
+.deleteElms{
+    background-color: rgb(255, 60, 109);
+    display: flexbox;
 
-    margin: 10%;
+    margin: 2%;
+}
+
+.searchElms{
+    background-color: yellow;
+    display: flexbox;
+
+    margin: 2%;
 }
 
 .displayElms{

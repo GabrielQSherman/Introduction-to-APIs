@@ -11,13 +11,13 @@
 </head>
 <body>
 
-    <h3 id="request_message" style="display: inline; margin: 40%;"> Awaiting HTTP Request Submition</h3>
+    <h2 id="request_message" style="display: inline; margin: 40%; background-color:  rgb(88, 230, 255)"> Awaiting HTTP Request Submition</h2>
 
     <div class='forms'>
 
         <div class="postElms" style="flex: 1">
 
-            <h3>Post a New Student's Information</h3>
+            <h3 style="background-color:  rgb(255, 132, 132)">Post a New Student's Information</h3>
 
             <form id = 'postForm' >
                
@@ -57,7 +57,7 @@
 
         <div class="updateElms" style="flex: 1">
 
-            <h3>Update a Student's Information</h3>
+            <h3 style="background-color:  rgb(255, 120, 57);">Update a Student's Information</h3>
             
             <form id='putForm'>
                 <!-- <label for="docid">Student Id</label> -->
@@ -100,7 +100,7 @@
 
         <div class="deleteElms" style="flex: 1">
 
-            <h3>Delete A Students Information From Database</h3>
+            <h3 style="background-color:  rgb(70, 255, 116)">Delete A Students Information From Database</h3>
 
             <input id="delete_id" type="text" placeholder="Enter an Id of a post to delete" style="width: 250px;">
 
@@ -108,17 +108,18 @@
 
         </div>
 
-    <div class="searchForms" style="flex: 1">
+    <div class="searchElms" style="flex: 1">
 
-        <h3>Search for Student Documents</h3>
+        <h3 style="background-color:  rgb(130, 255, 245)">Search for Student Documents</h3>
 
-        <form>
+        <!-- <form id="searchForm" action=""> -->
+            
+            <input id="filter_by" type="text" placeholder="Select a filter">
+            <input id="filter_value" type="text" placeholder="Select a filter">
 
-            <input name="filterby" type="text" placeholder="Select a filter">
+        <!-- </form> -->
 
-        </form>
-
-        <button id="submitSearch">Search for {Post/s</button>
+        <button id="submitSearch">Search for Post/s</button>
     
     </div>
 

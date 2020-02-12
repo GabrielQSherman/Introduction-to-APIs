@@ -7,8 +7,30 @@
 
     document.getElementById('submitDelete').addEventListener('click', deleteRequest);
 
+    document.getElementById('submitSearch').addEventListener('click', searchRequest)
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //FETCH Request Functions
+
+//SEARCH 
+async function searchRequest() {
+    
+    let filterParam = document.getElementById('filter_by').value,
+        filParamValue = document.getElementById('filter_value').value;
+
+        console.log(filterParam, filParamValue);
+        
+
+        await fetch(`http://localhost:3000/admin/${filterParam}/:${filParamValue}`, {
+
+        })
+
+        .then(response => {
+            console.log(response);
+            
+        })
+
+}
 
 
 //POST

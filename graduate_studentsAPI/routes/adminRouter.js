@@ -15,6 +15,17 @@ const express = require('express'),
                 
         })
 
+        //FILTERED SEARCH REQUEST
+
+        router.get('/:filter/:value', async (req, res) => {
+
+            // await StudentSchema.filter()
+
+            res.send('foundpost')
+
+
+        })
+
         //POST REQUEST
 
         router.post('/', compile_student_doc, async (req, res) => {
