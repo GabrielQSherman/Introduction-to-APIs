@@ -22,53 +22,122 @@
 
         document.getElementById('request_message').innerText = 'Summiting';
 
-            await fetch('http://localhost:3000/admin/', {
+            // await fetch('http://localhost:3000/admin/', {
 
-                method: 'POST',
+            //     method: 'POST',
 
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                  },
+            //     headers: {
+            //         'Accept': 'application/json',
+            //         'Content-Type': 'application/json'
+            //       },
 
-                body: postJson
-            })
+            //     body: postJson
+            // })
 
-            //after the fetch POST request goes to the server through the api and back to the client a promise is returned
-            //the resonse will be in a readable stream format(not good for extracting data)
-            //but it will have a status code that will be useful for error handling
-            .then((readable_stream_res) => {
+            // //after the fetch POST request goes to the server through the api and back to the client a promise is returned
+            // //the resonse will be in a readable stream format(not good for extracting data)
+            // //but it will have a status code that will be useful for error handling
+            // .then((readable_stream_res) => {
                
-                return readable_stream_res.json()
+            //     return readable_stream_res.json()
                 
-            })
+            // })
 
-            //after the response is parsed to json its properties can be used in the DOM and a success message is sent to the client
-            .then((json) => {
+            // //after the response is parsed to json its properties can be used in the DOM and a success message is sent to the client
+            // .then((json) => {
 
-                if (!checkStatusOk(parsedResponse)) {
-                    return
-                }
+            //     if (!checkStatusOk(parsedResponse)) {
+            //         return
+            //     }
                 
-                console.log(json.document);
+            //     console.log(json.document);
 
-                document.getElementById('responseElm').innerHTML = `New Student Added to Database<br>Student's Name: ${parsedResponse.document.firstName} ${parsedResponse.document.lastName}<br>Document DB Id: ${parsedResponse.document._id}`;
+            //     document.getElementById('responseElm').innerHTML = `New Student Added to Database<br>Student's Name: ${parsedResponse.document.firstName} ${parsedResponse.document.lastName}<br>Document DB Id: ${parsedResponse.document._id}`;
 
-                document.getElementById('request_message').innerText = 'Student Successfully Posted';
+            //     document.getElementById('request_message').innerText = 'Student Successfully Posted';
 
-                setTimeout(reset_req_mes, 3000)
+            //     setTimeout(reset_req_mes, 3000)
 
-            })
+            // })
 
-            .catch( err => {
+            // .catch( err => {
 
-                document.getElementById('responseElm').innerHTML = `Failed to Post, Error: ${err}`;
+            //     document.getElementById('responseElm').innerHTML = `Failed to Post, Error: ${err}`;
 
-                document.getElementById('request_message').innerText = 'Student Not Posted';
+            //     document.getElementById('request_message').innerText = 'Student Not Posted';
 
-            })
+            // })
 
-            .finally( clear_formData(postForm) )
+            // .finally( clear_formData(postForm) )
+
+            ////////////////////////////////////////////////////////////////////////////////////
+
+
+
+            await fetch('http://localhost:3000/admin', {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+  
+                body: postForm
+  
+         })
+  
+              //returns the response from the api and parses from readableStream to JSON
+              .then( readable_stream_res => {
+  
+                  return readable_stream_res.json()
+              })
+  
+              //the json response is used to display status code/errors to the client
+              .then( (parsedResponse) => {
+  
+                  if (!checkStatusOk(parsedResponse)) {
+                      return 
+                  }
+  
+                //   console.log(parsedResponse.document);
+  
+                  let newPostObj = parsedResponse.document,
+  
+                  postHTML = '';
+  
+                  // console.log(newPostObj);
+                  
+                  for (const key in newPostObj) {
+  
+                      if (key != '__v') {
+  
+                          if (newPostObj[key].includes('http')) {
+  
+                              postHTML+= `<br><br> <a href='${newPostObj[key]}'>${key.toUpperCase()}<a/>`;
+  
+                          } else {
+  
+                              postHTML += `<br><br>  ${key.toUpperCase()}: ${newPostObj[key]}`;
+  
+                          }
+  
+                      }
+                      
+                  }
+                  
+                  document.getElementById('responseElm').innerHTML = `Updated Post:${postHTML}`;
+  
+                  document.getElementById('request_message').innerText = 'Student Successfully Updated';
+                  
+  
+              })
+  
+              .catch( err => {
+  
+                  console.log(err);
+                  
+              })
+  
+              .finally( () => {clear_formData(putForm); setTimeout(reset_req_mes, 3000)})
 
         
     }
@@ -123,23 +192,23 @@
 
                 console.log(parsedResponse.document);
 
-                let updatedDocObj = parsedResponse.document,
+                let newPostObj = parsedResponse.document,
 
-                updatedDoc = '';
+                postHTML = '';
 
-                // console.log(updatedDocObj);
+                // console.log(newPostObj);
                 
-                for (const key in updatedDocObj) {
+                for (const key in newPostObj) {
 
                     if (key != '__v') {
 
-                        if (key.includes('http')) {
+                        if (newPostObj[key].includes('http')) {
 
-                            updatedDoc+= `<br><br> <a href='${updatedDocObj[key]}>${key.toUpperCase()}<a/>`;
-                            
+                            postHTML+= `<br><br> <a href='${newPostObj[key]}'>${key.toUpperCase()}<a/>`;
+
                         } else {
 
-                            updatedDoc += `<br><br>  ${key.toUpperCase()}: ${updatedDocObj[key]}`;
+                            postHTML += `<br><br>  ${key.toUpperCase()}: ${newPostObj[key]}`;
 
                         }
 
@@ -147,7 +216,7 @@
                     
                 }
                 
-                document.getElementById('responseElm').innerHTML = `Updated Post:${updatedDoc}`;
+                document.getElementById('responseElm').innerHTML = `Updated Post:${postHTML}`;
 
                 document.getElementById('request_message').innerText = 'Student Successfully Updated';
                 
