@@ -1,8 +1,29 @@
-.buttons {
-    display: flex
-
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.buttons {
+
+float: left;
+}
+
+#careerdevs_logo {
+    width: 150px;
+    height: 100%;
+}
+
+#headline {
+    font-size: 60px;
+}
+#banner {
+background-color:   #4097ff ;
+display: flex;
+flex-direction: row;
+box-shadow: 2px 1px 3px;
+}
+body {
+    margin: 0;
+}
 .graduates_post {
     display: flex
 }

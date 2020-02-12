@@ -41,8 +41,6 @@ const express = require('express'),
       app.use('/', data_base_condition, homeRoute) //this will be the root-route or homepage
 
 
-
-
       //ADMIN ROUTE -has acces to make changes to database
 
       const adminRoute = require('./routes/adminRouter');
@@ -71,10 +69,11 @@ const express = require('express'),
 
                     databaseConnected = true;
 
-                });
+                })
+                
                 
       //LOCAL PORT THAT SERVER IS HOSTED ON
-      const port = process.env.PORT;
+      const port = 3000;
 
       app.listen(port, (err) => {
 

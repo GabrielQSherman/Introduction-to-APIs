@@ -9,7 +9,7 @@
 
     //button function
 
-     function get_all_graduates() {
+    function get_all_graduates() {
 
         try {
 
@@ -50,6 +50,41 @@
 
 
    async function get_individual_graduates() {
+
+    try {
+
+        document.getElementById('graduate_layout').innerHTML = 'loading...';
+
+       fetch('http://localhost:3000/find/all')
+
+        .then(response => {
+            return response.json();
+        })
+        .then(parsedData => {
+            // console.log(parsedData);
+
+            document.getElementById('graduate_layout').innerHTML = '';
+
+            for (let i = 0; i < parsedData.length; i++) {
+
+                graduateDoc = create_student_data_layout(parsedData[i])
+      
+                document.getElementById('graduate_layout').appendChild(graduateDoc);
+                
+            }
+
+            
+        })
+
+        
+    } catch (err) {
+
+        console.log(err);  
+        document.getElementById('graduate_layout').innerHTML = err.message;
+
+    }
+
+       
 
     console.log('test');
     
