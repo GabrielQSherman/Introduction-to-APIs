@@ -1,33 +1,37 @@
-.requestForms {
+.forms {
     background-color: rgb(254, 255, 188);
     display: flex;
 
-    margin: 10px;
+    margin: 1%;
 }
 
-.buttons>postElms{
+.forms>postElms{
     background-color: aqua;
     display: flex;
 
     margin: 10%;
 }
 
-.buttons>postElms>form>input{
-    display: flexbox;
-}
 
-.buttons>updateElms{
+.forms>updateElms{
     background-color: khaki; 
-    color: aqua;
     display: flex;
 
     margin: 10%;
 }
 
-.buttons>deleteElms{
+.forms>deleteElms{
     background-color: hotpink;
     display: flex;
 
     margin: 10%;
+}
+
+.displayElms{
+    background-color: aquamarine;
+    display: flex;
+
+    margin-left: 5%;
+    margin-right: 5%;
 }
 

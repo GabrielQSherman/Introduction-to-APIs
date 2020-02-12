@@ -11,10 +11,9 @@
 </head>
 <body>
 
-    <h3 id="request_message"> Awaiting HTTP Request Submition</h3>
+    <h3 id="request_message" style="display: inline; margin: 40%;"> Awaiting HTTP Request Submition</h3>
 
-
-    <div class='requestForms'>
+    <div class='forms'>
 
         <div class="postElms" style="flex: 1">
 
@@ -109,10 +108,32 @@
 
         </div>
 
+    <div class="searchForms" style="flex: 1">
 
+        <h3>Search for Student Documents</h3>
+
+        <form>
+
+            <input name="filterby" type="text" placeholder="Select a filter">
+
+        </form>
+
+        <button id="submitSearch">Search for {Post/s</button>
+    
     </div>
 
-    <p id="responseElm"></p>
+
+</div> <!-- end of FORMS div -->
+
+
+<div class="displayElms">
+
+    <p id="responseElm" style="flex: .33"> Response Data Will Show Here After Request Is Made</p>
+
+    <p id="searchRes" style="flex: 1">Search Results will show here</p>
+
+</div>
+ 
 
     <script type="text/javascript" src="admin.js"></script>
     

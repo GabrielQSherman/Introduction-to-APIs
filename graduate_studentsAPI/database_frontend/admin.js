@@ -249,9 +249,13 @@
 
             if (key != '__v' && key != 'lastUpdated') {
 
-                let kStr = key.toString();
+                let kStr = key.toString(),
+                    firstletter = kStr.substring(0,1).toUpperCase(),
+                    restOfWord = kStr.substring(1, kStr.length).replace(/([a-z])([A-Z])/g, "$1 $2").replace(/\_/g, ' ');
                 //creates a display of the schema property names in a more legible format
-                let keyDisplayName = kStr.substring(0,1).toUpperCase() + kStr.substring(1, kStr.length).replace(/([a-z])([A-Z])/g, "$1 $2").replace(/\_/, ' ');
+
+                let keyDisplayName = firstletter + restOfWord,
+
                     docKeyValue = res_document[key];
 
                 if (res_document[key].toString().substring(0,8) === 'https://') { //special case for link values
