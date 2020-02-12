@@ -131,14 +131,25 @@
                 
                 for (const key in updatedDocObj) {
 
-                    updatedDoc += `<br><br>  ${key}: ${updatedDocObj[key]}`;
+                    if (key != '__v') {
+
+                        if (key.includes('http')) {
+
+                            updatedDoc+= `<br><br> <a href='${updatedDocObj[key]}>${key.toUpperCase()}<a/>`;
+                            
+                        } else {
+
+                            updatedDoc += `<br><br>  ${key.toUpperCase()}: ${updatedDocObj[key]}`;
+
+                        }
+
+                    }
                     
                 }
                 
                 document.getElementById('responseElm').innerHTML = `Updated Post:${updatedDoc}`;
 
                 document.getElementById('request_message').innerText = 'Student Successfully Updated';
-
                 
 
             })
