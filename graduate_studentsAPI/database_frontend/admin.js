@@ -7,72 +7,17 @@
 
     document.getElementById('submitDelete').addEventListener('click', deleteRequest);
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //FETCH Request Functions
 
-    //fetch request function
 
+//POST
     async function postRequest() {
 
-        let postForm = document.getElementById('postForm'),
 
-            postFormData = create_obj_with_formdata(postForm);
+           let postJson = (create_Obj('postForm'));
 
-            postJson = JSON.stringify(postFormData);
-
-            //do some check on client provided data to catch errors before data is sent to API
-
-        document.getElementById('request_message').innerText = 'Summiting';
-
-            // await fetch('http://localhost:3000/admin/', {
-
-            //     method: 'POST',
-
-            //     headers: {
-            //         'Accept': 'application/json',
-            //         'Content-Type': 'application/json'
-            //       },
-
-            //     body: postJson
-            // })
-
-            // //after the fetch POST request goes to the server through the api and back to the client a promise is returned
-            // //the resonse will be in a readable stream format(not good for extracting data)
-            // //but it will have a status code that will be useful for error handling
-            // .then((readable_stream_res) => {
-               
-            //     return readable_stream_res.json()
-                
-            // })
-
-            // //after the response is parsed to json its properties can be used in the DOM and a success message is sent to the client
-            // .then((json) => {
-
-            //     if (!checkStatusOk(parsedResponse)) {
-            //         return
-            //     }
-                
-            //     console.log(json.document);
-
-            //     document.getElementById('responseElm').innerHTML = `New Student Added to Database<br>Student's Name: ${parsedResponse.document.firstName} ${parsedResponse.document.lastName}<br>Document DB Id: ${parsedResponse.document._id}`;
-
-            //     document.getElementById('request_message').innerText = 'Student Successfully Posted';
-
-            //     setTimeout(reset_req_mes, 3000)
-
-            // })
-
-            // .catch( err => {
-
-            //     document.getElementById('responseElm').innerHTML = `Failed to Post, Error: ${err}`;
-
-            //     document.getElementById('request_message').innerText = 'Student Not Posted';
-
-            // })
-
-            // .finally( clear_formData(postForm) )
-
-            ////////////////////////////////////////////////////////////////////////////////////
-
-
+            document.getElementById('request_message').innerText = 'Summiting';
 
             await fetch('http://localhost:3000/admin', {
                 method: 'POST',
@@ -81,9 +26,9 @@
                   'Content-Type': 'application/json'
                 },
   
-                body: postForm
+                body: postJson
   
-         })
+            })
   
               //returns the response from the api and parses from readableStream to JSON
               .then( readable_stream_res => {
@@ -92,7 +37,7 @@
               })
   
               //the json response is used to display status code/errors to the client
-              .then( (parsedResponse) => {
+              .then( parsedResponse => {
   
                   if (!checkStatusOk(parsedResponse)) {
                       return 
@@ -100,31 +45,11 @@
   
                 //   console.log(parsedResponse.document);
   
-                  let newPostObj = parsedResponse.document,
+                  let newPostDocument = parsedResponse.document,
   
-                  postHTML = '';
-  
-                  // console.log(newPostObj);
+                  putHTML = display_doc_info(newPostDocument);
                   
-                  for (const key in newPostObj) {
-  
-                      if (key != '__v') {
-  
-                          if (newPostObj[key].includes('http')) {
-  
-                              postHTML+= `<br><br> <a href='${newPostObj[key]}'>${key.toUpperCase()}<a/>`;
-  
-                          } else {
-  
-                              postHTML += `<br><br>  ${key.toUpperCase()}: ${newPostObj[key]}`;
-  
-                          }
-  
-                      }
-                      
-                  }
-                  
-                  document.getElementById('responseElm').innerHTML = `Updated Post:${postHTML}`;
+                  document.getElementById('responseElm').innerHTML = `Updated Post:${putHTML}`;
   
                   document.getElementById('request_message').innerText = 'Student Successfully Updated';
                   
@@ -141,17 +66,17 @@
 
         
     }
-    
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+//PUT
    async function putRequest() {
 
-          let putForm = document.getElementById('putForm'),
+          let putJson = create_Obj('putForm'),
 
               putIdTextInput = document.getElementById('put_id'),
 
-              putFormDataObj = create_obj_with_formdata(putForm),
-
-              putJson = JSON.stringify(putFormDataObj);
+              requestId;
 
             if (putIdTextInput.value.length != 24) { //check to make sure the client input is at least in the correct format
 
@@ -162,15 +87,18 @@
                 
             }
 
-            putIdTextInput = putIdTextInput.value;
-    
-              
+            requestId = putIdTextInput.value;
+      
+            
+            document.getElementById('request_message').innerText = 'Updating Document';
 
-       await fetch('http://localhost:3000/admin/put/' + putIdTextInput, {
+       await fetch( `http://localhost:3000/admin/${requestId}` , {
+
               method: 'PUT',
               headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
+
               },
 
               body: putJson
@@ -186,40 +114,15 @@
             //the json response is used to display status code/errors to the client
             .then( (parsedResponse) => {
 
-                if (!checkStatusOk(parsedResponse)) {
+                if (!checkStatusOk(parsedResponse)) { //function checks if the response obj returns a status of 200
                     return 
                 }
 
-                console.log(parsedResponse.document);
-
-                let newPostObj = parsedResponse.document,
-
-                postHTML = '';
-
-                // console.log(newPostObj);
+                let putHTML = display_doc_info(parsedResponse.document); //an html string will be created based off what was returned in the response 
                 
-                for (const key in newPostObj) {
-
-                    if (key != '__v') {
-
-                        if (newPostObj[key].includes('http')) {
-
-                            postHTML+= `<br><br> <a href='${newPostObj[key]}'>${key.toUpperCase()}<a/>`;
-
-                        } else {
-
-                            postHTML += `<br><br>  ${key.toUpperCase()}: ${newPostObj[key]}`;
-
-                        }
-
-                    }
-                    
-                }
-                
-                document.getElementById('responseElm').innerHTML = `Updated Post:${postHTML}`;
+                document.getElementById('responseElm').innerHTML = `Updated Post:${putHTML}`;
 
                 document.getElementById('request_message').innerText = 'Student Successfully Updated';
-                
 
             })
 
@@ -232,7 +135,9 @@
             .finally( () => {clear_formData(putForm); setTimeout(reset_req_mes, 3000)})
    }
 
-    //DELETE REQUEST FOR A SPECIFIC POST (ID)
+ ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//DELETE REQUEST FOR A SPECIFIC POST (ID)
     async function deleteRequest() {
 
             if (delete_id.value.length != 24) {
@@ -267,26 +172,34 @@
                         return 
                     }
 
-                    reset_req_mes() 
-
                     delete_id.value = '';
                     
                     delete_id.placeholder = 'Deletion Success';
 
-                    document.getElementById('request_message').innerText = 'Completed Deletion Request';
+                    document.getElementById('request_message').innerText = 'Completed Deletion Request of Document w/ ID: ' + id;
 
                     document.getElementById('responseElm').innerText = parsedResponse.message;
                     
 
             })
 
-            .finally( setTimeout(reset_req_mes, 3000))//resets the requestmessage element back to its original state
+            .finally( setTimeout(reset_req_mes, 7000))//resets the requestmessage element back to its original state
 
         
    }
 
+//NESTED FUNCTIONS (smaller reuseable functions used in the fetch request functions)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+   //RESET SOME DOM VALUE
 
+   function reset_req_mes() { //resets a specific text element that shows the current status of the request
+
+    document.getElementById('request_message').innerText = 'Awaiting HTTP Request Submition'
+       
+   }
+
+   //can be used for any form element to clear all its client input
    function clear_formData(formElement) {
        
         for (const key of formElement) {
@@ -295,31 +208,71 @@
 
    }
 
-   function reset_req_mes() {
+   //functions that COMPILE or create some value then return a value...
 
-    document.getElementById('request_message').innerText = 'Awaiting HTTP Request Submition'
-       
-   }
 
-   function create_obj_with_formdata(rawFormData) {
+   //Form element name ---> JS Variable (Form Element) ---> JS Obj ---> JSON string ---> THEN GET INSTERED INTO .FETCH CALL(Body for fetch or Xml request)
+   //creates a json string from a FORM element name
 
-        let newObj = {};
+   function create_Obj(element_name) {
 
-        for (const key of rawFormData) {
+        let formElm = document.getElementById(element_name)
+            
+            formDataAsObj = {}; //the values and key names from the form element will be stored inside of an object as key/value pairs
+
+        for (const key of formElm) {
 
             if (key.value != '') {
 
                 // console.log('appending', key.name, key.value);
             
-                newObj[key.name] = key.value;
+                formDataAsObj[key.name] = key.value;
 
             }
             
         }
 
-        return newObj
+    //the fetch request will need the body to be in JSO notation and not just as a JS Object.
+        //so json.stringify is used
+        let Json = JSON.stringify(formDataAsObj); 
+
+        return Json
        
    }
+
+   //creates a html text string that can be instered right into the dom so that all desired components of the DB document are displayed
+   function display_doc_info(res_document) {
+
+    let HtmlText = '';
+
+        for (const key in res_document) {
+
+            if (key != '__v' && key != 'lastUpdated') {
+
+                let kStr = key.toString();
+                //creates a display of the schema property names in a more legible format
+                let keyDisplayName = kStr.substring(0,1).toUpperCase() + kStr.substring(1, kStr.length).replace(/([a-z])([A-Z])/g, "$1 $2").replace(/\_/, ' ');
+                    docKeyValue = res_document[key];
+
+                if (res_document[key].toString().substring(0,8) === 'https://') { //special case for link values
+
+                    HtmlText += `<br><br> <a href='${docKeyValue}'>${keyDisplayName}<a/>`;
+
+                } else {
+
+                    HtmlText += `<br><br>  ${keyDisplayName}: ${docKeyValue}`;
+
+                }
+
+            }
+            
+        }
+
+        return HtmlText
+       
+   }
+
+   //functions that vailidate or check some sources of infomation
 
    function checkStatusOk(response) {
 
@@ -331,7 +284,7 @@
 
             document.getElementById('request_message').innerText = 'Unsuccessful Request';
 
-            clientMessage.innerHTML = `Status Code: ${response.status}`;
+            if (response.status) clientMessage.innerHTML = `Status Code: ${response.status}`;
 
             if (response.message) clientMessage.innerHTML += `<br>Message: ${response.message}`;
 

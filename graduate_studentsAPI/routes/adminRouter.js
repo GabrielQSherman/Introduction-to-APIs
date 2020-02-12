@@ -23,7 +23,7 @@ const express = require('express'),
 
                     const newPostSaved = await req.newpost.save()
 
-                    res.status(200).send({newpost: newPostSaved, status: 200})
+                    res.status(200).send({document: newPostSaved, status: 200})
           
                 } catch (err) {
 
@@ -69,7 +69,7 @@ const express = require('express'),
 
         //PUT A SINGLE POST
 
-        router.put('/put/:id', get_by_id, async (req, res) => {
+        router.put('/:id', get_by_id, async (req, res) => {
 
             try {
 
