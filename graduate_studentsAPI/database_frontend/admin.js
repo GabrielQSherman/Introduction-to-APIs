@@ -10,6 +10,10 @@
     document.getElementById('submitSearch').addEventListener('click', searchRequest);
 
     document.getElementById('reset_display').addEventListener('click', resetDisplay);
+
+    document.getElementById('add_post_keyskill').addEventListener('click', () => {addSkill('post')});
+    
+    document.getElementById('add_put_keyskill').addEventListener('click', () => {addSkill('put')});
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //FETCH Request Functions
 
@@ -389,4 +393,43 @@ async function searchRequest() {
 
         return true
 
+   }
+
+
+   //vars to keep track of how many skill slots there are in any given form
+
+   let putKeyInputs = 1, postKeyInputs = 1;
+
+
+   function addSkill(form_name) {
+
+    newKeySkill = document.createElement('input');
+
+    newKeySkill.placeholder = 'Another Skill';
+
+    newKeySkill.name = form_name == 'put' ? 'key_Skills' + ++putKeyInputs : 'key_Skills' + ++postKeyInputs;
+
+
+        if (form_name == 'put' && putKeyInputs < 10) {
+
+            document.getElementById('putForm').appendChild(newKeySkill);
+
+            if (putKeyInputs % 2 == 0) {
+                document.getElementById('putForm').innerHTML += '<br>'
+            } else {
+                document.getElementById('putForm').innerHTML += ' '
+            }
+            
+        } else if (form_name == 'post' && postKeyInputs < 10) {
+
+            document.getElementById('postForm').appendChild(newKeySkill);
+
+            if (postKeyInputs % 2 == 0) {
+                document.getElementById('postForm').innerHTML += '<br>'
+            } else {
+                document.getElementById('postForm').innerHTML += ' '
+            }
+        }
+        
+       
    }

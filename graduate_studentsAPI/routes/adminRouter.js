@@ -31,6 +31,13 @@ const express = require('express'),
             await StudentSchema.find(searchObj)
 
             .then( (response) => {
+
+                if (response.length === 0) {
+
+                    throw new Error('There were no post that match this request')
+                    
+                }
+
                 res.status(200).json({
                     message: 'post were found',
                     document: response,
@@ -40,8 +47,8 @@ const express = require('express'),
 
             .catch( err => {
                 res.status(401).json({
-                    message: 'no post were found',
-                    error: err.message,
+                    message: 'Unsuccessful Search Request',
+                    error: err.message.toString(),
                     status: 401
                 })
             })
