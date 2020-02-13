@@ -311,19 +311,27 @@ async function searchRequest() {
 
         let formElm = document.getElementById(element_name)
             
-            formDataAsObj = {}; //the values and key names from the form element will be stored inside of an object as key/value pairs
+            formDataAsObj = {}, //the values and key names from the form element will be stored inside of an object as key/value pairs
+
+            skills = []; //this will hold all the skills the userinputs
 
         for (const key of formElm) {
 
-            if (key.value != '') {
-
+            if (key.value != '' && !key.name.includes('Skill')) {
                 // console.log('appending', key.name, key.value);
             
                 formDataAsObj[key.name] = key.value;
 
+            } else if (key.name.includes('Skills') && key.value != '') {
+                // console.log(key.name, key.value);
+                skills.push(key.value)
+                
             }
             
         }
+
+        //after the skills array has been made, it will be added to the body of the request
+        formDataAsObj.key_Skills = skills;
 
     //the fetch request will need the body to be in JSO notation and not just as a JS Object.
         //so json.stringify is used
@@ -410,7 +418,7 @@ async function searchRequest() {
     newKeySkill.name = form_name == 'put' ? 'key_Skills' + ++putKeyInputs : 'key_Skills' + ++postKeyInputs;
 
 
-        if (form_name == 'put' && putKeyInputs < 10) {
+        if (form_name == 'put' && putKeyInputs <= 10) {
 
             document.getElementById('putForm').appendChild(newKeySkill);
 
@@ -420,7 +428,7 @@ async function searchRequest() {
                 document.getElementById('putForm').innerHTML += ' '
             }
             
-        } else if (form_name == 'post' && postKeyInputs < 10) {
+        } else if (form_name == 'post' && postKeyInputs <= 10) {
 
             document.getElementById('postForm').appendChild(newKeySkill);
 
