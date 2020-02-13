@@ -112,12 +112,21 @@
 
         <h3 style="background-color:  rgb(130, 255, 245)">Search for Student Documents</h3>
 
-        <!-- <form id="searchForm" action=""> -->
-            
-            <input id="filter_by" type="text" placeholder="Select a filter">
-            <input id="filter_value" type="text" placeholder="Select a filter">
+            <label for="filter_by">Filter Documents By...</label>
 
-        <!-- </form> -->
+            <select id="filter_by"> 
+
+                <option value="">Select A Filter</option>
+                <option value="firstName">First Name</option>
+                <option value="lastName">Last Name</option>
+                <option value="company_Name">Company Name</option>
+                <option value="job_Title">Job Title</option>
+                <option value="gradYear">Graduation Year</option>
+                <option value="gradMonth">Graduation Month</option>
+
+            </select>
+
+            <input id="filter_value" type="text" placeholder="Enter value for filter">
 
         <button id="submitSearch">Search for Post/s</button>
     

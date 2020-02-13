@@ -16,13 +16,24 @@
 //SEARCH 
 async function searchRequest() {
     
-    let filterParam = document.getElementById('filter_by').value,
-        filParamValue = document.getElementById('filter_value').value;
+    let filterParam = document.getElementById('filter_by'),
+        filParamValue = document.getElementById('filter_value');
+
+        if (filParamValue.value == '') {
+
+            filParamValue.placeholder = 'This is a required feild'
+
+            return
+            
+        }
 
         console.log(filterParam, filParamValue);
         
 
-        await fetch(`http://localhost:3000/admin/${filterParam}/${filParamValue}`, {
+
+        document.getElementById('request_message').innerText = 'Sending Search Request';
+
+        await fetch(`http://localhost:3000/admin/${filterParam.value}/${filParamValue.value}`, {
 
         })
 

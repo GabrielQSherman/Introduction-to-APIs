@@ -26,7 +26,7 @@ const express = require('express'),
 
                 searchObj[filter] = value;
 
-                console.log(`fitler by: ${filter}, search for value: ${value}, what is insterted into .find method: ${searchObj}`);                
+                // console.log(`fitler by: ${filter}, search for value: ${value}, what is insterted into .find method: ${searchObj}`);                
 
             await StudentSchema.find(searchObj)
 
