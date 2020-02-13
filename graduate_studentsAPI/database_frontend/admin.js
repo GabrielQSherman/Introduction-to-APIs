@@ -21,14 +21,21 @@ async function searchRequest() {
 
         if (filParamValue.value == '') {
 
-            filParamValue.placeholder = 'This is a required feild'
+            filParamValue.placeholder = 'This is a required feild';
+
+            document.getElementById('searchRes').innerHTML = 'You must select a filter AND input a value to filter by';
+
+            return
+            
+        } else if (filterParam.value == '') {
+
+            document.getElementById('searchRes').innerHTML = 'You must select a filter';
 
             return
             
         }
 
-        console.log(filterParam, filParamValue);
-        
+        // console.log(filterParam, filParamValue);
 
 
         document.getElementById('request_message').innerText = 'Sending Search Request';
@@ -39,7 +46,7 @@ async function searchRequest() {
 
         .then( readable_stream => {
 
-            console.log(readable_stream);
+            // console.log(readable_stream);
 
             return readable_stream.json()
             
@@ -47,9 +54,35 @@ async function searchRequest() {
 
         .then( parsedResponse => {
 
-            console.log(parsedResponse);
+            if (!checkStatusOk(parsedResponse)) {
+                return 
+            }
+
+            let allFoundPost = parsedResponse.document,
+
+            searchHTML = 'Post found:<br><hr>';
+
+            console.log(allFoundPost);
             
 
+            for (let i = 0; i < allFoundPost.length; i++) {
+                
+                searchHTML += `Post #${i+1} --- <br>${ display_doc_info(allFoundPost[i]) }<hr><br>`;
+                
+            }
+
+            document.getElementById('searchRes').innerHTML = `Found Documents:${searchHTML}`;
+  
+            document.getElementById('request_message').innerText = 'Search Request Successful';
+            
+            
+
+        })
+
+        .catch( err => {
+
+            console.log(err);
+            
         })
 
 }

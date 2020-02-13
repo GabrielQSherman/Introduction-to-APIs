@@ -33,14 +33,16 @@ const express = require('express'),
             .then( (response) => {
                 res.status(200).json({
                     message: 'post were found',
-                    document: response
+                    document: response,
+                    status: 200
                 })
             })
 
             .catch( err => {
                 res.status(401).json({
                     message: 'no post were found',
-                    error: err.message
+                    error: err.message,
+                    status: 401
                 })
             })
 
