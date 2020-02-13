@@ -7,8 +7,9 @@
 
     document.getElementById('submitDelete').addEventListener('click', deleteRequest);
 
-    document.getElementById('submitSearch').addEventListener('click', searchRequest)
+    document.getElementById('submitSearch').addEventListener('click', searchRequest);
 
+    document.getElementById('reset_display').addEventListener('click', resetDisplay);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //FETCH Request Functions
 
@@ -21,13 +22,23 @@ async function searchRequest() {
         console.log(filterParam, filParamValue);
         
 
-        await fetch(`http://localhost:3000/admin/${filterParam}/:${filParamValue}`, {
+        await fetch(`http://localhost:3000/admin/${filterParam}/${filParamValue}`, {
 
         })
 
-        .then(response => {
-            console.log(response);
+        .then( readable_stream => {
+
+            console.log(readable_stream);
+
+            return readable_stream.json()
             
+        })
+
+        .then( parsedResponse => {
+
+            console.log(parsedResponse);
+            
+
         })
 
 }
@@ -228,6 +239,14 @@ async function searchRequest() {
             key.value = ''
         }
 
+   }
+
+   function resetDisplay() {
+
+    document.getElementById('responseElm').innerText = 'Request Output';
+
+    document.getElementById('searchRes').innerText = 'Search Output';
+       
    }
 
    //functions that COMPILE or create some value then return a value...

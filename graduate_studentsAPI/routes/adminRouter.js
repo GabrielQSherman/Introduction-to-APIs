@@ -19,9 +19,32 @@ const express = require('express'),
 
         router.get('/:filter/:value', async (req, res) => {
 
-            // await StudentSchema.filter()
+            let filter = req.params.filter,
+                value = req.params.value,
 
-            res.send('foundpost')
+                searchObj = {};
+
+                searchObj[filter] = value;
+
+                console.log(`fitler by: ${filter}, search for value: ${value}, what is insterted into .find method: ${searchObj}`);                
+
+            await StudentSchema.find(searchObj)
+
+            .then( (response) => {
+                res.status(200).json({
+                    message: 'post were found',
+                    document: response
+                })
+            })
+
+            .catch( err => {
+                res.status(401).json({
+                    message: 'no post were found',
+                    error: err.message
+                })
+            })
+
+            
 
 
         })

@@ -1,12 +1,20 @@
 body {
-    background-color: lightskyblue;
+    background-color: rgb(181, 255, 230);
 } 
+
+.request_message {
+    display: inline;
+     margin: 40%;
+      background-color:  rgb(88, 230, 255);
+       border-radius: 5px;
+}
 
 .forms {
     background-color: rgb(254, 255, 188);
     display: flex;
 
     margin: 1%;
+    border-radius: 35px;
 }
 
 .postElms{
@@ -14,6 +22,7 @@ body {
     display: flexbox;
 
     margin: 2%;
+    border-radius: 15px;
 }
 
 
@@ -22,6 +31,7 @@ body {
     display: flexbox;
 
     margin: 2%;
+    border-radius: 15px;
 }
 
 .deleteElms{
@@ -29,6 +39,7 @@ body {
     display: flexbox;
 
     margin: 2%;
+    border-radius: 15px;
 }
 
 .searchElms{
@@ -36,13 +47,15 @@ body {
     display: flexbox;
 
     margin: 2%;
+    border-radius: 15px;
 }
 
 .displayElms{
-    background-color: aquamarine;
+    background-color: rgb(254, 255, 188);
     display: flex;
 
     margin-left: 5%;
     margin-right: 5%;
+    border-radius: 15px;
 }
 
