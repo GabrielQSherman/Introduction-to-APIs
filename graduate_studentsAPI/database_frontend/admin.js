@@ -60,10 +60,9 @@ async function searchRequest() {
 
             let allFoundPost = parsedResponse.document,
 
-            searchHTML = 'Post found:<br><hr>';
+            searchHTML = 'Post Matched With Search:<br><hr>';
 
-            console.log(allFoundPost);
-            
+            // console.log(allFoundPost);
 
             for (let i = 0; i < allFoundPost.length; i++) {
                 
@@ -74,6 +73,8 @@ async function searchRequest() {
             document.getElementById('searchRes').innerHTML = `Found Documents:${searchHTML}`;
   
             document.getElementById('request_message').innerText = 'Search Request Successful';
+
+            document.getElementById('responseElm').innerText = 'Number of Post/s Found: ' + allFoundPost.length;
             
             
 
@@ -84,6 +85,9 @@ async function searchRequest() {
             console.log(err);
             
         })
+
+        .finally( () => { setTimeout(reset_req_mes, 3000); filParamValue.value = ''})
+
 
 }
 
@@ -124,11 +128,11 @@ async function searchRequest() {
   
                   let newPostDocument = parsedResponse.document,
   
-                  putHTML = display_doc_info(newPostDocument);
+                  PostHTML = display_doc_info(newPostDocument);
                   
-                  document.getElementById('responseElm').innerHTML = `Updated Post:${putHTML}`;
+                  document.getElementById('responseElm').innerHTML = `New Post:${PostHTML}`;
   
-                  document.getElementById('request_message').innerText = 'Student Successfully Updated';
+                  document.getElementById('request_message').innerText = 'Student Successfully Created';
                   
   
               })
@@ -139,7 +143,7 @@ async function searchRequest() {
                   
               })
   
-              .finally( () => {clear_formData(putForm); setTimeout(reset_req_mes, 3000)})
+              .finally( () => {clear_formData(postForm); setTimeout(reset_req_mes, 3000)})
 
         
     }
