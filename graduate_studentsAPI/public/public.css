@@ -2,12 +2,9 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.buttons {
-
-float: left;
-}
 
 #careerdevs_logo {
+    border-radius: 33px;
     width: 150px;
     height: 100%;
 }
@@ -16,14 +13,45 @@ float: left;
     font-size: 60px;
 }
 #banner {
+margin: .3%;
 background-color:   #4097ff ;
 display: flex;
 flex-direction: row;
 box-shadow: 2px 1px 3px;
+border-radius: 10px;
 }
 body {
     margin: 0;
+
+    background-color: aqua;
+}
+.Main {
+
+    display: flex;
+
+}
+
+.buttons {
+
+    margin: .5%;
+
+    flex: .1;
+
+    display: flex;
+
+    flex-direction: column;
 }
 .graduates_post {
-    display: flex
+
+    flex: 1;
+
+    display: flex;
+    
+    background-color: khaki;
+
+    margin: 1%;
+
+    border-radius: 20px;
+
+    border: 10px red;
 }
