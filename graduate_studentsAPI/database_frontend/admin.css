@@ -1,3 +1,5 @@
+/* MAINELEMENTS */
+
 body {
     background-color: rgb(181, 255, 230);
 } 
@@ -17,6 +19,7 @@ body {
     border-radius: 35px;
 }
 
+/* POST */
 .postElms{
     background-color: aqua;
     display: flexbox;
@@ -25,7 +28,15 @@ body {
     border-radius: 15px;
 }
 
+.postForm {
+    margin-left: 2%;
+}
 
+.postElms>h3 {
+    background-color: rgb(255, 132, 132); margin-left: 10%; margin-right: 10%; border-radius: 5px;
+}
+
+/* PUT */
 .updateElms{
     background-color: rgb(69, 255, 36); 
     display: flexbox;
@@ -33,7 +44,15 @@ body {
     margin: 2%;
     border-radius: 15px;
 }
+.updateElms>h3 {
+    background-color:  rgb(255, 120, 57); margin-left: 10%; margin-right: 10%; border-radius: 5px;
+}
 
+.putForm {
+    margin-left: 2%;
+}
+
+/* DELETE */
 .deleteElms{
     background-color: rgb(255, 60, 109);
     display: flexbox;
@@ -41,6 +60,13 @@ body {
     margin: 2%;
     border-radius: 15px;
 }
+
+.deleteElms>h3 {
+    background-color:  rgb(70, 255, 116); margin-left: 10%; margin-right: 10%; border-radius: 5px;
+}
+
+
+/* SEARCH */
 
 .searchElms{
     background-color: yellow;
@@ -50,6 +76,11 @@ body {
     border-radius: 15px;
 }
 
+.searchElms>h3 {
+    background-color:  rgb(130, 255, 245); margin-left: 10%; margin-right: 10%; border-radius: 5px;
+}
+
+/* CLIENT DISPLAY */
 .displayElms{
     background-color: rgb(254, 255, 188);
     display: flex;
@@ -58,4 +89,3 @@ body {
     margin-right: 5%;
     border-radius: 15px;
 }
-
