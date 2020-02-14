@@ -26,24 +26,55 @@
 </header>
 <div class="Main">
 
-    <div class="buttons"> 
+    <div class="Navigation"> 
 
-        <button id="get_individual">Click To Search For Individual Graduate</button>
+        <button id="get_all">Click To Show All Graduates</button>
 
-        <button id="get_all">Click To Search For All Graduate</button>
+        <hr>
+        <!-- <button id="get_recent">Click To Show Most-Recent Graduate</button>
 
-        <button id="get_recent">Click To Search For Most-Recent Graduate</button>
+        <hr> -->
+
+        <div class="searchElms">
+
+            <h3 style="margin: 20%; margin-bottom: 1%;" id="search_message">Search for Student/s</h3>
+    
+                <label for="filter_by">Filter Documents By...</label>
+    
+                <select id="filter_by"> 
+    
+                    <option value="">Select A Filter</option>
+                    <option value="_id">Document ID</option>
+                    <option value="firstName">First Name</option>
+                    <option value="lastName">Last Name</option>
+                    <option value="company_Name">Company Name</option>
+                    <option value="job_Title">Job Title</option>
+                    <option value="gradYear">Graduation Year</option>
+                    <option value="gradMonth">Graduation Month</option>
+    
+                </select>
+    
+                <input id="filter_value" type="text" placeholder="Enter value for filter" style=" margin: 1%; margin-right: 3%;">
+
+        </div>
+        <!-- end of search inputs -->
+        <hr>
+        <button id="search_grads">Click To Search Graduates By Filter</button>
 
 
-    </div>
+    </div> 
+    <!-- end of buttons -->
     <br>
     
-    <div class="graduates_post" id="graduate_layout">
+    <div class="Graduates_info" id="graduate_layout">
 
 
     </div>
 
 </div>
+<!-- end of main display -->
+
+
     <script type="text/javascript" src="public.js"></script>
 
     

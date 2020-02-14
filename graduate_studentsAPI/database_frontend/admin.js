@@ -79,8 +79,6 @@ async function searchRequest() {
             document.getElementById('request_message').innerText = 'Search Request Successful';
 
             document.getElementById('responseElm').innerText = 'Number of Post/s Found: ' + allFoundPost.length;
-            
-            
 
         })
 

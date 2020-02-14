@@ -7,6 +7,7 @@
     border-radius: 33px;
     width: 150px;
     height: 100%;
+    margin: .3%;
 }
 
 #headline {
@@ -31,27 +32,53 @@ body {
 
 }
 
-.buttons {
+.Navigation {
 
     margin: .5%;
 
-    flex: .1;
+    flex: .11;
 
     display: flex;
 
     flex-direction: column;
 }
-.graduates_post {
+.Graduates_info {
 
     flex: 1;
 
     display: flex;
     
-    background-color: khaki;
+    background-color: rgb(255, 247, 179);
 
     margin: 1%;
-
+    
     border-radius: 20px;
 
-    border: 10px red;
+    
+}
+
+.searchElms{
+    background-color: rgb(255, 247, 179);
+    display: flexbox;
+
+    /* margin: 2%; */
+    border-radius: 15px;
+}
+
+#get_all {
+
+    border-radius: 25px;
+
+}
+
+#search_grads {
+
+    border-radius: 25px;
+
+}
+
+#get_recent {
+
+    border-radius: 25px;
+
 }

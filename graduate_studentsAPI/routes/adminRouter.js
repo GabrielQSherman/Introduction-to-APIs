@@ -53,9 +53,6 @@ const express = require('express'),
                 })
             })
 
-            
-
-
         })
 
         //POST REQUEST
@@ -157,17 +154,6 @@ const express = require('express'),
         res.status(200).json({All_Documents_in_DB: allDocuments, status: 200});
           
       })
-
-      //GET REQUEST FOR INDIVUIDUAL DOCUMENTS
-
-      router.get('/getid/:id', get_by_id, (req, res) => {
-          res.status(200).json({
-              document: req.searched_document,
-              status: 200,
-              message: 'Post sucessfully retreived from database'
-          })
-      })
-
 
 
 //MIDDLEWARE FUNCTIONS FOR REQUEST
