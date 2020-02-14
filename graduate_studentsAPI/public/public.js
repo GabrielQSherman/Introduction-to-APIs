@@ -4,9 +4,6 @@
 
     document.getElementById('search_grads').addEventListener('click', (search_graduates));
 
-    // document.getElementById('get_recent').addEventListener('click', (get_recent_graduates));
-
-
     //button function
 
    async function get_all_graduates() {
@@ -37,9 +34,7 @@
 
         }
 
-        // document.getElementById('graduate_layout').appendChild()
-        
-    }
+   }
 
 
    async function search_graduates() {
@@ -103,13 +98,6 @@
 
    }
 
-//    async function get_recent_graduates() {
-
-//     console.log('test');
-        
-//    }
-
-
    function create_one_stud_div(data) {
 
     // console.log(data); //shows the document object for the individual student being displayed
@@ -125,6 +113,8 @@
             gitHubHL = document.createElement('a'),
             twitterHL = document.createElement('a'),
             linkedInHL = document.createElement('a');
+
+            newDiv.className = 'students';
 
 
             //set their values
@@ -176,7 +166,6 @@
             links.appendChild(linkedInHL);
 
             //creating key skills list
-            keySkills.innerText = 'Key Skills:  '
             for (let i = 0; i < data.key_Skills.length; i++) {
                 
                 let listElement = document.createElement('li');
@@ -186,16 +175,16 @@
                 
             }
 
+            keySkills.className = 'studentKS';
+
             //append them to the parent element (individual student post)
 
             newDiv.appendChild(image);
             newDiv.appendChild(Name);
             newDiv.appendChild(jobTitle_Company);
             newDiv.appendChild(graduationDate);
-            newDiv.appendChild(keySkills);
             newDiv.appendChild(links);
-
-            newDiv.className = 'students';
+            newDiv.appendChild(keySkills);
 
         return newDiv
        
@@ -216,3 +205,6 @@
         }
        
    }
+
+
+
