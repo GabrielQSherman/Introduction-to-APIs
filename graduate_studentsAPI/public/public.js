@@ -4,18 +4,18 @@
 
     document.getElementById('search_grads').addEventListener('click', (search_graduates));
 
-    document.getElementById('get_recent').addEventListener('click', (get_recent_graduates));
+    // document.getElementById('get_recent').addEventListener('click', (get_recent_graduates));
 
 
     //button function
 
-    function get_all_graduates() {
+   async function get_all_graduates() {
 
         try {
 
             document.getElementById('graduate_layout').innerHTML = 'loading...';
 
-           fetch('http://localhost:3000/find/all')
+           await fetch('http://localhost:3000/find/all')
 
             .then(response => {
                 return response.json();
@@ -25,14 +25,7 @@
 
                 document.getElementById('graduate_layout').innerHTML = '';
 
-                for (let i = 0; i < parsedData.length; i++) {
-
-                    graduateDoc = create_student_data_layout(parsedData[i])
-          
-                    document.getElementById('graduate_layout').appendChild(graduateDoc);
-                    
-                }
-
+                create_student_grid(parsedData)
                 
             })
 
@@ -54,19 +47,21 @@
         let filterParam = document.getElementById('filter_by'),
         filParamValue = document.getElementById('filter_value');
 
-        if (filParamValue.value == '') {
-
-            filParamValue.placeholder = 'This is a required feild';
-
-            document.getElementById('search_message').innerHTML = 'You must select a filter AND enter value';
-
-            return
-            
-        } else if (filterParam.value == '') {
+        if (filterParam.value == '') {
 
             document.getElementById('search_message').innerHTML = 'You must select a filter';
 
             return
+           
+            
+        } else if (filParamValue.value == '') {
+
+            filParamValue.placeholder = 'This is a required feild';
+
+            document.getElementById('search_message').innerHTML = '<p>You must select a filter AND enter value</p>';
+
+            return
+            
             
         }
 
@@ -77,22 +72,24 @@
         .then(response => {
             return response.json();
         })
+        
         .then(parsedData => {
+
+
+            if (parsedData.document == undefined && parsedData.error) {
+
+                document.getElementById('graduate_layout').innerHTML = parsedData.error;
+
+                return
+            }
+
+            filParamValue.value = '';
 
             document.getElementById('graduate_layout').innerHTML = '';
 
             let studentsFound = parsedData.document;
 
-            for (let i = 0; i < studentsFound.length; i++) {
-
-                graduateDoc = create_student_data_layout(studentsFound[i]);
-
-                console.log(graduateDoc);
-    
-                document.getElementById('graduate_layout').appendChild(graduateDoc);
-                
-            }
-
+            create_student_grid(studentsFound)
             
         })
 
@@ -106,14 +103,14 @@
 
    }
 
-   async function get_recent_graduates() {
+//    async function get_recent_graduates() {
 
-    console.log('test');
+//     console.log('test');
         
-   }
+//    }
 
 
-   function create_student_data_layout(data) {
+   function create_one_stud_div(data) {
 
     // console.log(data); //shows the document object for the individual student being displayed
 
@@ -140,17 +137,27 @@
             image.onerror = () => {
                 image.src = './defaultIcon.png';
             }
-
             image.alt = 'Student Portrait';
+
+            image.className = 'studentPhoto';
         
             //First and Last Name
             Name.innerText = data.firstName +" "+ data.lastName;
+            Name.className = 'studentName';
 
             //Employment information
-            jobTitle_Company.innerText = data.company_Name +": "+ data.job_Title;
+            jobTitle_Company.innerHTML = `Works for ${data.company_Name}<br>As a ${data.job_Title}`;
+            jobTitle_Company.className = 'jobTitle';
 
             //Students graduation info
-            graduationDate.innerHTML = `Graduation;<br> Month: ${data.gradMonth},<br> Year: ${data.gradYear}`;
+            graduationDate.innerHTML = `Graduation Date;<br>${data.gradMonth}-${data.gradYear}<hr>`;
+            graduationDate.className = 'gradDate';
+
+            // hpref links
+
+            let links = document.createElement('div');
+
+            links.className = 'studentLinks'
 
             //gitHub
             gitHubHL.href = data.gitHub;
@@ -163,6 +170,10 @@
             //linkedIn
             linkedInHL.href = data.linkedIn;
             linkedInHL.innerHTML = 'LinkedIn<br>';
+
+            links.appendChild(gitHubHL);
+            links.appendChild(twitterHL);
+            links.appendChild(linkedInHL);
 
             //creating key skills list
             keySkills.innerText = 'Key Skills:  '
@@ -182,12 +193,26 @@
             newDiv.appendChild(jobTitle_Company);
             newDiv.appendChild(graduationDate);
             newDiv.appendChild(keySkills);
-            newDiv.appendChild(gitHubHL);
-            newDiv.appendChild(twitterHL);
-            newDiv.appendChild(linkedInHL);
+            newDiv.appendChild(links);
 
             newDiv.className = 'students';
 
         return newDiv
+       
+   }
+
+
+   function create_student_grid(all_docs) {
+
+        for (let i = 0; i < all_docs.length; i++) {
+
+            graduateDoc = create_one_stud_div(all_docs[i]);
+
+            console.log(graduateDoc);
+
+            document.getElementById('graduate_layout').appendChild(graduateDoc);
+            
+            
+        }
        
    }

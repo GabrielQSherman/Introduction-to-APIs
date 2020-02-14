@@ -1,10 +1,13 @@
+//intial variable declaration
+
 const express = require('express'),
       router = express.Router(),
-    //   mongoose = require('mongoose'),
-
+  
       StudentSchema = require('../models/Student');
 
-    //HOMEPAGE
+//ROUTES
+
+      //HOMEPAGE
       router.get('/', (req, res) => {
 
         let absolutePath = __dirname.replace('\\routes', '') + '\\public\\public.html';
@@ -13,22 +16,6 @@ const express = require('express'),
 
       });
 
-      //FIND BY ID
-      router.get('/find/graduateid/:id', async (req, res) => {
-
-        try {
-
-            foundGraduate = await StudentSchema.find({_id: req.params.id});
-
-            res.status(200).json(foundGraduate)
-            
-        } catch (err) {
-
-            res.status(500).json({message: err});
-
-        }
-
-      })
 
       //FILTER ALL DOCUMENTS (GET)
 
@@ -73,20 +60,22 @@ const express = require('express'),
       //REQUEST ALL
       router.get('/find/all', async (req, res) => {
 
-        try {
+            await StudentSchema.find()
 
-            allGrads = await StudentSchema.find();
+            .then( allGrads => {
 
-            res.status(200).json(allGrads)
-            
-        } catch (err) {
+              res.status(200).json(allGrads);
 
-            res.status(500).json({message: err});
+            })
 
-        }
+            .catch( err => {
+
+              res.status(500).json({message: err});
+
+            })
+
 
       })
-
 
  
 

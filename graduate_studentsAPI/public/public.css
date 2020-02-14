@@ -13,6 +13,7 @@
 #headline {
     font-size: 60px;
 }
+
 #banner {
 margin: .3%;
 background-color:   #4097ff ;
@@ -21,11 +22,15 @@ flex-direction: row;
 box-shadow: 2px 1px 3px;
 border-radius: 10px;
 }
+
 body {
     margin: 0;
 
+    display: block;
+
     background-color: aqua;
 }
+
 .Main {
 
     display: flex;
@@ -47,14 +52,59 @@ body {
     flex: 1;
 
     display: flex;
-    
+
     background-color: rgb(255, 247, 179);
 
     margin: 1%;
-    
+
     border-radius: 20px;
 
+    column-count: 3;
+
     
+}
+
+.students {
+    background-color: #ffd39a;
+    margin: 2%;
+    border-radius: 20px;
+
+    width: 300px;
+
+
+
+}
+
+.studentPhoto {
+
+    margin-left: 22%;
+    margin-top: 5%;
+
+    border: 3px;
+
+    border-style: solid;
+
+    border-radius: 20px;
+
+    border-color: rgb(130, 236, 255);
+
+}
+
+.jobTitle {
+
+    background-color: aliceblue;
+
+    border-radius: 10px;
+
+}
+
+.studentName {
+
+    background-color: aliceblue;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+
 }
 
 .searchElms{
@@ -63,6 +113,15 @@ body {
 
     /* margin: 2%; */
     border-radius: 15px;
+}
+
+.studentlinks {
+
+    background-color: aliceblue;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+
 }
 
 #get_all {
