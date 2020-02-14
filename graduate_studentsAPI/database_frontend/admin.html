@@ -21,22 +21,47 @@
 
             <form id = 'postForm' class="postForm">
                
-                <!-- <label>Student Name</label> -->
+                <label>Student Name</label> <br>
                 <input type="text" name="firstName" placeholder="First Name">
                 <input type="text" name="lastName" placeholder="Last Name">
                 <br>
 
-                <!-- <label for="gradYear">Graduation Date</label> -->
-                <input type="text" name="gradYear" placeholder="Year of Graduation">
-                <input type="text" name="gradMonth" placeholder="Month of Graduation">
+                <label for="gradYear">Graduation Date</label> <br>
+
+                <select name="gradMonth">
+                    <option value="">Graduation Month</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+
+                </select>
+
+                <select name="gradYear">
+                    <option value="">Graduation Year</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+
+                </select>
+                
                 <br>
 
-                <!-- <label for="company_Name">Current Employment</label> -->
+                <label for="company_Name">Current Employment</label> <br>
                 <input type="text" name="company_Name" placeholder="Current Employer">
                 <input type="text" name="job_Title" placeholder="Current Job Title">
                 <br>
 
-                <!-- <label>Links</label> -->
+                <label>Links</label> <br>
                 <input type="text" name="gitHub" placeholder="Personal GitHub Link">
                 <input type="text" name="linkedIn" placeholder="Personal LinkedIn Link">
                 <br>
@@ -45,6 +70,7 @@
                 <input type="text" name="linkedInIMG" placeholder="Personal LinkedIn Profile Img Link">
                 <br>
 
+                <label>Skills</label> <br>
                 <input type="text" name="key_Skills1" placeholder="Your best skills">
                 
 
@@ -63,26 +89,51 @@
             <h3>Update a Student's Information</h3>
             
             <form id='putForm' class="putForm">
-                <!-- <label for="docid">Student Id</label> -->
+                <label for="docid">Student Id</label> <br>
                 <input type="text" id="put_id" placeholder="Student Document Id">
                 <br>
 
-                <!-- <label>Student Name</label> -->
+                <label>Student Name</label> <br>
                 <input type="text" name="firstName" placeholder="First Name">
                 <input type="text" name="lastName" placeholder="Last Name">
                 <br>
 
-                <!-- <label for="gradYear">Graduation Date</label> -->
-                <input type="text" name="gradYear" placeholder="Year of Graduation">
-                <input type="text" name="gradMonth" placeholder="Month of Graduation">
+                <label for="gradYear">Graduation Date</label> <br>
+
+                <select name="gradMonth">
+                    <option value="">Graduation Month</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+
+                </select>
+
+                <select name="gradYear">
+                    <option value="">Graduation Year</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+
+                </select>
+                
                 <br>
 
-                <!-- <label for="company_Name">Current Employment</label> -->
+                <label for="company_Name">Current Employment</label> <br>
                 <input type="text" name="company_Name" placeholder="Current Employer">
                 <input type="text" name="job_Title" placeholder="Current Job Title">
                 <br>
 
-                <!-- <label>Links</label> -->
+                <label>Links</label> <br>
                 <input type="text" name="gitHub" placeholder="Personal GitHub Link">
                 <input type="text" name="linkedIn" placeholder="Personal LinkedIn Link">
                 <br>
@@ -91,6 +142,7 @@
                 <input type="text" name="linkedInIMG" placeholder="Personal LinkedIn Profile Img Link">
                 <br>
 
+                <label>Skills</label> <br>
                 <input type="text" name="key_Skills1" placeholder="Your best skills">
                 
 
@@ -146,7 +198,7 @@
 <div class="displayElms">
 
     <p id="responseElm" style="flex: .33"> Response Data Will Show Here After Request Is Made</p>
-
+    <hr>
     <p id="searchRes" style="flex: 1">Search Results will show here</p>
 
     <button id="reset_display" style="flex: .1">Reset Display</button>

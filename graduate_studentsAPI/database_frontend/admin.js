@@ -15,7 +15,8 @@
     
     document.getElementById('add_put_keyskill').addEventListener('click', () => {addSkill('put')});
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //FETCH Request Functions
+
+//FETCH Request Functions
 
 //SEARCH 
 async function searchRequest() {
@@ -39,9 +40,6 @@ async function searchRequest() {
             
         }
 
-        // console.log(filterParam, filParamValue);
-
-
         document.getElementById('request_message').innerText = 'Sending Search Request';
 
         await fetch(`http://localhost:3000/admin/${filterParam.value}/${filParamValue.value}`, {
@@ -49,8 +47,6 @@ async function searchRequest() {
         })
 
         .then( readable_stream => {
-
-            // console.log(readable_stream);
 
             return readable_stream.json()
             
@@ -65,8 +61,6 @@ async function searchRequest() {
             let allFoundPost = parsedResponse.document,
 
             searchHTML = 'Post Matched With Search:<br><hr>';
-
-            // console.log(allFoundPost);
 
             for (let i = 0; i < allFoundPost.length; i++) {
                 
@@ -84,21 +78,30 @@ async function searchRequest() {
 
         .catch( err => {
 
-            console.log(err);
-            
+            document.getElementById('searchRes').innerHTML = `An Error Occured: ${err} Status: ${parsedResponse.status}`;
+  
         })
 
         .finally( () => { setTimeout(reset_req_mes, 3000); filParamValue.value = ''})
 
 
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //POST
     async function postRequest() {
 
 
            let postJson = (create_Obj('postForm'));
+
+           if (!postJson) {
+
+                document.getElementById('responseElm').innerHTML = `There is a required field that did not have any input`;
+    
+                document.getElementById('request_message').innerText = 'Post request could not be made';
+            
+               return 
+           }
 
             document.getElementById('request_message').innerText = 'Summiting';
 
@@ -161,6 +164,7 @@ async function searchRequest() {
 
               requestId;
 
+          
             if (putIdTextInput.value.length != 24) { //check to make sure the client input is at least in the correct format
 
                 putIdTextInput.value = ''
@@ -171,7 +175,6 @@ async function searchRequest() {
             }
 
             requestId = putIdTextInput.value;
-      
             
             document.getElementById('request_message').innerText = 'Updating Document';
 
@@ -311,25 +314,53 @@ async function searchRequest() {
             
             formDataAsObj = {}, //the values and key names from the form element will be stored inside of an object as key/value pairs
 
-            skills = []; //this will hold all the skills the userinputs
+            skills = [], //this will hold all the skills the userinputs
+
+            failedValidation = false, linkFailed = false;
 
         for (const key of formElm) {
 
-            if (key.value != '' && !key.name.includes('Skill')) {
+            if (key.value != '' && key.name.includes('Skills')) {
+                // console.log(key.name, key.value);
+                skills.push(key.value)
+                
+            } else if (key.name == 'gitHub' && !validate_link(key) || key.name.includes('linkedIn') && !validate_link(key) || key.name == 'twitter' && !validate_link(key)) {
+                
+                linkFailed = true;
+                
+            } else if (key.value == '' && key.placeholder != 'Another Skill' && element_name === 'postForm') {
+
+                key.placeholder = 'This is a required field';
+                failedValidation = true;
+
+            } else if (key.value != '' && !key.name.includes('Skill')) {
                 // console.log('appending', key.name, key.value);
             
                 formDataAsObj[key.name] = key.value;
 
-            } else if (key.name.includes('Skills') && key.value != '') {
-                // console.log(key.name, key.value);
-                skills.push(key.value)
-                
-            }
+            } 
             
         }
 
         //after the skills array has been made, it will be added to the body of the request
-        formDataAsObj.key_Skills = skills;
+        //only if at least one skill has been submited will the request continue
+        if (skills.length > 0) {
+
+            formDataAsObj.key_Skills = skills;
+
+        } else {
+
+            failedValidation = true;
+        }
+
+        //check if at any point in creating the body obj validation failed 
+        if ( failedValidation && element_name === 'postForm'  || linkFailed && element_name === 'postForm') {
+
+            console.log(failedValidation, linkFailed);
+            
+            return false
+        } 
+        
 
     //the fetch request will need the body to be in JSO notation and not just as a JS Object.
         //so json.stringify is used
@@ -375,7 +406,7 @@ async function searchRequest() {
        
    }
 
-   //functions that vailidate or check some sources of infomation
+   //FUNCTIONS that VALIDATE or CHECK some sources of infomation
 
    function checkStatusOk(response) {
 
@@ -401,12 +432,28 @@ async function searchRequest() {
 
    }
 
+   function validate_link(form_element) {
+
+        let link = form_element.value;
+
+        console.log(link);
+        
+        if (link.substring(0, 8) != 'https://') {
+
+            form_element.value = '';
+            form_element.placeholder = 'https:// is required';
+            return false
+        }
+
+        return true
+       
+   }
 
    //vars to keep track of how many skill slots there are in any given form
 
    let putKeyInputs = 1, postKeyInputs = 1;
 
-
+   //ADDS A SKILL INPUT TO A GIVEN FORM 
    function addSkill(form_name) {
 
     newKeySkill = document.createElement('input');
@@ -435,7 +482,8 @@ async function searchRequest() {
             } else {
                 document.getElementById('postForm').innerHTML += ' '
             }
+
         }
-        
-       
+    
    }
+
