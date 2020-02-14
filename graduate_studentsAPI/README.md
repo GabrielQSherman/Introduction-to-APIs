@@ -6,14 +6,22 @@ First Name, Last Name,
 Graduation Year/Month,
 Job Title
 Company Name
-Key Skills
+Key Skills (array of strings)
 GitHub
 LinkedIn
 Twitter
-Photo (LinkedIn)
+Photo (LinkedIn profile link)
 
+NPM packages use for backend;
 
-//SO Far
+"dotenv": "^8.2.0",
+"express": "^4.17.1",
+"helmet": "^3.21.2",
+"mongoose": "^5.8.11",
+"morgan": "^1.9.1",
+"nodemon": "^2.0.2"
+
+//steps to setup api project -- 
 
 1.npm initalized and neccecary packages installed with 'npm i' or npm install
 
@@ -33,5 +41,12 @@ Photo (LinkedIn)
 
 Only one schema will be needed for this project because it is just the students graduation post, then comments and messages can be added later
 
-9. set up password to admin route using req.params
+2/14/2020 Final Thoughts
 
+I created project to test my ability to connect the front-end to my API that get data (documents) from MongoDB
+
+This was my first time attempting the front-back end connection so i kept it simple using the builting .fetch. Using fetch i was succesfully able to make GET, PUT, POST, and DELETE request to my api (located in my routes folder)
+
+My client frontend only includes get request, it includes a search/filter feature that is handled in the backend. so only the filtered documents would be sent from the API. 
+
+My Admin Route has more access to the database via my API. On this page one can send all CRUD methods to the API via an HTML page.
