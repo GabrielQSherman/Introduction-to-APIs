@@ -22,7 +22,7 @@ app.use('/', homeRouter);
 let mongoUri = process.env.MOGO_URI;
 
 //connnect using the previously declared variable and use obj to pass through parameters so no depercation warnings occur
-mongoose.connect(mongoUri, ({ useNewUrlParser: true, useUnifiedTopology: true } ))
+mongoose.connect(mongoUri, ({ useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true} ))
 
 //when the connection occurs these promises will fire
 mongoose.connection.on('connected', () => {
