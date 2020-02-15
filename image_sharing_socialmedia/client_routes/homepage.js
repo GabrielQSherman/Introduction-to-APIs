@@ -95,5 +95,53 @@ const express = require('express'),
           }
       })
 
+//LOGGING OUT OF ONE USER
+
+    //one device
+    router.post('/users/getuser/logout', auth, async (req, res) => {
+
+        try {
+            req.user.tokens = req.user.tokens.filter((databaseStoredToken) => {
+
+                //this filter method will only leave remaining the tokens that were not just used in the 'auth' middleware
+                return databaseStoredToken.token != req.token
+            
+            })
+
+            await req.user.save() //save the document, now without the token just used
+            res.json({
+                message: 'You are logged out from this device'
+            })
+
+        } catch (err) {
+
+            res.status(500).json({
+                message: err.message,
+                error_report: err
+            })
+            
+        }
+    })
+
+    //all devices currently logged in
+    router.post('/users/getuser/logoutalldevices', auth, async(req, res) => {
+        try {
+
+            req.user.tokens.splice(0, req.users.tokens.length) //just clears the token array in the database
+
+            await req.user.save() //save the document with no tokens in the token array
+
+            res.json({
+                message: 'You are no longer logged in on any device'
+            })
+
+        } catch (err) {
+            res.status(500).json({
+                message: err.message,
+                error: err
+            })
+        }
+    })
+
 
 module.exports = router;
