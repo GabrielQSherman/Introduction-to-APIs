@@ -32,5 +32,11 @@ In this social media clone, cliental will be able to;
 
         [*] connect the schema export from ./models/User.js to the homepage router + set up User Schema
 
-        
+        [*] finish creation of schema. add email, name, password, and array for jw tokens to be stored
+
+        i added two methods for my schema to use, one that for creating a new jwt when the user logs in with an existing account. and another for when the user attepmts to log in, it will make sure the password matches with the jwt in the database
+
+        [*] add two post routes to homepage.js
+        [*] implement one post route to handle creation of new user
+        [*] implement one post route to handle logging in of existing user
 
