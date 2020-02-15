@@ -6,6 +6,15 @@ const express = require('express'),
 
       app = express(); //instance of express (aka an express application)
 
+
+//Middleware thats used for every request
+
+app.use(express.json());
+
+const homeRouter = require('./client_routes/homepage');
+
+app.use('/', homeRouter);
+
 ///////////////////////////////////////////////////////////////////////////////////////////// CONNECTING TO DATABASE 
 //Connect to my MongoDB account
 

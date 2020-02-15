@@ -23,6 +23,14 @@ In this social media clone, cliental will be able to;
     2/15/20
 
     Using this article https://tinyurl.com/ud9b9kz by Frank Atukunda to help me learn about and implement JSON Web Tokens for the first time in one of my REST APIs
-    
-     
+
+    for this task i installed 'bcryptjs' and 'jsonwebtoken' with the 'npm i' command 
+
+        [*] connect the homepage router to the index.js express application to send 'home' to the client
+
+        i added some middleware to the express application, whenever a route is called express.json() will be used as middleware to parse the body of the request into JSON if need be
+
+        [*] connect the schema export from ./models/User.js to the homepage router + set up User Schema
+
+        
 
