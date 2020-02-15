@@ -40,3 +40,13 @@ In this social media clone, cliental will be able to;
         [*] implement one post route to handle creation of new user
         [*] implement one post route to handle logging in of existing user
 
+        i am going to add authorization middleware that will check the json webtoken with the tokens in the database to make sure the computer trying to access a given users information has logged in with the same device at one point
+
+        [*] create middleware folder and create auth.js with will export authorization middleware
+
+        [*] add a get route in the homepage.js that will utilize the authorization middleware and return the to user the found document
+
+        [*] add route to logout of a user on one device
+
+        [*] add route to logout user on all logged in devices
+
