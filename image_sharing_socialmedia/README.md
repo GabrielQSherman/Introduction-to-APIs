@@ -1,6 +1,6 @@
 In this social media clone, cliental will be able to;
 
-    []create an account with password and username
+    [*]create an account with email, password, and username
 
     []see any user via search and follow them if desired
 
@@ -46,7 +46,16 @@ In this social media clone, cliental will be able to;
 
         [*] add a get route in the homepage.js that will utilize the authorization middleware and return the to user the found document
 
+        i create a middleware that get the request header and uses the jwt method 'verify' to check the given wt to see if it matches on in the database.
+        if it does than the middleware will move onto the next middleware function
+
+        it will also return the user that was found so that can be used in the next function
+
         [*] add route to logout of a user on one device
+
+        to log out a user you must update the database and remove at least one jtw from the users document
+        if just the currently used wt is removed then the user will be logged out of the current device. 
+        to log out of all devices a user is currently logged into one must simple reset the jwt array to a blank array
 
         [*] add route to logout user on all logged in devices
 
