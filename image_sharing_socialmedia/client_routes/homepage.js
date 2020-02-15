@@ -1,10 +1,12 @@
 const express = require('express'),
 
       router = express.Router(),
-      
 
-      userSchema = require('../models/User');
+      userSchema = require('../models/User'),
 
+      auth = require('../middleware/auth');
+
+//GET ROUTES
 
       router.get('/', (req, res) => {
           res.send('home')
@@ -14,6 +16,13 @@ const express = require('express'),
           res.send('userpage')
       })
 
+      router.get('/users/getuser', auth, async(req, res) => {
+
+        res.json({ found_user: req.user })
+
+      })
+
+//CREATING A NEW USER
       router.post('/users', async (req, res) => {
 
             try {
@@ -24,6 +33,7 @@ const express = require('express'),
                 //attempt to save the document to the database 
                 await user.save();
 
+                //generate the first jwt that will be stored in the database
                 const token = await user.generateAuthToken()
 
                 res.status(201).json({
@@ -34,8 +44,7 @@ const express = require('express'),
 
             } catch (err) {
 
-                console.log(err);
-                
+                // console.log(err);
 
                 res.status(400).json({ 
 
@@ -48,23 +57,28 @@ const express = require('express'),
 
       })
 
-
+//LOGGING IN
       router.post('/users/login', async (req, res) => {
           try {
 
+            //get the email and passwor from the body
             const {email, password} = req.body;
 
+            //call the credential check method defined in the model file
             const loginUser = await userSchema.findByCredentials(email, password);
 
+            //if a user is returned then a new jw token will be generated, otherwise the client has passed a non existant user
             if (!loginUser) {
 
                 throw new Error('User Not Found') ;
     
             }
 
+            //create a new jw-token
             const token = await loginUser.generateAuthToken()
 
-            res.json({
+            //response is successful
+            res.status(200).json({
                 document: loginUser,
                 new_token: token
             })
@@ -80,23 +94,6 @@ const express = require('express'),
               
           }
       })
-
-// router.post('/users/login', async(req, res) => {
-//     //Login a registered user
-//     try {
-//         const { email, password } = req.body
-//         const user = await User.findByCredentials(email, password)
-//         if (!user) {
-//             return res.status(401).send({error: 'Login failed! Check authentication credentials'})
-//         }
-//         const token = await user.generateAuthToken()
-//         res.send({ user, token })
-//     } catch (error) {
-//         res.status(400).send(error)
-//     }
-
-// })
-
 
 
 module.exports = router;
