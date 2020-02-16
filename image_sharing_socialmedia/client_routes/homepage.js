@@ -9,7 +9,13 @@ const express = require('express'),
 //GET ROUTES
 
       router.get('/', (req, res) => {
-          res.send('home')
+
+            let absolutePath = __dirname.replace(/client_routes/, '') + 'frontend\\home.html';
+
+            console.log(absolutePath);
+            
+            res.sendFile(absolutePath);
+
       })
 
       router.get('/users', async (req, res) => {

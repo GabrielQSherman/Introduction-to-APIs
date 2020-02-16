@@ -11,6 +11,8 @@ const express = require('express'),
 
 app.use(express.json());
 
+app.use(express.static('./frontend'));
+
 const homeRouter = require('./client_routes/homepage');
 
 app.use('/', homeRouter);
