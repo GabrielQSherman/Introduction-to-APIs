@@ -59,3 +59,13 @@ In this social media clone, cliental will be able to;
 
         [*] add route to logout user on all logged in devices
 
+    2/16/20
+
+        [*]create sign up frontend page
+            I create a new folder that will hold my static files to send to the client. Right now i have a basic form set up and i will be using axios to connect the frontend page to my api
+
+        []create sign in frontend page
+
+        [] create a logout of current device and log out of all devices buttons
+
+
