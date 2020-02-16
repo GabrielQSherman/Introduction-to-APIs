@@ -64,6 +64,11 @@ In this social media clone, cliental will be able to;
         [*]create sign up frontend page
             I create a new folder that will hold my static files to send to the client. Right now i have a basic form set up and i will be using axios to connect the frontend page to my api
 
+            [*] when submit button is pressed and object is created with user data that can be used in an axios request
+
+            [] set up axios to send a post request for a new user to be added to DB
+
+
         []create sign in frontend page
 
         [] create a logout of current device and log out of all devices buttons
