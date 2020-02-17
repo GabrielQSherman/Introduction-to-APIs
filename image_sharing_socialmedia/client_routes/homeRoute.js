@@ -12,16 +12,39 @@ const express = require('express'),
 
             let absolutePath = __dirname.replace(/client_routes/, '') + 'frontend\\home.html';
 
-            console.log(absolutePath);
-            
             res.sendFile(absolutePath);
 
       })
 
+//general get request to get all documents in database
       router.get('/users', async (req, res) => {
-          res.send('userpage')
+                
+                await userSchema.find()
+
+                .then ( allUsers => {
+
+                    res.status(200).json({
+    
+                        message: 'all users retrieved',
+                        document: allUsers
+    
+                    })
+
+                })
+                
+                .catch ( err => {
+
+                    res.status(500).json({
+                        message: 'server error',
+                        error: err.message
+                    })
+                    
+                })
+
       })
 
+
+//Get Request for specific user, needs authenification for sucessful response
       router.get('/users/getuser', auth, async(req, res) => {
 
         res.json({ found_user: req.user })
@@ -104,7 +127,7 @@ const express = require('express'),
 //LOGGING OUT OF ONE USER
 
     //one device
-    router.post('/users/getuser/logout', auth, async (req, res) => {
+    router.post('/users/logout', auth, async (req, res) => {
 
         try {
             req.user.tokens = req.user.tokens.filter((databaseStoredToken) => {
@@ -130,10 +153,13 @@ const express = require('express'),
     })
 
     //all devices currently logged in
-    router.post('/users/getuser/logoutalldevices', auth, async(req, res) => {
+    router.post('/users/logoutall', auth, async(req, res) => {
         try {
 
-            req.user.tokens.splice(0, req.users.tokens.length) //just clears the token array in the database
+            console.log(req.user.tokens);
+            
+
+            req.user.tokens = []; //just clears the token array in the database
 
             await req.user.save() //save the document with no tokens in the token array
 

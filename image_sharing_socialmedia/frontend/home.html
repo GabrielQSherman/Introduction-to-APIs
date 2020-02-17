@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up/Sign In</title>
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
     <link rel="stylesheet" type="text/css" href="./home.css">
+    
 </head>
 <body>
 
@@ -19,9 +23,21 @@
         </form>
 
         <button id="signup_submit">Click to Sign Up</button>
-        
+
     </div>
 
+    <button id="getall">GET</button>
+
+
+    
+    <div class="request_and_response">
+
+        <p id="requestInfo" style="flex: .2;">Request Info Will Be Displayed Here</p>
+
+        <p id="responseInfo" style="flex: 1;">Response Info Will Be Displayed Here</p>
+
+    </div>
+    
 
     <script type="text/javascript" src="./home.js"></script>
     

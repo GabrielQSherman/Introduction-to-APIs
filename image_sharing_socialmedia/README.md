@@ -66,8 +66,14 @@ In this social media clone, cliental will be able to;
 
             [*] when submit button is pressed and object is created with user data that can be used in an axios request
 
-            [] set up axios to send a post request for a new user to be added to DB
+            [*] create first axios request function
 
+            Since this is my first time creating an XML Http request through axios I started with a simple 'get all documents from database' request that is connected to the front end with a button. with a click event that button sends an axios request to my api's /users route.
+
+
+TODO:
+
+        [] set up axios to send a post request for a new user to be added to DB
 
         []create sign in frontend page
 

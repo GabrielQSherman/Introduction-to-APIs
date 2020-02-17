@@ -6,14 +6,13 @@ const express = require('express'),
 
       app = express(); //instance of express (aka an express application)
 
-
 //Middleware thats used for every request
 
 app.use(express.json());
 
 app.use(express.static('./frontend'));
 
-const homeRouter = require('./client_routes/homepage');
+const homeRouter = require('./client_routes/homeRoute');
 
 app.use('/', homeRouter);
 
@@ -29,7 +28,7 @@ mongoose.connect(mongoUri, ({ useNewUrlParser: true, useUnifiedTopology: true, u
 //when the connection occurs these promises will fire
 mongoose.connection.on('connected', () => {
 
-    console.log(`\nMongoose connection open to ${mongoUri}\n`);
+    // console.log(`\nMongoose connection open to ${mongoUri}\n`);
 
 });
 

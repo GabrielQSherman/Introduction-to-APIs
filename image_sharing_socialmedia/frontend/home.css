@@ -5,3 +5,15 @@ body {
 .signup {
     background-color: white;
 }
+
+.request_and_response {
+
+    display: flex;
+
+}
+
+.request_and_response>p{
+    background-color: aquamarine;
+
+    margin: 3%;
+}
