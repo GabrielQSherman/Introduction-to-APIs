@@ -24,13 +24,14 @@ function submitSignUp() {
 
     let reqData = {
 
-        url: 'http://localhost:3000/users/login',
+        url: 'http://localhost:3000/users',
 
         headers: {
             
             'Access-Control-Allow-Origin': '*',
             
-            Accept: 'application/json',
+             Accept: 'application/json',
+
             'content-type':'application/json'
         
         },
@@ -42,11 +43,17 @@ function submitSignUp() {
 
     axios(reqData)
 
-    .then( data  => {
-        
-        console.log(data);
+    .then( response  => {
 
-        return true
+        console.log(response);
+
+        if (response.status === 201) {
+
+            requestInfo.innerText = 'Successful sign up!!!'
+
+            responseInfo.innerText = `Thank you for signing up ${response.data.document.name}!`
+            
+        }
         
     }) 
 
@@ -58,6 +65,10 @@ function submitSignUp() {
 
         return false
 
+    })
+
+    .finally ( () => {
+        clearForm('signup_form')
     })
     
 }
@@ -102,4 +113,16 @@ function getall() {
     })
     
     
+}
+
+function clearForm(formID) {
+
+    let formElement = document.getElementById(formID);
+
+    for (const key of formElement) {
+
+        key.value = '';
+
+    }
+
 }

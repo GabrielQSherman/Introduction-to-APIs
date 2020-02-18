@@ -13,31 +13,59 @@
 </head>
 <body>
 
-    <div class="signup">
-        <form id="signup_form">
+    <div class="forms"> 
 
-            <input type="text" name="email" placeholder="Email">
-            <input type="text" name="name" placeholder="Full Name">
-            <input type="text" name="password" placeholder="Password">
+        <div class="signup">
+            <form id="signup_form">
+                
+                <label>Email</label><br>
+                <input type="text" name="email" placeholder="Email">
+                <br>
 
-        </form>
+                <label>Full Name</label><br>
+                <input type="text" name="name" placeholder="Full Name">
+                <br>
+                
+                <label>Password</label><br>
+                <input type="text" name="password" placeholder="Password">
 
-        <button id="signup_submit">Click to Sign Up</button>
+            </form>
+
+    
+            <br><button id="signup_submit">Click to Sign Up</button>
+    
+        </div>
+    
+        <div class="signin">
+            <form id="signin_form">
+                <br>
+                
+                <label>Email</label><br>
+                <input type="text" name="email" placeholder="Email">
+                <br>
+
+                <label>Password</label><br>
+                <input type="text" name="password" placeholder="Password">
+                <br>
+
+            </form>
+    
+            <br><br><button id="signin_submit">Click to Sign In</button>
+    
+        </div>    
 
     </div>
 
-    <button id="getall">GET</button>
-
-
-    
     <div class="request_and_response">
 
-        <p id="requestInfo" style="flex: .2;">Request Info Will Be Displayed Here</p>
+        <p id="requestInfo">Request Info Will Be Displayed Here</p>
 
-        <p id="responseInfo" style="flex: 1;">Response Info Will Be Displayed Here</p>
+        <p id="responseInfo">Response Info Will Be Displayed Here</p>
 
     </div>
+
     
+    <button id="getall">GET</button>
 
     <script type="text/javascript" src="./home.js"></script>
     

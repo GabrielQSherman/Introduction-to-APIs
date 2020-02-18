@@ -2,18 +2,97 @@ body {
     background-color: black;
 }
 
-.signup {
-    background-color: white;
+.forms {
+    background-color: rgb(255, 161, 239);
+
+    display: flex;
+
+    border-radius: 50px;
 }
+
+.forms>div{
+
+    flex: 1;
+    margin: 1%;
+
+}
+
+.signup {
+
+    background-color: rgb(255, 253, 141);
+
+    border-radius: 50px;
+    border: 5px;
+    border-style: solid;
+    border-color: rgb(255, 226, 162);
+
+    text-align: center;
+}
+
+#signup_submit {
+    border-style: solid;
+    border-radius: 10px;
+
+
+}
+
+.signin {
+
+    background-color: rgb(159, 249, 255);
+
+    border-radius: 50px;
+    border: 5px;
+    border-style: solid;
+    border-color: rgb(181, 255, 181);
+
+    text-align: center;
+}
+
+#signin_submit {
+    border-style: solid;
+    border-radius: 10px;
+
+
+}
+
 
 .request_and_response {
 
     display: flex;
 
+    background-color: rgb(194, 255, 192);
+
+    border-radius: 50px;
+
 }
 
 .request_and_response>p{
-    background-color: aquamarine;
 
+    text-align: center;
     margin: 3%;
+
+
+    border: 3px;
+    border-radius: 5px;
+    border-style: groove;
+    border-color: black;
+ 
+
 }
+
+#requestInfo {
+
+    flex: .35;
+
+    background-color: rgb(255, 255, 112);
+
+}
+
+#responseInfo {
+
+    flex: 1;
+
+    background-color: rgb(108, 255, 243);
+    
+}
+
