@@ -54,6 +54,9 @@ const express = require('express'),
 //CREATING A NEW USER
       router.post('/users', async (req, res) => {
 
+        console.log(req.body);
+        
+
             try {
 
                 //compile to new user information in the api, ready to be saved

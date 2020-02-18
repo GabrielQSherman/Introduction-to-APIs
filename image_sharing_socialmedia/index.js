@@ -1,12 +1,16 @@
 //variables needed to run server
 require('dotenv/config')
 
+// const cors = require('cors');
+
 const express = require('express'),
       mongoose = require('mongoose'),
 
       app = express(); //instance of express (aka an express application)
 
 //Middleware thats used for every request
+
+// app.use(cors());
 
 app.use(express.json());
 

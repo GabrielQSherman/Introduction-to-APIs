@@ -22,7 +22,43 @@ function submitSignUp() {
 
     }
 
-    console.log(signUpInfo);
+    let reqData = {
+
+        url: 'http://localhost:3000/users/login',
+
+        headers: {
+            
+            'Access-Control-Allow-Origin': '*',
+            
+            Accept: 'application/json',
+            'content-type':'application/json'
+        
+        },
+
+        method: 'POST',
+        
+        data: signUpInfo
+    };
+
+    axios(reqData)
+
+    .then( data  => {
+        
+        console.log(data);
+
+        return true
+        
+    }) 
+
+
+    .catch ( err => {
+
+        console.log(err.message);
+        
+
+        return false
+
+    })
     
 }
 
@@ -31,17 +67,19 @@ function getall() {
     
     requestInfo.innerText = 'Getting all users'
 
-    url = 'http://localhost:3000/users';
+    
 
-    reqData = {
+    let reqData = {
+
+        url: 'http://localhost:3000/users',
 
         headers: {'Access-Control-Allow-Origin': '../'},
 
         method: 'GET' //this is a default method but all other methods will need to be defined
         
-    }
+    };
     
-    axios(url, reqData)
+    axios(reqData)
 
     .then ( response => {
 

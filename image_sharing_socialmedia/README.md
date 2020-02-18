@@ -71,6 +71,11 @@ In this social media clone, cliental will be able to;
             Since this is my first time creating an XML Http request through axios I started with a simple 'get all documents from database' request that is connected to the front end with a button. with a click event that button sends an axios request to my api's /users route.
 
 
+    2/17/20
+
+        [] 
+
+
 TODO:
 
         [] set up axios to send a post request for a new user to be added to DB
