@@ -2,6 +2,10 @@ In this social media clone, cliental will be able to;
 
     [*]create an account with email, password, and username
 
+    [] signin with an existing account
+
+    [] logout of an existing account that is signed in
+
     []see any user via search and follow them if desired
 
     []upload photolinks
@@ -73,14 +77,21 @@ In this social media clone, cliental will be able to;
 
     2/17/20
 
-        [] 
+        set up a post request function on the frontend js and it sends a request to my api via axios
+
+        [*] set up axios to send a post request for a new user to be added to DB
+
+
+
+    2/18/20
+
+        I added some css to make my home good enough to work on the function side for while
+
+        [*] create sign in form 
+        [] create signup function on frontend js
 
 
 TODO:
-
-        [] set up axios to send a post request for a new user to be added to DB
-
-        []create sign in frontend page
 
         [] create a logout of current device and log out of all devices buttons
 
