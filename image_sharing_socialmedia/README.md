@@ -91,6 +91,12 @@ In this social media clone, cliental will be able to;
         [*] create signup function on frontend js
         [*] when a user signs in their infomation is displayed to them on the frontend 
 
+    2/19/20
+
+        Today I will be added a templating engine to load a users page when the login, from there they can explore other users as well as look at their liked/favorited photos
+
+        [*] npm i pug morgan helmet and require them in the index.js file
+
         
 TODO:
 
