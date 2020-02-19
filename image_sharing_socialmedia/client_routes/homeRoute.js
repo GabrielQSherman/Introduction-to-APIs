@@ -92,7 +92,7 @@ const express = require('express'),
 //LOGGING IN
       router.post('/users/login', async (req, res) => {
 
-        console.log(req.body);
+        // console.log(req.body);
         
           try {
 
@@ -122,14 +122,26 @@ const express = require('express'),
               
           } catch (err) {
 
-            res.status(400).json({
+            let status;
 
-                message: err.message,
-                errorReport: err
+                if (err.message == 'Invalid Password' || err.message == 'Email Not Found') {
 
-            })
+                    status = 271;
+
+                } else {
+
+                    status = 500;
+                    
+                }
+
+             res.status(status).json({
+
+                message: err.message
+
+             })
               
           }
+
       })
 
 //LOGGING OUT OF ONE USER

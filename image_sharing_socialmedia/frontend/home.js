@@ -131,9 +131,17 @@ function submitSignIn() {
 
         if (response.status === 200) {
 
+            const {name, email} = response.data.user;
+
             requestInfo.innerText = 'Successful sign in!!!'
 
-            responseInfo.innerHTML = `User Info:<br>Name: ${response.data.user.name}<br>Email: ${response.data.user.email}`
+            responseInfo.innerHTML = `User Info:<br>Name: ${name}<br>Email: ${email}`
+
+        } else if (response.status === 271) { //catches error if password or email fail credential check in backend
+            
+            requestInfo.innerText = 'Sign in NOT Successful'
+            responseInfo.innerHTML = `A Problem Occured:<br>${response.data.message}`
+            return
 
         }
         
@@ -141,12 +149,10 @@ function submitSignIn() {
 
     .catch ( err => {
 
-        console.log(err);
-
         requestInfo.innerText = 'Sign in NOT Successful'
 
-        responseInfo.innerText = `Error: ${err.message}`
-        
+        console.log(err);
+
         return
 
     })
