@@ -7,22 +7,35 @@ const requestInfo = document.getElementById('requestInfo'),
 //Event Listeners
 document.getElementById('signup_submit').addEventListener('click', submitSignUp);
 
+document.getElementById('signin_submit').addEventListener('click', submitSignIn);
+
 document.getElementById('getall').addEventListener('click', getall);
 
 //Request Functions
 
+  //SIGN UP
+ //creates an object from the form element on the client side.
+// if infomation is left blank the client will be notified and the xhr will not be executed
+
 function submitSignUp() {
     
-    let signUpInfo = {},
-        formElement = document.getElementById('signup_form')
+    let signUpInfo = compile_form_data('signup_form');
 
-    for (const key of formElement) {
+    if (signUpInfo === false) {
 
-        signUpInfo[key.name] = key.value
+        requestInfo.innerText = 'Request Could Not Be Made';
 
-    }
+        responseInfo.innerText = 'A Required Input Was Left Blank'
 
-    let reqData = {
+        return
+
+    } 
+
+    console.log(signUpInfo);
+    
+    
+//  this data will be passed to axios as the 'data' parameter
+    const reqData = {
 
         url: 'http://localhost:3000/users',
 
@@ -61,24 +74,96 @@ function submitSignUp() {
     .catch ( err => {
 
         console.log(err.message);
-        
 
-        return false
+        requestInfo.innerText = 'Sign Up NOT Successful'
+
+        responseInfo.innerText = `Error: ${err.message}`
+        
+        return
 
     })
 
     .finally ( () => {
-        clearForm('signup_form')
+
+        clearForm('signup_form');
+
+    })
+    
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+function submitSignIn() {
+    
+    let signInInfo = compile_form_data('signin_form');
+
+    if (signInInfo === false) {
+
+        requestInfo.innerText = 'Request Could Not Be Made';
+
+        responseInfo.innerText = 'A Required Input Was Left Blank'
+
+        return
+
+    } 
+
+    const reqData = {
+
+        url: 'http://localhost:3000/users/login',
+
+        headers: {
+            
+            'Access-Control-Allow-Origin': '*',
+            
+             Accept: 'application/json',
+
+            'content-type':'application/json'
+        
+        },
+
+        method: 'POST',
+        
+        data: signInInfo
+    };
+
+    axios(reqData)
+
+    .then( response  => {
+
+        console.log(response.message);
+
+        if (response.status === 201) {
+
+            requestInfo.innerText = 'Successful sign in!!!'
+
+        }
+        
+    })
+
+    .catch ( err => {
+
+        console.log(err);
+
+        requestInfo.innerText = 'Sign in NOT Successful'
+
+        responseInfo.innerText = `Error: ${err.message}`
+        
+        return
+
+    })
+
+    .finally ( () => {
+        clearForm('signin_form')
     })
     
 }
 
 
+
+
+
 function getall() {
     
     requestInfo.innerText = 'Getting all users'
-
-    
 
     let reqData = {
 
@@ -123,6 +208,39 @@ function clearForm(formID) {
 
         key.value = '';
 
+    }
+
+}
+
+function compile_form_data(formID) {
+
+    let dataObj = {}, leftBlank = false;
+
+        formElement = document.getElementById(formID);
+
+
+        for (const key of formElement) {
+
+            if (key.value == '') {
+
+                key.placeholder = 'This is required'
+
+                leftBlank = true
+                
+            }
+
+            dataObj[key.name] = key.value
+
+        }
+
+
+    if (leftBlank) {
+
+        return false
+        
+    } else {
+
+        return dataObj
     }
 
 }
