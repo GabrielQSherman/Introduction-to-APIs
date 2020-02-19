@@ -97,6 +97,8 @@ In this social media clone, cliental will be able to;
 
         [*] npm i pug morgan helmet and require them in the index.js file
 
+        [*] set up pug to redirect users once they log in
+
         
 TODO:
 

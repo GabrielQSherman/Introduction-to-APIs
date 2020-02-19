@@ -90,7 +90,7 @@ const express = require('express'),
       })
 
 //LOGGING IN
-      router.post('/users/login', async (req, res) => {
+      router.get('/users/login', async (req, res) => {
 
         // console.log(req.body);
         
@@ -113,14 +113,20 @@ const express = require('express'),
             const token = await loginUser.generateAuthToken()
 
             //response is successful
-            res.status(200).json({
-                user: {
-                    name: loginUser.name,
-                    email: email
-                }
-            })
+            // res.status(200).json({
+            //     user: {
+            //         name: loginUser.name,
+            //         email: email
+            //     }
+            // })
+
+            res.render('user', {userName: loginUser.name, userInfo: email } )
               
           } catch (err) {
+
+            console.log(err);
+            console.log('\n\n\n', err.message);
+            
 
             let status;
 

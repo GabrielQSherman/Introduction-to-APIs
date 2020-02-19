@@ -7,11 +7,12 @@ const express = require('express'),
       mongoose = require('mongoose'),
       helmet = require('helmet'),
       morgan = require('morgan'),
-      pug = require('pug'),
 
       app = express(); //instance of express (aka an express application)
 
 //Middleware thats used for every request
+
+app.set('view engine', 'pug');
 
 // app.use(cors());
 
