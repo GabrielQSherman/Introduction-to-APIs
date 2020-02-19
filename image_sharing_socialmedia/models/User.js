@@ -72,10 +72,10 @@ UserSchema.methods.generateAuthToken = async function (currentUser) {
 //logging in function
 UserSchema.statics.findByCredentials = async (email, password) => {
 
-    const foundUser = await userExport.findOne({email: email}).exec()
+    const foundUser = await userExport.findOne({email: email});
     if (!foundUser) {
 
-        throw new Error('User Name Not Found')
+        throw new Error('Email Not Found')
         
     }
 

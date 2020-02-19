@@ -91,10 +91,13 @@ const express = require('express'),
 
 //LOGGING IN
       router.post('/users/login', async (req, res) => {
+
+        console.log(req.body);
+        
           try {
 
-            //get the email and passwor from the body
-            const {email, password} = req.body;
+            //get the email and password from the body
+            const {email, password} = req.body.data;
 
             //call the credential check method defined in the model file
             const loginUser = await userSchema.findByCredentials(email, password);
@@ -111,8 +114,10 @@ const express = require('express'),
 
             //response is successful
             res.status(200).json({
-                document: loginUser,
-                new_token: token
+                user: {
+                    name: loginUser.name,
+                    email: email
+                }
             })
               
           } catch (err) {

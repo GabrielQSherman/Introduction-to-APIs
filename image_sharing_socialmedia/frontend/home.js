@@ -108,8 +108,6 @@ function submitSignIn() {
 
     const reqData = {
 
-        url: 'http://localhost:3000/users/login',
-
         headers: {
             
             'Access-Control-Allow-Origin': '*',
@@ -125,15 +123,17 @@ function submitSignIn() {
         data: signInInfo
     };
 
-    axios(reqData)
+    axios.post('http://localhost:3000/users/login', reqData)
 
     .then( response  => {
 
-        console.log(response.message);
+        // console.log(response.message);
 
-        if (response.status === 201) {
+        if (response.status === 200) {
 
             requestInfo.innerText = 'Successful sign in!!!'
+
+            responseInfo.innerHTML = `User Info:<br>Name: ${response.data.user.name}<br>Email: ${response.data.user.email}`
 
         }
         
@@ -156,10 +156,6 @@ function submitSignIn() {
     })
     
 }
-
-
-
-
 
 function getall() {
     
