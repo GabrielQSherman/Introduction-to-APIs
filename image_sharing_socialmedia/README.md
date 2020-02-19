@@ -88,10 +88,13 @@ In this social media clone, cliental will be able to;
         I added some css to make my home good enough to work on the function side for while
 
         [*] create sign in form 
-        [] create signup function on frontend js
+        [*] create signup function on frontend js
+        [*] when a user signs in their infomation is displayed to them on the frontend 
 
-
+        
 TODO:
+
+        [] when users sign in sucessfuly it should take them to their page
 
         [] create a logout of current device and log out of all devices buttons
 
