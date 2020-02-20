@@ -90,7 +90,7 @@ const express = require('express'),
       })
 
 //LOGGING IN
-      router.get('/users/login', async (req, res) => {
+      router.post('/login', async (req, res) => {
 
         // console.log(req.body);
         
@@ -112,21 +112,15 @@ const express = require('express'),
             //create a new jw-token
             const token = await loginUser.generateAuthToken()
 
-            //response is successful
-            // res.status(200).json({
-            //     user: {
-            //         name: loginUser.name,
-            //         email: email
-            //     }
-            // })
+            // response is successful
+            res.status(200).json({
+                username: loginUser.username
+            })
 
-            res.render('user', {userName: loginUser.name, userInfo: email } )
-              
           } catch (err) {
 
             console.log(err);
             console.log('\n\n\n', err.message);
-            
 
             let status;
 

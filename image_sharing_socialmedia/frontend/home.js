@@ -123,7 +123,7 @@ function submitSignIn() {
         data: signInInfo
     };
 
-    axios.post('http://localhost:3000/users/login', reqData)
+    axios.post('http://localhost:3000/login', reqData)
 
     .then( response  => {
 
@@ -131,11 +131,16 @@ function submitSignIn() {
 
         if (response.status === 200) {
 
-            const {name, email} = response.data.user;
+            console.log(response.data);
+            
 
-            requestInfo.innerText = 'Successful sign in!!!'
+            const {username} = response.data;
 
-            responseInfo.innerHTML = `User Info:<br>Name: ${name}<br>Email: ${email}`
+            location.replace(`http://localhost:3000/profile/${username}`)
+
+            // requestInfo.innerText = 'Successful sign in!!!'
+
+            // responseInfo.innerHTML = `User Info:<br>Name: ${name}<br>Email: ${email}`
 
         } else if (response.status === 271) { //catches error if password or email fail credential check in backend
             
@@ -149,7 +154,7 @@ function submitSignIn() {
 
     .catch ( err => {
 
-        requestInfo.innerText = 'Sign in NOT Successful'
+        requestInfo.innerText = 'An Error Occured'
 
         console.log(err);
 
@@ -169,9 +174,9 @@ function getall() {
 
     let reqData = {
 
-        url: 'http://localhost:3000/users',
+        url: 'http://localhost:3000/profile/asdf',
 
-        headers: {'Access-Control-Allow-Origin': '../'},
+        headers: {'Access-Control-Allow-Origin': '*'},
 
         method: 'GET' //this is a default method but all other methods will need to be defined
         
@@ -179,25 +184,25 @@ function getall() {
     
     axios(reqData)
 
-    .then ( response => {
+    // .then ( response => {
 
-        requestInfo.innerText = response.data.message;
+    //     requestInfo.innerText = response.data.message;
         
-        const allUsers = response.data.document;
+    //     const allUsers = response.data.document;
 
-        console.log(allUsers);
+    //     console.log(allUsers);
         
 
-        responseInfo.innerText = 'User documents found in console';
+    //     responseInfo.innerText = 'User documents found in console';
         
-    })
+    // })
 
-    .catch( err => {
+    // .catch( err => {
 
-        requestInfo.innerText = 'Get Request Failed';
+    //     requestInfo.innerText = 'Get Request Failed';
 
-        responseInfo.innerText = err.message;
-    })
+    //     responseInfo.innerText = err.message;
+    // })
     
     
 }

@@ -28,6 +28,11 @@ const homeRouter = require('./client_routes/homeRoute');
 
 app.use('/', homeRouter);
 
+
+const userRouter = require('./client_routes/userRoute');
+
+app.use('/profile', userRouter)
+
 ///////////////////////////////////////////////////////////////////////////////////////////// CONNECTING TO DATABASE 
 //Connect to my MongoDB account
 

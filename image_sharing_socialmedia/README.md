@@ -99,7 +99,11 @@ In this social media clone, cliental will be able to;
 
         [*] set up pug to redirect users once they log in
 
-        
+    2/20/20
+
+        Today i will continue my work on my template html pages
+
+        [*] users are redirected to thier /profile page when they sucessfully log in       
 TODO:
 
         [] when users sign in sucessfuly it should take them to their page
