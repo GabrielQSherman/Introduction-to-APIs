@@ -55,12 +55,14 @@ const express = require('express'),
       router.post('/users', async (req, res) => {
 
         console.log(req.body);
+
+        const newUserInfo = req.body;
         
 
             try {
 
                 //compile to new user information in the api, ready to be saved
-                const user = new userSchema(req.body)
+                const user = new userSchema(newUserInfo)
 
                 //attempt to save the document to the database 
                 await user.save();
@@ -193,6 +195,40 @@ const express = require('express'),
                 error: err
             })
         }
+    })
+
+
+    router.post('/newpost', auth, (req, res) => {
+
+      try {
+            newpost = {
+
+                url: 'https://google.com',
+
+                caption: 'test caption',
+
+                likes: []
+                                                 
+            }
+
+            updatedUser = req.user;
+
+            updatedUser.posts.push(newpost);
+
+            console.log(updatedUser);
+
+            updatedUser.save();
+
+            res.send(updatedUser);
+
+      }
+
+       catch( err ) {
+
+           console.log(err);
+           
+       }
+
     })
 
 
