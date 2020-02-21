@@ -18,6 +18,7 @@ const UserSchema = mongoose.Schema({
     username: {
         type: String,
         required: true,
+        maxLength: 23,
         unique: true
     },
     email: {
@@ -36,6 +37,14 @@ const UserSchema = mongoose.Schema({
         required: true,
         minLength: 7
     },
+
+    posts: {
+
+        type: [Object],
+
+    },
+
+
     tokens:{
             type: [Object],
             required: true
@@ -74,7 +83,7 @@ UserSchema.methods.generateAuthToken = async function (currentUser) {
     
 }
 
-//logging in function
+//logging in static function
 UserSchema.statics.findByCredentials = async (email, password) => {
 
     const foundUser = await userExport.findOne({email: email});
