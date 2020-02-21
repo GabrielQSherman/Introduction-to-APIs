@@ -12,8 +12,6 @@ const express = require('express'),
 
 //Middleware thats used for every request
 
-app.set('view engine', 'pug');
-
 // app.use(cors());
 
 app.use(helmet());
@@ -22,7 +20,7 @@ app.use(morgan('dev'));
 
 app.use(express.json());
 
-app.use(express.static('./frontend'));
+app.use(express.static('./public'));
 
 const homeRouter = require('./client_routes/homeRoute');
 

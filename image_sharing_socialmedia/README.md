@@ -2,7 +2,7 @@ In this social media clone, cliental will be able to;
 
     [*]create an account with email, password, and username
 
-    [] signin with an existing account
+    [*] signin with an existing account
 
     [] logout of an existing account that is signed in
 
@@ -93,17 +93,23 @@ In this social media clone, cliental will be able to;
 
     2/19/20
 
-        Today I will be added a templating engine to load a users page when the login, from there they can explore other users as well as look at their liked/favorited photos
+        Created User Page, this will be split into two, one for authenticated(logged in and veiwing their own profile) and one for other users veiwing their profile
 
-        [*] npm i pug morgan helmet and require them in the index.js file
-
-        [*] set up pug to redirect users once they log in
+        [*] npm i morgan helmet and require them in the index.js file
 
     2/20/20
 
         Today i will continue my work on my template html pages
 
-        [*] users are redirected to thier /profile page when they sucessfully log in       
+        [*] users are redirected to thier /profile page when they sucessfully log in    
+
+        [*] an new post can be added to a user profile based on their jwt (still in testing)
+
+    2/21/20
+
+        I can see that 
+
+           
 TODO:
 
         [] when users sign in sucessfuly it should take them to their page

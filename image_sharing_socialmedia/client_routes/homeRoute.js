@@ -10,7 +10,7 @@ const express = require('express'),
 
       router.get('/', (req, res) => {
 
-            let absolutePath = __dirname.replace(/client_routes/, '') + 'frontend\\home.html';
+            let absolutePath = __dirname.replace(/client_routes/, '') + 'public\\home.html';
 
             res.sendFile(absolutePath);
 
@@ -198,38 +198,6 @@ const express = require('express'),
     })
 
 
-    router.post('/newpost', auth, (req, res) => {
-
-      try {
-            newpost = {
-
-                url: 'https://google.com',
-
-                caption: 'test caption',
-
-                likes: []
-                                                 
-            }
-
-            updatedUser = req.user;
-
-            updatedUser.posts.push(newpost);
-
-            console.log(updatedUser);
-
-            updatedUser.save();
-
-            res.send(updatedUser);
-
-      }
-
-       catch( err ) {
-
-           console.log(err);
-           
-       }
-
-    })
 
 
 module.exports = router;

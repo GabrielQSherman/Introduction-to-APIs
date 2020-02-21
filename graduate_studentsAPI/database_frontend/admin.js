@@ -105,7 +105,9 @@ async function searchRequest() {
 
             document.getElementById('request_message').innerText = 'Summiting';
 
-            await fetch('http://localhost:3000/admin', {
+            await fetch('http://localhost:3000/admin',{
+
+                
                 method: 'POST',
                 headers: {
                   'Accept': 'application/json',
@@ -117,10 +119,7 @@ async function searchRequest() {
             })
   
               //returns the response from the api and parses from readableStream to JSON
-              .then( readable_stream_res => {
-  
-                  return readable_stream_res.json()
-              })
+              .then( readable_stream_res => { return readable_stream_res.json() })
   
               //the json response is used to display status code/errors to the client
               .then( parsedResponse => {

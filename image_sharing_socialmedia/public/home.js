@@ -32,6 +32,8 @@ function submitSignUp() {
     } 
 
     console.log(signUpInfo);
+
+    
     
     
 //  this data will be passed to axios as the 'data' parameter

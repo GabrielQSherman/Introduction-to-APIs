@@ -8,9 +8,47 @@ const express = require('express'),
 
       router.get('/:username', (req, res) => {
 
-            res.render('user', {userName: req.params.username, userInfo: 'world'});
+            let absolutePath = __dirname.replace(/client_routes/, '') + 'public\\profile.html';
 
+            res.sendFile(absolutePath)
       })
 
+      
+    router.post('/newpost', auth, (req, res) => {
 
-      module.exports = router;
+      newpost = {
+
+            url: req.body.url,
+
+            caption: req.body.caption,
+
+            likes: []
+                                             
+      }
+
+
+      try {
+           
+
+            updatedUser = req.user;
+
+            updatedUser.posts.push(newpost);
+
+            console.log(updatedUser);
+
+            updatedUser.save();
+
+            res.send(updatedUser);
+
+      }
+
+       catch( err ) {
+
+           console.log(err);
+           
+       }
+
+    })
+
+
+module.exports = router;
