@@ -6,13 +6,6 @@ const express = require('express'),
 
       auth = require('../middleware/auth');
 
-      router.get('/:username', (req, res) => {
-
-            let absolutePath = __dirname.replace(/client_routes/, '') + 'public\\profile.html';
-
-            res.sendFile(absolutePath)
-      })
-
       
     router.post('/newpost', auth, (req, res) => {
 

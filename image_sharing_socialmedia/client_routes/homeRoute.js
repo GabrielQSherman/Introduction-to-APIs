@@ -6,6 +6,8 @@ const express = require('express'),
 
       auth = require('../middleware/auth');
 
+      compile_user_data = require('../middleware/userdata')
+
 //GET ROUTES
 
       router.get('/', (req, res) => {
@@ -15,6 +17,16 @@ const express = require('express'),
             res.sendFile(absolutePath);
 
       })
+
+      router.get('/profile', auth, (req, res) => {
+
+
+        res.render('user', {username: 'asdf'});
+
+        // let absolutePath = __dirname.replace(/client_routes/, '') + 'public\\profile.html';
+
+        // res.sendFile(absolutePath)
+  })
 
 //general get request to get all documents in database
       router.get('/users', async (req, res) => {

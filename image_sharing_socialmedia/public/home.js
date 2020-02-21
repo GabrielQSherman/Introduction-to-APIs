@@ -135,14 +135,8 @@ function submitSignIn() {
 
             console.log(response.data);
             
-
-            const {username} = response.data;
-
-            location.replace(`http://localhost:3000/profile/${username}`)
-
-            // requestInfo.innerText = 'Successful sign in!!!'
-
-            // responseInfo.innerHTML = `User Info:<br>Name: ${name}<br>Email: ${email}`
+            document.getElementById('signin_submit').style = 'display: none';
+            document.getElementById('go_to_profile').style = 'display: inline';
 
         } else if (response.status === 271) { //catches error if password or email fail credential check in backend
             

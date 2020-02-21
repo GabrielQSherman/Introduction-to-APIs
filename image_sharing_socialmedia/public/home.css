@@ -55,6 +55,13 @@ body {
 
 }
 
+#go_to_profile {
+    border-style: solid;
+    border-radius: 10px;
+
+    display: none;
+}
+
 
 .request_and_response {
 

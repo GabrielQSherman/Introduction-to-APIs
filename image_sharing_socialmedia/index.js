@@ -12,6 +12,8 @@ const express = require('express'),
 
 //Middleware thats used for every request
 
+app.set('view engine', 'pug');
+
 // app.use(cors());
 
 app.use(helmet());
