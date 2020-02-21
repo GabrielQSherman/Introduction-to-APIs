@@ -91,23 +91,24 @@ In this social media clone, cliental will be able to;
         [*] create signup function on frontend js
         [*] when a user signs in their infomation is displayed to them on the frontend 
 
-    2/19/20
+   2/19/20
 
-        Created User Page, this will be split into two, one for authenticated(logged in and veiwing their own profile) and one for other users veiwing their profile
+        Today I will be added a templating engine to load a users page when the login, from there they can explore other users as well as look at their liked/favorited photos
 
-        [*] npm i morgan helmet and require them in the index.js file
+        [*] npm i pug morgan helmet and require them in the index.js file
+
+        [*] set up pug to redirect users once they log in
 
     2/20/20
 
         Today i will continue my work on my template html pages
 
-        [*] users are redirected to thier /profile page when they sucessfully log in    
-
-        [*] an new post can be added to a user profile based on their jwt (still in testing)
+        [*] users are redirected to thier /profile page when they sucessfully log in     
 
     2/21/20
 
-        I can see that 
+        Today Im trying to figure out how to dynamically load a users infomaition to a pug made profile page. Using my auth middleware I am able to set a request variable to all the users document info. I want to create a middleware function that parses that document into request variables that can be passed to my pug 'render' method and load in the users infomation. the next challenge would be to be able to see the users infomation without singing in but restrict access to post and edit the profile page. I signed in user should be able to modify their profile page at will as well as create new post from this page
+
 
            
 TODO:
