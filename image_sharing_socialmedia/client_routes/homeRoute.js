@@ -28,6 +28,12 @@ const express = require('express'),
         // res.sendFile(absolutePath)
   })
 
+  router.get('/test', (req, res) => {
+
+    res.render('user', {username: 'asdf'});
+    
+  })
+
 //general get request to get all documents in database
       router.get('/users', async (req, res) => {
                 

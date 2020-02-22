@@ -9,6 +9,11 @@ const jwt = require('jsonwebtoken'),
 
         //a token variable is defined from the header (authorization portion) of the request
         //then a data variable is defined 
+
+        if (req.header('Authorization') === undefined) {
+            throw new Error('Not Auth Header Found')
+        }
+
         const token = req.header('Authorization').replace('Bearer ', ''); //req.header('auth') will have an extra string attached to the token that is not necessary for the next step
         
         //this will return a payload, that will contain _id needed to locate a specific document in the database
