@@ -109,6 +109,12 @@ In this social media clone, cliental will be able to;
 
         Today Im trying to figure out how to dynamically load a users infomaition to a pug made profile page. Using my auth middleware I am able to set a request variable to all the users document info. I want to create a middleware function that parses that document into request variables that can be passed to my pug 'render' method and load in the users infomation. the next challenge would be to be able to see the users infomation without singing in but restrict access to post and edit the profile page. I signed in user should be able to modify their profile page at will as well as create new post from this page
 
+    2/22/20
+
+        I fixed pug not being able to load css made for the html pug outputs.
+        also figured out why the profile route was getting caught up. The authorization header must be properly passed in the request object otherwise header('Authorization') will be undefined, added some error handling for scenerio
+
+        I deleted static 'profile' files because the profile page will be written in a templating engine instead of static files
 
            
 TODO:
