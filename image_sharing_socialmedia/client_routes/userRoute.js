@@ -43,7 +43,13 @@ const express = require('express'),
 
     })
 
-    router.get('user/profile', auth, (req, res) => {
+    router.get('/profile', auth, (req, res) => {
+
+
+      let user = req.user;
+
+      console.log(user);
+      
 
 
       res.render('user', {username: 'asdf'});
@@ -52,16 +58,69 @@ const express = require('express'),
 
       // res.sendFile(absolutePath)
 
-      
+
     })
     
 
     //Get Request for specific user, needs authenification for sucessful response
-    router.get('/users/getuser', auth, async(req, res) => {
+    router.get('/getuser', auth, async(req, res) => {
 
       res.json({ found_user: req.user })
 
     })
+
+
+    //LOGGING OUT OF ONE USER
+
+    //one device
+    router.post('/logout', auth, async (req, res) => {
+
+      try {
+          req.user.tokens = req.user.tokens.filter((databaseStoredToken) => {
+
+              //this filter method will only leave remaining the tokens that were not just used in the 'auth' middleware
+              return databaseStoredToken.token != req.token
+          
+          })
+
+          await req.user.save() //save the document, now without the token just used
+          res.json({
+              message: 'You are logged out from this device'
+          })
+
+      } catch (err) {
+
+          res.status(500).json({
+              message: err.message,
+              error_report: err
+          })
+          
+      }
+  })
+
+  //all devices currently logged in
+  router.post('/logoutall', auth, async(req, res) => {
+      try {
+
+      //     console.log(req.user.tokens);
+          
+
+          req.user.tokens = []; //just clears the token array in the database
+
+          await req.user.save() //save the document with no tokens in the token array
+
+          res.json({
+              message: 'You are no longer logged in on any device'
+          })
+
+      } catch (err) {
+          res.status(500).json({
+              message: err.message,
+              error: err
+          })
+      }
+  })
+
 
 
 module.exports = router;

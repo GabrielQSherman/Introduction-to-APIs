@@ -31,7 +31,7 @@ app.use('/', homeRouter);
 
 const userRouter = require('./client_routes/userRoute');
 
-app.use('/profile', userRouter)
+app.use('/user', userRouter)
 
 ///////////////////////////////////////////////////////////////////////////////////////////// CONNECTING TO DATABASE 
 //Connect to my MongoDB account

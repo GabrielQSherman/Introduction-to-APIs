@@ -116,6 +116,10 @@ In this social media clone, cliental will be able to;
 
         I deleted static 'profile' files because the profile page will be written in a templating engine instead of static files
 
+    2/23/20
+
+        after logining in successfully the user will have a page rendered with their infomation.
+
            
 TODO:
 

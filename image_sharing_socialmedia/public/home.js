@@ -149,7 +149,7 @@ function submitSignIn() {
 
             let reqData = {
 
-                url: 'http://localhost:3000/profile',
+                url: 'http://localhost:3000/user/profile',
         
                 headers: {
                     
