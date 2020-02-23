@@ -10,6 +10,7 @@ const express = require('express'),
 
 //GET ROUTES
 
+    //sends static files for homepage
       router.get('/', (req, res) => {
 
             let absolutePath = __dirname.replace(/client_routes/, '') + 'public\\home.html';
@@ -18,23 +19,8 @@ const express = require('express'),
 
       })
 
-      router.get('/profile', auth, (req, res) => {
 
-
-        res.render('user', {username: 'asdf'});
-
-        // let absolutePath = __dirname.replace(/client_routes/, '') + 'public\\profile.html';
-
-        // res.sendFile(absolutePath)
-  })
-
-  router.get('/test', (req, res) => {
-
-    res.render('user', {username: 'asdf'});
-
-  })
-
-//general get request to get all documents in database
+    //general get request to get all documents in database
       router.get('/users', async (req, res) => {
                 
                 await userSchema.find()
@@ -62,12 +48,6 @@ const express = require('express'),
       })
 
 
-//Get Request for specific user, needs authenification for sucessful response
-      router.get('/users/getuser', auth, async(req, res) => {
-
-        res.json({ found_user: req.user })
-
-      })
 
 //CREATING A NEW USER
       router.post('/users', async (req, res) => {

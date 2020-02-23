@@ -43,5 +43,25 @@ const express = require('express'),
 
     })
 
+    router.get('user/profile', auth, (req, res) => {
+
+
+      res.render('user', {username: 'asdf'});
+
+      // let absolutePath = __dirname.replace(/client_routes/, '') + 'public\\profile.html';
+
+      // res.sendFile(absolutePath)
+
+      
+    })
+    
+
+    //Get Request for specific user, needs authenification for sucessful response
+    router.get('/users/getuser', auth, async(req, res) => {
+
+      res.json({ found_user: req.user })
+
+    })
+
 
 module.exports = router;
