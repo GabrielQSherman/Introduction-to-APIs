@@ -9,7 +9,9 @@ document.getElementById('signup_submit').addEventListener('click', submitSignUp)
 
 document.getElementById('signin_submit').addEventListener('click', submitSignIn);
 
-document.getElementById('getall').addEventListener('click', getall);
+document.getElementById('signin_submit').addEventListener('click', submitSignIn);
+
+document.getElementById('go_to_profile').addEventListener('click', userProfileRequest);
 
 //Request Functions
 
@@ -138,6 +140,33 @@ function submitSignIn() {
             document.getElementById('signin_submit').style = 'display: none';
             document.getElementById('go_to_profile').style = 'display: inline';
 
+            requestInfo.innerText = 'Sign in Successful'
+            responseInfo.innerHTML = `Click Go To Profile!`
+
+
+            // location.replace('http://localhost:3000/profile');
+
+
+            let reqData = {
+
+                url: 'http://localhost:3000/profile',
+        
+                headers: {
+                    
+                    'Access-Control-Allow-Origin': '*',
+        
+                    Authorization: `Bearer ${response.data.token}`
+                
+                },
+        
+                method: 'GET' //this is a default method but all other methods will need to be defined
+                
+            };
+        
+        
+            axios(reqData)
+
+
         } else if (response.status === 271) { //catches error if password or email fail credential check in backend
             
             requestInfo.innerText = 'Sign in NOT Successful'
@@ -164,6 +193,21 @@ function submitSignIn() {
     
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//After sign in, go to user profile is available
+
+function userProfileRequest() {
+
+    
+
+
+
+
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function getall() {
     
     requestInfo.innerText = 'Getting all users'
