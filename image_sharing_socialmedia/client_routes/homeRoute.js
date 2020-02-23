@@ -31,7 +31,7 @@ const express = require('express'),
   router.get('/test', (req, res) => {
 
     res.render('user', {username: 'asdf'});
-    
+
   })
 
 //general get request to get all documents in database
@@ -134,7 +134,8 @@ const express = require('express'),
 
             // response is successful
             res.status(200).json({
-                username: loginUser.username
+                token: token
+
             })
 
           } catch (err) {
