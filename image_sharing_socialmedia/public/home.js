@@ -146,31 +146,41 @@ function submitSignIn() {
 
             // location.replace('http://localhost:3000/profile');
 
-            // document.cookie = `temp_token=${response.data.token}`;
+            document.cookie = `temp_token=${response.data.token}`;
 
-            localStorage.setItem('token', response.data.token);
-
-            location = 'http://localhost:3000/user/profile';
+            // localStorage.setItem('token', response.data.token);
 
 
-            // let reqData = {
+            let reqData = {
 
-            //     url: 'http://localhost:3000/user/profile',
+                url: 'http://localhost:3000/user/profile',
         
-            //     headers: {
+                headers: {
                     
-            //         'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Origin': '*',
         
-            //         Authorization: `Bearer ${response.data.token}`
+                    Authorization: `Bearer ${response.data.token}`
                 
-            //     },
+                },
         
-            //     method: 'GET' //this is a default method but all other methods will need to be defined
+                method: 'GET' //this is a default method but all other methods will need to be defined
                 
-            // };
+            };
         
         
-            // axios(reqData)
+            axios(reqData)
+
+            .then( res => {
+
+                location = 'http://localhost:3000/user/profile';
+
+            })
+
+            .catch( err => {
+
+                console.log(err);
+                
+            })
 
 
         } else if (response.status === 271) { //catches error if password or email fail credential check in backend
