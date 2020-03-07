@@ -286,6 +286,10 @@ async function searchRequest() {
 
    //can be used for any form element to clear all its client input
    function clear_formData(formElement) {
+
+
+    console.log(formElement);
+    
        
         for (const key of formElement) {
             key.value = ''
@@ -435,7 +439,7 @@ async function searchRequest() {
 
         let link = form_element.value;
 
-        console.log(link);
+        // console.log(link);
         
         if (link.substring(0, 8) != 'https://') {
 

@@ -120,6 +120,14 @@ In this social media clone, cliental will be able to;
 
         after logining in successfully the user will have a page rendered with their infomation.
 
+    3/7/2020
+
+        implementing document cookies
+
+        cookies will be utilized to store JWT when user logs in
+
+        using cookies the users data can be loaded and loaded via templating engine
+
            
 TODO:
 
