@@ -128,6 +128,10 @@ In this social media clone, cliental will be able to;
 
         using cookies the users data can be loaded and loaded via templating engine
 
+    3/8/2020
+
+        i was not able to complete much today but on my next day of work i will better implement cookies/JWT and make getting to a users profile from sign in page seemless
+
            
 TODO:
 
