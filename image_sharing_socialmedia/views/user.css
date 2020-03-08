@@ -1,5 +1,5 @@
 body {
-    background-color: aqua;
+    background-image: linear-gradient(rgb(224, 122, 255), red, yellow);
 }
 
 .page_box {
