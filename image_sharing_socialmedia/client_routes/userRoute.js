@@ -50,7 +50,7 @@ const express = require('express'),
 
       console.log(user);
       
-
+        
 
       res.render('user', {username: 'asdf'});
 
@@ -59,6 +59,22 @@ const express = require('express'),
       // res.sendFile(absolutePath)
 
 
+    })
+
+    router.get('/page', auth, (req, res) => {
+
+
+        let user = req.user;
+  
+        console.log(user);
+  
+        res.render('user', {username: 'asdf'});
+  
+        // let absolutePath = __dirname.replace(/client_routes/, '') + 'public\\profile.html';
+  
+        // res.sendFile(absolutePath)
+  
+  
     })
     
 
