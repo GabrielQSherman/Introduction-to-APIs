@@ -6,6 +6,7 @@ userdata = async(req, res, next) => {
 
     console.log(user);
     
+    req.post = user.post
 
     req.username = user.username;
 
