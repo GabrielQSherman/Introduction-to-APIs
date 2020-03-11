@@ -4,7 +4,9 @@ const express = require('express'),
 
       userSchema = require('../models/User'),
 
-      auth = require('../middleware/auth');
+      auth = require('../middleware/auth'),
+
+      userdata = require('../middleware/userdata');
 
       
     router.post('/newpost', auth, (req, res) => {
@@ -43,16 +45,16 @@ const express = require('express'),
 
     })
 
-    router.get('/profile', auth, (req, res) => {
+    router.get('/profile', auth, userdata, (req, res) => {
 
 
-      let user = req.user;
+      let name = req.username;
 
-      console.log(user);
+      console.log(name);
       
         
 
-      res.render('user', {username: 'asdf'});
+      res.render('user', {username: name});
 
       // let absolutePath = __dirname.replace(/client_routes/, '') + 'public\\profile.html';
 
