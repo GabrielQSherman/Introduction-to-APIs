@@ -1,5 +1,5 @@
 body {
-    background-image: linear-gradient(rgb(224, 122, 255), red, yellow);
+    background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
 }
 
 .page_box {
@@ -40,4 +40,18 @@ body {
 
     border-radius: 10px;
     
+}
+
+.createPost {
+    background-color: #ffc98f;
+    text-align: center;
+
+    margin-left: 35%;
+    margin-right: 35%;
+
+    border-radius: 25px;
+}
+
+.createPost>form {
+    margin: 5%;
 }

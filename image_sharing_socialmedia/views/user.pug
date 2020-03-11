@@ -1,7 +1,7 @@
 doctype html
 html
     head
-        title username
+        title= username + "'s Profile"
 
         style
              include ./user.css
@@ -10,9 +10,23 @@ html
 
     .page_box
         .profile_Info
-            h2 User Name
+            h2= username
             h2 Number of Post
             h2 Number of Likes
+
+        .createPost
+            br
+            form(action="http://localhost:3000/user/newpost", method="post")
+                label(for='caption') Caption:
+                input#caption.form-control(type='text', placeholder='Image Caption' name='caption')
+                br
+                br
+                label(for='url') Image Url:
+                input#url.form-control(type='text', placeholder='URL To Image' name='url')
+                br
+                br
+                button(type='submit') Post Your Pic!
+            br
 
         .post
             h1 Post
