@@ -100,6 +100,9 @@ function submitSignIn() {
     
     let signInInfo = compile_form_data('signin_form');
 
+    console.log(signInInfo);
+    
+
     if (signInInfo === false) {
 
         requestInfo.innerText = 'Request Could Not Be Made';
@@ -110,6 +113,7 @@ function submitSignIn() {
 
     } 
 
+    //DATA TO LOG A USER IN
     const reqData = {
 
         headers: {
@@ -127,7 +131,7 @@ function submitSignIn() {
         data: signInInfo
     };
 
-    axios.post('http://localhost:3000/login', reqData)
+    axios.post('http://localhost:3000/login',reqData)
 
     .then( response  => {
 
@@ -140,48 +144,12 @@ function submitSignIn() {
             document.getElementById('signin_submit').style = 'display: none';
             document.getElementById('go_to_profile').style = 'display: inline';
 
+            clearForm('signin_form');
+
             requestInfo.innerText = 'Sign in Successful'
             responseInfo.innerHTML = `Click Go To Profile!`
 
-
-            // location.replace('http://localhost:3000/profile');
-
             document.cookie = `temp_token=${response.data.token}`;
-
-            // localStorage.setItem('token', response.data.token);
-
-
-            let reqData = {
-
-                url: 'http://localhost:3000/user/profile',
-        
-                headers: {
-                    
-                    'Access-Control-Allow-Origin': '*',
-        
-                    Authorization: `Bearer ${response.data.token}`
-                
-                },
-        
-                method: 'GET' //this is a default method but all other methods will need to be defined
-                
-            };
-        
-        
-            axios(reqData)
-
-            .then( res => {
-
-                location = 'http://localhost:3000/user/profile';
-
-            })
-
-            .catch( err => {
-
-                console.log(err);
-                
-            })
-
 
         } else if (response.status === 271) { //catches error if password or email fail credential check in backend
             
@@ -195,16 +163,12 @@ function submitSignIn() {
 
     .catch ( err => {
 
-        requestInfo.innerText = 'An Error Occured'
+        requestInfo.innerText = `An Error Occured ${err.message}.`;
 
         console.log(err);
 
         return
 
-    })
-
-    .finally ( () => {
-        clearForm('signin_form')
     })
     
 }
@@ -213,12 +177,9 @@ function submitSignIn() {
 
 //After sign in, go to user profile if available
 
-function userProfileRequest() {
+function userProfileRequest() {    
 
-    
-
-
-
+    location = 'http://localhost:3000/user/profile';
 
 }
 
