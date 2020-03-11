@@ -33,7 +33,7 @@ function submitSignUp() {
 
     } 
 
-    console.log(signUpInfo);
+    // console.log(signUpInfo);
 
     
     
@@ -62,7 +62,7 @@ function submitSignUp() {
 
     .then( response  => {
 
-        console.log(response);
+        // console.log(response);
 
         if (response.status === 201) {
 
@@ -100,7 +100,7 @@ function submitSignIn() {
     
     let signInInfo = compile_form_data('signin_form');
 
-    console.log(signInInfo);
+    // console.log(signInInfo);
     
 
     if (signInInfo === false) {
@@ -139,7 +139,7 @@ function submitSignIn() {
 
         if (response.status === 200) {
 
-            console.log(response.data);
+            // console.log(response.data);
             
             document.getElementById('signin_submit').style = 'display: none';
             document.getElementById('go_to_profile').style = 'display: inline';
@@ -200,27 +200,6 @@ function getall() {
     };
     
     axios(reqData)
-
-    // .then ( response => {
-
-    //     requestInfo.innerText = response.data.message;
-        
-    //     const allUsers = response.data.document;
-
-    //     console.log(allUsers);
-        
-
-    //     responseInfo.innerText = 'User documents found in console';
-        
-    // })
-
-    // .catch( err => {
-
-    //     requestInfo.innerText = 'Get Request Failed';
-
-    //     responseInfo.innerText = err.message;
-    // })
-    
     
 }
 
