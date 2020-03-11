@@ -132,6 +132,10 @@ In this social media clone, cliental will be able to;
 
         i was not able to complete much today but on my next day of work i will better implement cookies/JWT and make getting to a users profile from sign in page seemless
 
+    3/9-11/2020
+
+        The program is able to better utillize the pug templating engine, my users profiles update dynamically and post can be made. some frontend error checking needs to be completed for users posting form
+
            
 TODO:
 
