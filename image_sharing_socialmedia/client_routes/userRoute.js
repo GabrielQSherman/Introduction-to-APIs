@@ -11,6 +11,9 @@ const express = require('express'),
       
     router.post('/newpost', auth, (req, res) => {
 
+        console.log(req.body);
+        
+
       newpost = {
 
             url: req.body.url,
@@ -29,7 +32,7 @@ const express = require('express'),
 
             updatedUser.posts.push(newpost);
 
-            console.log(updatedUser);
+            // console.log(updatedUser);
 
             updatedUser.save();
 

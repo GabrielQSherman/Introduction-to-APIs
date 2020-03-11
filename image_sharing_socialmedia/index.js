@@ -22,6 +22,8 @@ app.use(morgan('dev'));
 
 app.use(express.json());
 
+app.use(express.urlencoded({ extended: true }))
+
 app.use(express.static('./public'));
 
 const homeRouter = require('./client_routes/homeRoute');
