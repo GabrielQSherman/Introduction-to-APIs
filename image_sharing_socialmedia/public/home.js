@@ -13,6 +13,8 @@ document.getElementById('signin_submit').addEventListener('click', submitSignIn)
 
 document.getElementById('go_to_profile').addEventListener('click', userProfileRequest);
 
+document.getElementById('getall').addEventListener('click', getall);
+
 //Request Functions
 
   //SIGN UP
@@ -191,7 +193,7 @@ function getall() {
 
     let reqData = {
 
-        url: 'http://localhost:3000/profile/asdf',
+        url: 'http://localhost:3000/users',
 
         headers: {'Access-Control-Allow-Origin': '*'},
 
