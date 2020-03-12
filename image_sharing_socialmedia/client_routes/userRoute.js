@@ -51,13 +51,17 @@ const express = require('express'),
     router.get('/profile', auth, userdata, (req, res) => {
 
 
-      let name = req.username;
+      let name = req.username,
+        
+          postNum = req.totalPosts,
+
+          likes = req.totalLikes;
 
       console.log(name);
       
         
 
-      res.render('user', {username: name});
+      res.render('user', {username: name, totalPosts: postNum, totalLikes: likes});
 
       // let absolutePath = __dirname.replace(/client_routes/, '') + 'public\\profile.html';
 
