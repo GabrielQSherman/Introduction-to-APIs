@@ -193,7 +193,7 @@ function getall() {
 
     let reqData = {
 
-        url: 'http://localhost:3000/users',
+        url: 'http://localhost:3000/users/allpost',
 
         headers: {'Access-Control-Allow-Origin': '*'},
 
