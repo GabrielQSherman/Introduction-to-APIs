@@ -21,16 +21,37 @@ const express = require('express'),
 
 
     //general get request to get all documents in database
-      router.get('/users', async (req, res) => {
+      router.get('/users/allpost', async (req, res) => {
                 
                 await userSchema.find()
 
                 .then ( allUsers => {
 
+                    let allSitesPost = [];
+
+                    for (let i = 0; i < allUsers.length; i++) {
+
+                            allUsers[i].posts.forEach(post => {
+
+                                let tempPost = {};
+
+                                tempPost.username = allUsers[i].username;
+                                tempPost.url = post.url;
+                                tempPost.caption = post.caption;
+                                tempPost.likesNum = post.likes.length;
+
+                                // console.log(`\nUrl:${post.url}\nCaption:${post.caption}\nLikes:${post.likes.length}`);
+                                
+                                allSitesPost.push(tempPost);
+                                
+                            });
+                    
+                    }
+
                     res.status(200).json({
     
-                        message: 'all users retrieved',
-                        document: allUsers
+                        message: 'all users posts retrieved',
+                        allpost: allSitesPost
     
                     })
 
