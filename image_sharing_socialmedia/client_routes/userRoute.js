@@ -57,11 +57,13 @@ const express = require('express'),
 
           likes = req.totalLikes;
 
+          post = req.post;
+
       console.log(name);
       
         
 
-      res.render('user', {username: name, totalPosts: postNum, totalLikes: likes});
+      res.render('user', {username: name, totalPosts: postNum, totalLikes: likes, post: post});
 
       // let absolutePath = __dirname.replace(/client_routes/, '') + 'public\\profile.html';
 

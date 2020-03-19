@@ -1,4 +1,4 @@
-doctype html
+doctype html 
 html
     head
         title= username + "'s Profile"
@@ -19,7 +19,7 @@ html
             form(action="http://localhost:3000/user/newpost", method="post")
                 label(for='caption') Caption:
                 input#caption.form-control(type='text', placeholder='Image Caption' name='caption')
-                br
+                br 
                 br
                 label(for='url') Image Url:
                 input#url.form-control(type='text', placeholder='URL To Image' name='url')
@@ -29,4 +29,4 @@ html
             br
 
         .post
-            h1 Post
+            h1= post
