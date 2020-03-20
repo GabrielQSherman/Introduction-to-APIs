@@ -14,8 +14,15 @@ html
             h2= "Posts " + totalPosts
             h2= "Likes " + totalLikes
 
+        .posts
+            each post in posts
+                .userpost
+                    img(src=post.url alt=post.caption + ' url not loadable' width=300 height=auto)
+                    h3= post.caption
+
         .createPost
             br
+            h2#newposthead Make a new post
             form(action="http://localhost:3000/user/newpost", method="post")
                 label(for='caption') Caption:
                 input#caption.form-control(type='text', placeholder='Image Caption' name='caption')
@@ -28,9 +35,7 @@ html
                 button(type='submit') Post Your Pic!
             br
 
-        .post
-            each post in posts
-                h1= post.caption
+        
         div
         - console.log(posts)
         div
