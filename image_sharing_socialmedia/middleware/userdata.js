@@ -9,8 +9,6 @@ userdata = async(req, res, next) => {
     req.username = user.username
 
     req.totalPosts = user.posts.length
-    
-    console.log(user);
 
     //algorithm that counts the number of likes a user has 
     let totalLikes = 0;
