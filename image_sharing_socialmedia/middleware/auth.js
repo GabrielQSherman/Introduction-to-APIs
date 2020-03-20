@@ -50,22 +50,18 @@ auth = async(req, res, next) => {
         //a token variable is defined from the header (authorization portion) of the request
         //then a data variable is defined 
 
-        console.log(req.headers.cookie);
+        // console.log(req.headers.cookie);
 
         const cookiesJson = cookie.parse(req.headers.cookie);
-
 
         const token = cookiesJson.temp_token; //req.header('auth') will have an extra string attached to the token that is not necessary for the next step
 
         if (token === undefined) {
             throw new Error('Not JWT Cookie Found')
         }
-
         
         //this will return a payload, that will contain _id needed to locate a specific document in the database
         const data = jwt.verify(token, process.env.JWT_KEY);
-
-    
 
         const user = await User.findOne({ _id: data._id, 'tokens.token': token });
 
@@ -86,6 +82,5 @@ auth = async(req, res, next) => {
     }
 
 };
-
 
 module.exports = auth
