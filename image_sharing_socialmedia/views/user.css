@@ -92,7 +92,15 @@ body {
     border-radius: 20px;
 }
 
-#url, #caption {
+/* #url, #caption {
+    text-align: center;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+} */
+
+.form-control {
+    font-size: large;
     text-align: center;
     color: white;
     background-color: black;
@@ -100,8 +108,14 @@ body {
 }
 
 #picPostBtn {
+    font-size: xx-large;
     border-radius: 10px;
     border: 0px;
     color: rgb(255, 255, 255);
     background-color: #ffd5eb;
+}
+
+.lables {
+    color: rgb(122, 122, 224);
+    font-size: x-large;
 }

@@ -6,6 +6,9 @@ html
         style
              include ./user.css
 
+        script
+             include ./user.js
+
     body
 
     .page_box
@@ -18,15 +21,16 @@ html
             br
             h2#newposthead Make a new post
             form#newPostForm
-                label(for='caption') Caption:
+                label.lables(for='caption') Caption - 
                 input#caption.form-control(type='text', placeholder='Image Caption' name='caption')
                 br 
                 br
-                label(for='url') Image Url:
+                label.lables(for='url') Image Url - 
                 input#url.form-control(type='text', placeholder='URL To Image' name='url')
                 br
                 br
-                button#picPostBtn(type='submit') Post Your Pic!
+            button#picPostBtn Post Your Pic!
+            br
             br
         .posts
             each post in posts
