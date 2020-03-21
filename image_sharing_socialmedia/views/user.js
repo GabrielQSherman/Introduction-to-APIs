@@ -11,7 +11,7 @@ window.onload = () => {
 
     async function postPictureRequest() {
 
-        let postJson = createPostJson('newPostForm'),
+        let postJson = JSON.stringify( createPostJson('newPostForm')),
 
         postRequestObj = {
             
@@ -23,13 +23,31 @@ window.onload = () => {
             },
 
             body: postJson
-
         };
 
         console.log(postJson);
         
         
-        // await fetch('http://localhost:3000/user/newpost', postRequestObj)
+        await fetch('http://localhost:3000/user/newpost', postRequestObj)
+        
+        //returns the response from the api and parses from readableStream to JSON
+        .then( readable_stream_res => { return readable_stream_res.json() })
+
+        //the json response is used to display status code/errors to the client
+        .then( parsedResponse => {
+
+            console.log(parsedResponse);
+
+        })
+
+        .catch( err => {
+
+            console.log(err);
+            
+        })
+
+        .finally( clearFormData('newPostForm'))
+
         
         
     }
@@ -55,5 +73,19 @@ window.onload = () => {
         
     }
 
+    function clearFormData(formID) {
+
+        let form = document.getElementById(formID);
+
+         for (const inputBox of form) {
+
+             inputBox.value = ''
+
+        }
+        
+    }
+
 }
+
+
 
