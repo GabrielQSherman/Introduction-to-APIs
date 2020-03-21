@@ -35,10 +35,12 @@ body {
     flex: 1;
     background-color: aliceblue;
 
-    margin-left: 10%;
-    margin-right: 10%;
+    padding: 10px;
 
-    border-radius: 10px;
+    margin-left: 12%;
+    margin-right: 12%;
+
+    border-radius: 20px;
     
 }
 
@@ -53,13 +55,20 @@ body {
 }
 
 .createPost>form {
-    margin: 5%;
+    margin: 0%;
 }
 
 .posts {
     display: flex;
 
+    flex-wrap: wrap;
+
     background-color: black;
+
+    margin: 10%;
+    margin-top: 2%;
+
+    border-radius: 100px;
 }
 
 .userpost {
@@ -69,14 +78,30 @@ body {
 }
 
 .userpost>h3 {
+    text-align: center;
+    border-radius: 10px;
     background-color: white;
 }
 
 #newposthead {
     background-color: rgb(168, 255, 255);
 
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 17%;
+    margin-right: 17%;
 
     border-radius: 20px;
+}
+
+#url, #caption {
+    text-align: center;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+}
+
+#picPostBtn {
+    border-radius: 10px;
+    border: 0px;
+    color: rgb(255, 255, 255);
+    background-color: #ffd5eb;
 }

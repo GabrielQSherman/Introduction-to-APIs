@@ -36,7 +36,7 @@ const express = require('express'),
 
             updatedUser.save();
 
-            res.send(updatedUser);
+            res.status(200).json({post: newpost});
 
       }
 

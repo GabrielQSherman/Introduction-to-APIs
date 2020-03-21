@@ -13,17 +13,11 @@ html
             h2= username
             h2= "Posts " + totalPosts
             h2= "Likes " + totalLikes
-
-        .posts
-            each post in posts
-                .userpost
-                    img(src=post.url alt=post.caption + ' url not loadable' width=300 height=auto)
-                    h3= post.caption
-
+        
         .createPost
             br
             h2#newposthead Make a new post
-            form(action="http://localhost:3000/user/newpost", method="post")
+            form#newPostForm
                 label(for='caption') Caption:
                 input#caption.form-control(type='text', placeholder='Image Caption' name='caption')
                 br 
@@ -32,10 +26,13 @@ html
                 input#url.form-control(type='text', placeholder='URL To Image' name='url')
                 br
                 br
-                button(type='submit') Post Your Pic!
+                button#picPostBtn(type='submit') Post Your Pic!
             br
-
-        
+        .posts
+            each post in posts
+                .userpost
+                    img(src=post.url alt=post.caption + ' url not loadable' width=300 height=auto)
+                    h3= post.caption
         div
-        - console.log(posts)
+        //- - console.log(posts)
         div
