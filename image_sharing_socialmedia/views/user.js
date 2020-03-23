@@ -13,7 +13,17 @@ window.onload = () => {
 
         const postJson = JSON.stringify( createPostJson('newPostForm'));
 
-        checkPostValidity(postJson)
+        let postCheck = checkPostValidity(postJson);
+
+        if (postCheck.failedCaption == true) {
+            console.log('caption fail');
+            
+        }
+
+        if (postCheck.failedImage == true) {
+            console.log('image fail');
+            
+        }
 
         const postRequestObj = {
             
@@ -86,7 +96,29 @@ window.onload = () => {
     }
 
     function checkPostValidity(obj) {
-        
+
+        let errorCheck = {failedCaption: false, failedImage: false};
+
+        if (obj.caption.length < 1 && obj.caption.length > 100) {
+            errorCheck.failedCaption = true;
+            
+        }
+
+        let testImage = document.createElement('img');
+
+            testImage.src = obj.url;
+
+            testImage.onload = () => {
+                console.log('image url works');
+                
+            }
+
+            testImage.onerror = () => {
+                errorCheck.failedImage = true
+            }
+
+        return errorCheck
+
     }
 
     function clearFormData(formID) {
