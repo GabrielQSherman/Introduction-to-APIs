@@ -75,6 +75,29 @@ body {
     flex: 1;
 
     margin: 3%;
+
+    background-color: rgb(66, 66, 66);
+}
+
+.imgCon>img:hover {
+    opacity: 50%;
+}
+
+.imgCon>.postDeleteBtn {
+
+  
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    
+}
+
+.imgCon>.postDeleteBtn:hover{
+    background-color: black;
 }
 
 .userpost>h3 {
@@ -92,13 +115,6 @@ body {
     border-radius: 20px;
 }
 
-/* #url, #caption {
-    text-align: center;
-    color: white;
-    background-color: black;
-    border-radius: 5px;
-} */
-
 .form-control {
     font-size: large;
     text-align: center;
@@ -113,6 +129,7 @@ body {
     border: 0px;
     color: rgb(255, 255, 255);
     background-color: #ffd5eb;
+    cursor: pointer;
 }
 
 .lables {

@@ -11,9 +11,11 @@ window.onload = () => {
 
     async function postPictureRequest() {
 
-        let postJson = JSON.stringify( createPostJson('newPostForm')),
+        const postJson = JSON.stringify( createPostJson('newPostForm'));
 
-        postRequestObj = {
+        checkPostValidity(postJson)
+
+        const postRequestObj = {
             
             method: 'POST',
 
@@ -31,7 +33,17 @@ window.onload = () => {
         await fetch('http://localhost:3000/user/newpost', postRequestObj)
         
         //returns the response from the api and parses from readableStream to JSON
-        .then( readable_stream_res => { return readable_stream_res.json() })
+        .then( readable_stream_res => { 
+
+        //    console.log(readable_stream_res);
+
+            if (readable_stream_res.status != 200) {
+                
+                throw new Error ('Post Request Failed')
+            }
+            
+            return readable_stream_res.json()
+        })
 
         //the json response is used to display status code/errors to the client
         .then( parsedResponse => {
@@ -46,12 +58,12 @@ window.onload = () => {
             
         })
 
-        .finally( clearFormData('newPostForm'))
-
-        
+        .finally( () => {
+            // setTimeout( () => { location = 'http://localhost:3000/user/profile'; }, 300);
+            
+        })
         
     }
-
 
     function createPostJson(formID) {
 
@@ -70,6 +82,10 @@ window.onload = () => {
         // console.log(form);
         
         return postObj
+        
+    }
+
+    function checkPostValidity(obj) {
         
     }
 
