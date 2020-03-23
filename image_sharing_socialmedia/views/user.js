@@ -1,28 +1,30 @@
 
 window.onload = () => {
 
+    //get accesss to post button
     let picturesSubmit = document.getElementById('picPostBtn');
 
+    //set the onclick event
     picturesSubmit.onclick = postPictureRequest;
 
-    console.log(document.getElementById('picPostBtn'));
-
-    document.getElementById('picPostBtn').addEventListener('onclick', postPictureRequest);
-
+    //when the button is pressed, this function will execute
      function postPictureRequest() {
-
+        
+        //the values from the post form are extracted from the post form into an object 
         const postObj = createPostJson('newPostForm');
 
+        //the object is checked to see if the post can be uploaded to the database
         const postCheck = checkPostValidity(postObj);
 
+        //a timeout is needed to give time for the image to be fetched and the postCheck object to be complete
        setTimeout( async () => {
 
-           console.log(postCheck);
-           
+           //ERROR CHECKING
+           //get access to the heading element that alerts the user of an issue with their input
             let postErrMsg = document.getElementById('postFormErrMsg');
 
             postErrMsg.innerText = '';
-
+            //the user willl be alerted of each failure in their input
             if (postCheck.failedCaption == true) {
                 postErrMsg.innerText += '* Caption must be under 50 characters and more than 0\n'
             }
@@ -31,11 +33,13 @@ window.onload = () => {
                 postErrMsg.innerText += '* Image URL Failed To Load Vaild Img'
             }
 
+            //if either input resulted in an error the function should return and the post request will not be made
             if (postCheck.failedCaption == true || postCheck.failedImage == true) {
                 return
             }
 
-            const postJson = JSON.stringify(postObj);
+            //POST REQUEST IF INPUT PASSES FRONT-END SANITIZATION
+            const postJson = JSON.stringify(postObj); //stringify the javascript object to JSON so fetch can send a proper request
 
             const postRequestObj = {
                 
@@ -65,33 +69,16 @@ window.onload = () => {
                 })
 
                 //the json response is used to display status code/errors to the client
-                .then( parsedResponse => {
+                .then( parsedResponse => { console.log(parsedResponse); })
 
-                    console.log(parsedResponse);
+                .catch( err => { console.log(err); })
 
-                })
-
-                .catch( err => {
-
-                    console.log(err);
-                    
-                })
-
-                .finally( () => {
-                    // setTimeout( () => { location = 'http://localhost:3000/user/profile'; }, 300);
-                    
-                })
-
-            // console.log(postCheck);
-
+                .finally( () => { setTimeout( () => { location = 'http://localhost:3000/user/profile'; }, 300); })
 
        }, 100)
         
-
-       
-        
     }
-
+    //create a javascript object from values in a form
     function createPostJson(formID) {
 
         let form = document.getElementById(formID),
@@ -111,12 +98,8 @@ window.onload = () => {
         return postObj
         
     }
-
+    //check if the post input will be valid to put on the users profile
     function checkPostValidity(checkObject) {
-
-        console.log(checkObject.url);
-        
-        
 
         let errorCheck = {failedCaption: false, failedImage: false};
 
@@ -139,10 +122,11 @@ window.onload = () => {
             
         }
 
-        return errorCheck
+        return errorCheck //if the input passes the test an object will be returned with both properties false
 
     }
 
+    //clear a forms input fields
     function clearFormData(formID) {
 
         let form = document.getElementById(formID);

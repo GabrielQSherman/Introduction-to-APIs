@@ -4,11 +4,14 @@ In this social media clone, cliental will be able to;
 
     [*] signin with an existing account
 
+    [*] when users sign in sucessfuly it should take them to their page
+
     [] logout of an existing account that is signed in
 
     []see any user via search and follow them if desired
 
-    []upload photolinks
+    [*]upload photolinks
+
 
     []leave comments on photo post
 
@@ -136,10 +139,19 @@ In this social media clone, cliental will be able to;
 
         The program is able to better utillize the pug templating engine, my users profiles update dynamically and post can be made. some frontend error checking needs to be completed for users posting form
 
+    3/12-23/2020
+
+        I have now gotten fairly familiar with the pug templating engine making a user profile page. 
+        I use one external JS script to handle the post request but all elements on the page are created using pug. This has made making HTML pages very interested and I quite like using the pug engine.
+
+        I have implemented a form to upload pictures, a display of all the users post appears when the page loads. And I have implemented the API call to my backend to get the form working. Logic for the post request is not handled directly in pug but I can now create pages using no HTML code which is great. 
+        
+        Challenges I face are patching post and deleting post. I will need to implement a system of IDing post so specific post can be deleted even if content is similar. I could try creating a schema to go inside of the users profiles or seperatly store post and link them to the users account. I have not found what the best practice will be. After I will implement other users interaction with post, adding like and favorite features as well.
+
            
 TODO:
 
-        [] when users sign in sucessfuly it should take them to their page
+        
 
         [] create a logout of current device and log out of all devices buttons
 
