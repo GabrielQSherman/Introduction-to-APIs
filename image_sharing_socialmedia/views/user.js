@@ -1,5 +1,8 @@
-
+//USE MOUSELEAVE FOR DELETE BUTTON 
 window.onload = () => {
+
+
+    //  POST REQUEST
 
     //get accesss to post button
     let picturesSubmit = document.getElementById('picPostBtn');
@@ -138,6 +141,10 @@ window.onload = () => {
         }
         
     }
+
+
+    //DELETE REQUEST
+    
 
 }
 

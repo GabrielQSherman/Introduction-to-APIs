@@ -37,9 +37,9 @@ html
             each post in posts
                 .userpost
                     .imgCon
-                        img(src=post.url alt=post.caption + ' url not loadable' width=300 height=auto)
+                        img(src=post.url alt=post.caption + ' url not loadable')
                         button.postDeleteBtn Delete
-                    h3= post.caption
+                    h3.postCaption= post.caption
         div
         //- - console.log(posts)
         div

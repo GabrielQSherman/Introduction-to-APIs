@@ -5,6 +5,9 @@ body {
 label {
     background-color: aliceblue;
     border: 2jpx aqua solid;
+
+    padding: .7%;
+    padding-top: .1%;
     /* border-color: ; */
     border-radius: 10px;
 }
