@@ -9,69 +9,86 @@ window.onload = () => {
 
     document.getElementById('picPostBtn').addEventListener('onclick', postPictureRequest);
 
-    async function postPictureRequest() {
+     function postPictureRequest() {
 
-        const postJson = JSON.stringify( createPostJson('newPostForm'));
+        const postObj = createPostJson('newPostForm');
 
-        let postCheck = checkPostValidity(postJson);
+        const postCheck = checkPostValidity(postObj);
 
-        if (postCheck.failedCaption == true) {
-            console.log('caption fail');
-            
-        }
+       setTimeout( async () => {
 
-        if (postCheck.failedImage == true) {
-            console.log('image fail');
-            
-        }
+           console.log(postCheck);
+           
+            let postErrMsg = document.getElementById('postFormErrMsg');
 
-        const postRequestObj = {
-            
-            method: 'POST',
+            postErrMsg.innerText = '';
 
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-
-            body: postJson
-        };
-
-        console.log(postJson);
-        
-        
-        await fetch('http://localhost:3000/user/newpost', postRequestObj)
-        
-        //returns the response from the api and parses from readableStream to JSON
-        .then( readable_stream_res => { 
-
-        //    console.log(readable_stream_res);
-
-            if (readable_stream_res.status != 200) {
-                
-                throw new Error ('Post Request Failed')
+            if (postCheck.failedCaption == true) {
+                postErrMsg.innerText += '* Caption must be under 50 characters and more than 0\n'
             }
-            
-            return readable_stream_res.json()
-        })
 
-        //the json response is used to display status code/errors to the client
-        .then( parsedResponse => {
+            if (postCheck.failedImage == true) {
+                postErrMsg.innerText += '* Image URL Failed To Load Vaild Img'
+            }
 
-            console.log(parsedResponse);
+            if (postCheck.failedCaption == true || postCheck.failedImage == true) {
+                return
+            }
 
-        })
+            const postJson = JSON.stringify(postObj);
 
-        .catch( err => {
+            const postRequestObj = {
+                
+                method: 'POST',
 
-            console.log(err);
-            
-        })
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
 
-        .finally( () => {
-            // setTimeout( () => { location = 'http://localhost:3000/user/profile'; }, 300);
-            
-        })
+                body: postJson
+            };
+
+                await fetch('http://localhost:3000/user/newpost', postRequestObj)
+                
+                //returns the response from the api and parses from readableStream to JSON
+                .then( readable_stream_res => { 
+
+                //    console.log(readable_stream_res);
+
+                    if (readable_stream_res.status != 200) {
+                        
+                        throw new Error ('Post Request Failed')
+                    }
+                    
+                    return readable_stream_res.json()
+                })
+
+                //the json response is used to display status code/errors to the client
+                .then( parsedResponse => {
+
+                    console.log(parsedResponse);
+
+                })
+
+                .catch( err => {
+
+                    console.log(err);
+                    
+                })
+
+                .finally( () => {
+                    // setTimeout( () => { location = 'http://localhost:3000/user/profile'; }, 300);
+                    
+                })
+
+            // console.log(postCheck);
+
+
+       }, 100)
+        
+
+       
         
     }
 
@@ -95,18 +112,17 @@ window.onload = () => {
         
     }
 
-    function checkPostValidity(obj) {
+    function checkPostValidity(checkObject) {
+
+        console.log(checkObject.url);
+        
+        
 
         let errorCheck = {failedCaption: false, failedImage: false};
 
-        if (obj.caption.length < 1 && obj.caption.length > 100) {
-            errorCheck.failedCaption = true;
-            
-        }
+          let testImage = new Image();
 
-        let testImage = document.createElement('img');
-
-            testImage.src = obj.url;
+            testImage.src = checkObject.url;
 
             testImage.onload = () => {
                 console.log('image url works');
@@ -116,6 +132,12 @@ window.onload = () => {
             testImage.onerror = () => {
                 errorCheck.failedImage = true
             }
+            // console.log(errorCheck);
+
+        if (checkObject.caption.length < 1 || checkObject.caption.length > 50) {
+            errorCheck.failedCaption = true;
+            
+        }
 
         return errorCheck
 

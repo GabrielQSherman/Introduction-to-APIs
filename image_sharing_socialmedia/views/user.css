@@ -115,6 +115,10 @@ body {
     border-radius: 20px;
 }
 
+h3#postFormErrMsg {
+    color: red
+}
+
 .form-control {
     font-size: large;
     text-align: center;
