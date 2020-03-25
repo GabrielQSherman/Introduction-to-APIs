@@ -144,6 +144,11 @@ window.onload = () => {
 
 
     //DELETE REQUEST
+
+
+    function deletePostRequest(){
+
+    }
     
 
 }
