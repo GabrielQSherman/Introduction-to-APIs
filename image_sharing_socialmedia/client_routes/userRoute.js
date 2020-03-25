@@ -6,24 +6,30 @@ const express = require('express'),
 
       auth = require('../middleware/auth'),
 
-      userdata = require('../middleware/userdata');
+      userdata = require('../middleware/userdata'),
+
+      createId = require('../middleware/idgen');
 
       
     router.post('/newpost', auth, (req, res) => {
 
-        console.log(req.body);
-        
+        // console.log(req.body);
 
+      let newPostId = createId(21, 77, 48);
+
+      console.log(newPostId);
+      
       newpost = {
 
             url: req.body.url,
 
             caption: req.body.caption,
 
-            likes: []
+            likes: [],
+
+            id: newPostId
                                              
       }
-
 
       try {
            
@@ -49,8 +55,14 @@ const express = require('express'),
     })
 
     //delete a users post
-    router.patch('/deletepost', auth (req, res) => {
+    router.patch('/deletepost', auth, (req, res) => {
 
+        
+
+    })
+
+    router.patch('/deleteallpost', auth, (req, res) => {
+        
     })
 
     router.get('/profile', auth, userdata, (req, res) => {
