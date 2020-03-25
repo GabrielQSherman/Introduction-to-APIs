@@ -95,10 +95,6 @@ body {
     height: auto;
 }
 
-.imgCon>img:hover {
-    opacity: 50%;
-}
-
 .postDeleteBtn {
     
     position: absolute;
