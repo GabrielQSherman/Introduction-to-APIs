@@ -48,6 +48,11 @@ const express = require('express'),
 
     })
 
+    //delete a users post
+    router.patch('/deletepost', auth (req, res) => {
+
+    })
+
     router.get('/profile', auth, userdata, (req, res) => {
 
 
