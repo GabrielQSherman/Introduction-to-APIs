@@ -4,21 +4,27 @@ window.onload = () => {
 
     //Setting Event Listener Properties
 
-    //get accesss to post button
-    let picturesSubmit = document.getElementById('picPostBtn');
+    //get accesss to buttons on JS
+    let picturesSubmit = document.getElementById('picPostBtn'),
+        deleteAllBtn = document.getElementById('deleteAllPostBtn'),
+        everyDeletePostButton = document.getElementsByClassName('postDeleteBtn');
 
-    //set the onclick event
+    //set the onclick events
     picturesSubmit.onclick = postPictureRequest;
 
-    let deleteAllBtn = document.getElementById('deleteAllPostBtn');
-
     deleteAllBtn.onclick = deleteAllPost;
-    
 
+    //set the onclick event for every deletepostbutton
+
+    for (const button of everyDeletePostButton) {
+
+        button.onclick = deleteThisPost;
+        
+    }
 
     //  POST REQUEST
 
-    //when the button is pressed, this function will execute
+    //when the 'post a pic' button is pressed, this function will execute
      function postPictureRequest() {
         
         //the values from the post form are extracted from the post form into an object 
@@ -151,10 +157,50 @@ window.onload = () => {
     }
 
 
-    //DELETE REQUEST
+    //DELETE REQUESTS
 
+    //delete a specific post
+    async function deleteThisPost(){
 
-    function deletePostRequest(){
+        // console.log(this); //logs the button object information that was click, because the id of the post is set in the button this will be transfered into the request body
+
+        const deleteOneObj = { id: this.id},
+
+              deleteJson = JSON.stringify(deleteOneObj),
+
+              deleteRequestObj = {
+        
+                method: 'POST',
+
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+
+                body: deleteJson
+            };
+
+            await fetch('http://localhost:3000/user/deletepost', deleteRequestObj)
+            
+            //returns the response from the api and parses from readableStream to JSON
+            .then( readable_stream_res => { 
+
+            //    console.log(readable_stream_res);
+
+                if (readable_stream_res.status != 200) {
+                    
+                    throw new Error ('Post Request Failed')
+                }
+                
+                return readable_stream_res.json()
+            })
+
+            //the json response is used to display status code/errors to the client
+            .then( parsedResponse => { console.log(parsedResponse); })
+
+            .catch( err => { console.log(err); })
+
+            .finally( () => { setTimeout( () => { location = 'http://localhost:3000/user/profile'; }, 300); })
 
     }
 
@@ -162,9 +208,12 @@ window.onload = () => {
 
     async function deleteAllPost() {
 
-        let confirmDelete = prompt('Enter your username if you are sure you want to delete all post from your profile, this action can not be undone.', 'username');
+        let confirmDelete = prompt('Enter your username if you are sure you want to delete all post from your profile, this action can not be undone.', 'username').toLowerCase(),
 
-        if (confirmDelete.toLowerCase() === document.getElementById('username').innerText.toLowerCase() ) {
+            nameOnServer = document.getElementById('username').innerText.toLowerCase();
+
+
+        if (confirmDelete === nameOnServer ) {
             const delAllRequestObj = {
                 
                 method: 'POST',
@@ -192,13 +241,12 @@ window.onload = () => {
                 .catch( err => { console.log(err); })
 
                 .finally( () => { setTimeout( () => { location = 'http://localhost:3000/user/profile'; }, 300); })
+
         } else {
             alert('No Post Were Deleted')
         } 
     
     }
-
-    
 
 }
 

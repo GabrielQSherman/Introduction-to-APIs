@@ -38,7 +38,7 @@ html
                 .userpost
                     .imgCon
                         img(src=post.url alt=post.caption + ' url not loadable')
-                        button.postDeleteBtn Delete
+                        button.postDeleteBtn(id=post.id) Delete
                     h3.postCaption= post.caption
                     button.editPostCap Edit Caption
         button#deleteAllPostBtn Delete All Post
