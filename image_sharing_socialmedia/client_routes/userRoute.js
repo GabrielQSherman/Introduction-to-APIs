@@ -15,9 +15,9 @@ const express = require('express'),
 
         // console.log(req.body);
 
-      let newPostId = createId(21, 77, 48);
+      let newPostId = createId(33, 77, 48);
 
-      console.log(newPostId);
+    //   console.log(newPostId);
       
       newpost = {
 
@@ -55,9 +55,39 @@ const express = require('express'),
     })
 
     //delete a users post
-    router.patch('/deletepost', auth, (req, res) => {
+    router.post('/deletepost', auth, (req, res) => {
 
-        
+       const postId = req.body.id
+
+        try {
+
+            let updatedUser = req.user,
+                deletedPost;
+           
+            for(let i = 0; i < updatedUser.posts.length; i++) {
+
+                if ( updatedUser.posts[i].id == postId ) {
+
+                    deletedPost = updatedUser.posts.splice(i, 1);
+                    
+                }
+                
+            };
+
+            updatedUser.save();
+
+            res.status(200).json({
+                message: 'One post removed from user profile',
+                postDeleted: deletedPost[0]
+            });
+
+        }
+
+        catch( err ) {
+
+            console.log(err);
+            
+        }
 
     })
 
@@ -72,7 +102,7 @@ const express = require('express'),
 
                 updatedUser.save();
 
-                res.status(200).json({message: 'All post removed from user'});
+                res.status(200).json({message: 'All post removed from user profile'});
 
         }
 
