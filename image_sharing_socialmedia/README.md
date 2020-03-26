@@ -147,7 +147,16 @@ In this social media clone, cliental will be able to;
         I have implemented a form to upload pictures, a display of all the users post appears when the page loads. And I have implemented the API call to my backend to get the form working. Logic for the post request is not handled directly in pug but I can now create pages using no HTML code which is great. 
         
         Challenges I face are patching post and deleting post. I will need to implement a system of IDing post so specific post can be deleted even if content is similar. I could try creating a schema to go inside of the users profiles or seperatly store post and link them to the users account. I have not found what the best practice will be. After I will implement other users interaction with post, adding like and favorite features as well.
+        
+    3/24-25/2020
 
+        I have now impelemented deleting post individually and all together. I created added some small features such as a message to make a first post in a user has no post.
+
+        I had to create two routes in order to delete post. I also moddified my post creation to include a id generator to distiguish post when requesting from the frontend. There is no check in place to avoid duplicate post ids but the likely hood of a duplicate post is over 1 in one google!
+
+        I will be working on updating captions from the profile page. I also I will be implementing the ability to delete JWT on database to either log out of the current device or all devices. My backend for that feature is already working I just need to connect some buttons to make the request via fetch api
+
+        Lastly I updated a bunch of css to make the profilepage more responsive and fun/interesting to interact with. This was all done with :hover in CSS
            
 TODO:
 
