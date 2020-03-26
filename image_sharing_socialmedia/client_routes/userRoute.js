@@ -61,7 +61,28 @@ const express = require('express'),
 
     })
 
-    router.patch('/deleteallpost', auth, (req, res) => {
+    router.post('/deleteallpost', auth, (req, res) => {
+
+
+         try {
+           
+            let updatedUser = req.user;
+
+                updatedUser.posts = [];
+
+                // console.log(updatedUser);
+
+                updatedUser.save();
+
+                res.status(200).json({message: 'All post removed from user'});
+
+        }
+
+        catch( err ) {
+
+            console.log(err);
+            
+        }
         
     })
 
