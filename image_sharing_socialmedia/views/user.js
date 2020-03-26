@@ -2,13 +2,21 @@
 window.onload = () => {
 
 
-    //  POST REQUEST
+    //Setting Event Listener Properties
 
     //get accesss to post button
     let picturesSubmit = document.getElementById('picPostBtn');
 
     //set the onclick event
     picturesSubmit.onclick = postPictureRequest;
+
+    let deleteAllBtn = document.getElementById('deleteAllPostBtn');
+
+    deleteAllBtn.onclick = deleteAllPost;
+    
+
+
+    //  POST REQUEST
 
     //when the button is pressed, this function will execute
      function postPictureRequest() {
@@ -149,6 +157,41 @@ window.onload = () => {
     function deletePostRequest(){
 
     }
+
+    //Delete all post 
+
+    async function deleteAllPost() {
+
+        const delAllRequestObj = {
+                
+            method: 'POST',
+
+        };
+
+            await fetch('http://localhost:3000/user/deleteallpost', delAllRequestObj)
+            
+            //returns the response from the api and parses from readableStream to JSON
+            .then( readable_stream_res => { 
+
+            //    console.log(readable_stream_res);
+
+                if (readable_stream_res.status != 200) {
+                    
+                    throw new Error ('Post Request Failed')
+                }
+                
+                return readable_stream_res.json()
+            })
+
+            //the json response is used to display status code/errors to the client
+            .then( parsedResponse => { console.log(parsedResponse); })
+
+            .catch( err => { console.log(err); })
+
+            .finally( () => { setTimeout( () => { location = 'http://localhost:3000/user/profile'; }, 300); })
+    
+    }
+
     
 
 }
