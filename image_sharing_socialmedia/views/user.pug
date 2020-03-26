@@ -13,7 +13,7 @@ html
 
     .page_box
         .profile_Info
-            h2= username
+            h2#username= username
             h2= "Posts " + totalPosts
             h2= "Likes " + totalLikes
         
@@ -41,3 +41,4 @@ html
                         button.postDeleteBtn Delete
                     h3.postCaption= post.caption
                     button.editPostCap Edit Caption
+        button#deleteAllPostBtn Delete All Post

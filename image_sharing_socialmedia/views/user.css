@@ -161,3 +161,32 @@ h3#postFormErrMsg {
     color: rgb(122, 122, 224);
     font-size: x-large;
 }
+
+.editPostCap {
+
+    color: white;
+    background-color: #777;
+    font-size: 16px;
+    padding: 7px 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 37%;
+    margin-right: 35%;
+    margin-bottom: 3%;
+}
+
+#deleteAllPostBtn {
+
+    color: white;
+    background-color: rgb(160, 1, 1);
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 45%;
+    margin-right: 45%;
+    margin-bottom: 1%;
+
+}
