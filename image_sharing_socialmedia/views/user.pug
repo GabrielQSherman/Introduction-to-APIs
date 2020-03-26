@@ -16,6 +16,8 @@ html
             h2#username= username
             h2= "Posts " + totalPosts
             h2= "Likes " + totalLikes
+            button#logOutOne Log Out On This Device
+            button#logOutAll Log Out On All Devices
         
         .createPost
             br
@@ -41,4 +43,7 @@ html
                         button.postDeleteBtn(id=post.id) Delete
                     h3.postCaption= post.caption
                     button.editPostCap Edit Caption
-        button#deleteAllPostBtn Delete All Post
+        if posts.length != 0
+            button#deleteAllPostBtn Delete All Post
+        else
+            h2 You Have No Post, Why Not Find Your Favorite Image Online And Post It!

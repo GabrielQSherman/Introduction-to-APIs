@@ -11,6 +11,8 @@ body {
 
     display: inline-block;
 
+    text-align: center;
+
     background-color: rgb(191, 255, 234);
 
 }
@@ -33,15 +35,68 @@ body {
 .profile_Info>h2 {
 
     flex: 1;
-    background-color: aliceblue;
+    background-image: repeating-linear-gradient(white, whitesmoke, grey, #777);
 
     padding: 10px;
 
-    margin-left: 12%;
-    margin-right: 12%;
+    margin: 2%;
 
     border-radius: 20px;
     
+}
+
+.profile_Info>h2:hover {
+
+    background-image: repeating-linear-gradient(45deg, rgb(255, 50, 50), rgb(255, 184, 53), rgb(255, 255, 44), rgb(191, 255, 16), rgb(56, 255, 56), rgb(46, 255, 210), rgb(90, 255, 255), rgb(74, 74, 255), rgb(181, 117, 255), rgb(255, 59, 255), rgb(255, 70, 209));
+    /* background-color: #fd9bce; */
+
+    border-radius: 15px;
+
+    margin-left: 5%;
+    margin-right: 5%;
+
+    transform: scale(.93,.93);
+    transition: 2s;
+    transition-delay: .1;
+}
+
+.profile_Info>button {
+
+    flex: .5;
+
+    color: white;
+
+    padding: 2px;
+
+    margin: 2%;
+
+    border-radius: 5px;
+
+    border: none;
+
+    font-size: 15px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+}
+
+#logOutOne {
+
+    background-image: linear-gradient(90deg, rgb(0, 192, 0), rgb(0, 230, 161),rgb(202, 39, 202));
+
+}
+
+#logOutAll {
+
+    background-image: linear-gradient(90deg, rgb(202, 39, 202), rgb(255, 196, 0), rgb(227, 231, 19));
+
+}
+
+.profile_Info>button:hover {
+    border-radius: 40px;
+    opacity: 40%;
+    transform: scale(.9,.9);
+    transition: 1s;
+    transition-delay: .1;
 }
 
 .createPost {
@@ -68,7 +123,7 @@ body {
     margin: 10%;
     margin-top: 2%;
 
-    border-radius: 100px;
+    border-radius: 30px;
 }
 
 .userpost {
@@ -78,7 +133,15 @@ body {
 
     border-radius: 20px;
 
-    background-color: rgb(66, 66, 66);
+    background-color: #444;
+}
+
+.userpost:hover {
+    background-color: #333;
+    border-radius: 10%;
+    flex:1.1;
+    transform: scale(1.1,1.1);
+    transition-duration: 1s;
 }
 
 .imgCon {
@@ -102,7 +165,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #555;
-   
+    opacity: 44%;
     color: white;
     font-size: 16px;
     padding: 12px 24px;
@@ -112,8 +175,12 @@ body {
     
 }
 
+
 .imgCon>.postDeleteBtn:hover{
+
     background-color: rgb(114, 44, 44);
+    opacity: 100%;
+    transition-duration: .7s;
 }
 
 .postCaption {
@@ -143,24 +210,46 @@ h3#postFormErrMsg {
 .form-control {
     font-size: large;
     text-align: center;
-    color: white;
+    color: #888;
     background-color: black;
     border-radius: 5px;
 }
 
+.form-control:hover{
+    color: white;
+    background-color: #444;
+    transition-duration: .5s;
+
+}
+
 #picPostBtn {
     font-size: xx-large;
-    border-radius: 10px;
+    border-radius: 13px;
     border: 0px;
     color: rgb(255, 255, 255);
     background-color: #ffd5eb;
     cursor: pointer;
 }
 
+#picPostBtn:hover {
+    background-color: #fd9bce;
+    border-radius: 3px;
+    transition-duration: .8s;
+}
+
 .lables {
     color: rgb(122, 122, 224);
     font-size: x-large;
 }
+
+.lables:hover {
+    color: #fd9bce;
+    transition-duration: .9s;
+    background-color: #525252;
+    border-radius: 5%;
+    opacity: 30%;
+}
+
 
 .editPostCap {
 

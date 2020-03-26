@@ -208,12 +208,17 @@ window.onload = () => {
 
     async function deleteAllPost() {
 
-        let confirmDelete = prompt('Enter your username if you are sure you want to delete all post from your profile, this action can not be undone.', 'username').toLowerCase(),
+        let confirmDelete = prompt('Enter your username if you are sure you want to delete all post from your profile, this action can not be undone.', 'username'),
 
             nameOnServer = document.getElementById('username').innerText.toLowerCase();
+        console.log(confirmDelete);
+        
 
+        if (confirmDelete == null) {
 
-        if (confirmDelete === nameOnServer ) {
+            alert('Deletion Of All Post Canceled')
+
+        } else if (confirmDelete.toLowerCase() === nameOnServer ) {
             const delAllRequestObj = {
                 
                 method: 'POST',
@@ -243,9 +248,10 @@ window.onload = () => {
                 .finally( () => { setTimeout( () => { location = 'http://localhost:3000/user/profile'; }, 300); })
 
         } else {
-            alert('No Post Were Deleted')
-        } 
+            alert('No Post Were Deleted Because You Did Not Correctly Input Your Username')
     
+        }
+
     }
 
 }
