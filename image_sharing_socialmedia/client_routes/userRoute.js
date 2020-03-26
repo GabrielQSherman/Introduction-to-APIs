@@ -70,8 +70,6 @@ const express = require('express'),
 
                 updatedUser.posts = [];
 
-                // console.log(updatedUser);
-
                 updatedUser.save();
 
                 res.status(200).json({message: 'All post removed from user'});

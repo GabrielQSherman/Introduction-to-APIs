@@ -162,33 +162,39 @@ window.onload = () => {
 
     async function deleteAllPost() {
 
-        const delAllRequestObj = {
+        let confirmDelete = prompt('Enter your username if you are sure you want to delete all post from your profile, this action can not be undone.', 'username');
+
+        if (confirmDelete.toLowerCase() === document.getElementById('username').innerText.toLowerCase() ) {
+            const delAllRequestObj = {
                 
-            method: 'POST',
+                method: 'POST',
 
-        };
+            };
 
-            await fetch('http://localhost:3000/user/deleteallpost', delAllRequestObj)
-            
-            //returns the response from the api and parses from readableStream to JSON
-            .then( readable_stream_res => { 
+                await fetch('http://localhost:3000/user/deleteallpost', delAllRequestObj)
+                
+                //returns the response from the api and parses from readableStream to JSON
+                .then( readable_stream_res => { 
 
-            //    console.log(readable_stream_res);
+                //    console.log(readable_stream_res);
 
-                if (readable_stream_res.status != 200) {
+                    if (readable_stream_res.status != 200) {
+                        
+                        throw new Error ('Post Request Failed')
+                    }
                     
-                    throw new Error ('Post Request Failed')
-                }
-                
-                return readable_stream_res.json()
-            })
+                    return readable_stream_res.json()
+                })
 
-            //the json response is used to display status code/errors to the client
-            .then( parsedResponse => { console.log(parsedResponse); })
+                //the json response is used to display status code/errors to the client
+                .then( parsedResponse => { console.log(parsedResponse); })
 
-            .catch( err => { console.log(err); })
+                .catch( err => { console.log(err); })
 
-            .finally( () => { setTimeout( () => { location = 'http://localhost:3000/user/profile'; }, 300); })
+                .finally( () => { setTimeout( () => { location = 'http://localhost:3000/user/profile'; }, 300); })
+        } else {
+            alert('No Post Were Deleted')
+        } 
     
     }
 
