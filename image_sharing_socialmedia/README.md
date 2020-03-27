@@ -150,18 +150,19 @@ In this social media clone, cliental will be able to;
         
     3/24-25/2020
 
-        I have now impelemented deleting post individually and all together. I created added some small features such as a message to make a first post in a user has no post.
+         impelemented deleting post individually and all together. I created added some small features such as a message to make a first post in a user has no post.
 
-        I had to create two routes in order to delete post. I also moddified my post creation to include a id generator to distiguish post when requesting from the frontend. There is no check in place to avoid duplicate post ids but the likely hood of a duplicate post is over 1 in one google!
+         created two routes in order to delete post/s. I also moddified my post creation to include a id generator to distiguish post when requesting from the frontend. There is no check in place to avoid duplicate post ids but the likely hood of a duplicate post is over 1 in one google!
 
-        I will be working on updating captions from the profile page. I also I will be implementing the ability to delete JWT on database to either log out of the current device or all devices. My backend for that feature is already working I just need to connect some buttons to make the request via fetch api
+    3/26/2020
 
-        Lastly I updated a bunch of css to make the profilepage more responsive and fun/interesting to interact with. This was all done with :hover in CSS
+        add route for when user logs out of their account, they can redirect themselves to the signin page with a button
+
+        updated a bunch of css to make the profilepage more responsive and fun/interesting to interact with. This was all done with :hover in CSS
+    
+    3/27/20
+
+        adding routes to homeRouter that will render pug templates. All js api request will come from one javascript file in the public folder. A new template will be used to create a login page, signup, 'home' (this will redirect to signup or sign, this is the root route)
+        the logout page will also use the same js public file. They will all use their own css file. 
            
-TODO:
-
-        
-
-        [] create a logout of current device and log out of all devices buttons
-
 

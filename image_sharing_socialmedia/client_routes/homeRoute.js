@@ -10,19 +10,23 @@ const express = require('express'),
 
 //GET ROUTES
 
-    //sends static files for homepage
+    //render html pages via templating engine
+
+    
       router.get('/', (req, res) => {
-
-            let absolutePath = __dirname.replace(/client_routes/, '') + 'public\\home.html';
-
-            res.sendFile(absolutePath);
-
+          res.render('home');
       })
 
-      //if the user gets signed out
+      router.get('/signin', (req, res) => {
+          res.render('signin');
+      })
+
+      router.get('/signup', (req, res) => {
+          res.render('signup');
+      })
 
       router.get('/signedout', (req, res) => {
-          res.render('logout')
+          res.render('logout');
       })
 
 
