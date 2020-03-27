@@ -6,7 +6,7 @@ In this social media clone, cliental will be able to;
 
     [*] when users sign in sucessfuly it should take them to their page
 
-    [] logout of an existing account that is signed in
+    [*] logout of an existing account that is signed in
 
     []see any user via search and follow them if desired
 
@@ -164,5 +164,10 @@ In this social media clone, cliental will be able to;
 
         adding routes to homeRouter that will render pug templates. All js api request will come from one javascript file in the public folder. A new template will be used to create a login page, signup, 'home' (this will redirect to signup or sign, this is the root route)
         the logout page will also use the same js public file. They will all use their own css file. 
+
+        signin and sign up pages css is complete
+
+    []Add api call handling to sign up/in pages
+    []complete home page (root route)
            
 
