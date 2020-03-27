@@ -15,7 +15,7 @@ window.onload = () => {
     picturesSubmit.onclick = postPictureRequest;
     
     logOutOneBtn.onclick = logOutOneRequest;
-    
+
     logOutAllBtn.onclick = logOutAllRequest;
 
     deleteAllBtn.onclick = deleteAllPost;
@@ -257,6 +257,58 @@ window.onload = () => {
             alert('No Post Were Deleted Because You Did Not Correctly Input Your Username')
     
         }
+
+    }
+
+    async function logOutOneRequest () {
+
+         await fetch('http://localhost:3000/user/logout', logoutObj)
+        
+        //returns the response from the api and parses from readableStream to JSON
+        .then( readable_stream_res => { 
+
+        //    console.log(readable_stream_res);
+
+            if (readable_stream_res.status != 200) {
+                
+                throw new Error ('Post Request Failed')
+            }
+            
+            return readable_stream_res.json()
+        })
+
+        //the json response is used to display status code/errors to the client
+        .then( parsedResponse => { console.log(parsedResponse); })
+
+        .catch( err => { console.log(err); })
+
+        .finally( () => { setTimeout( () => { location = 'http://localhost:3000/user/profile'; }, 300); })
+
+    }
+
+    async function logOutAllRequest () {
+
+         await fetch('http://localhost:3000/user/deleteallpost', logoutObj)
+                
+        //returns the response from the api and parses from readableStream to JSON
+        .then( readable_stream_res => { 
+
+        //    console.log(readable_stream_res);
+
+            if (readable_stream_res.status != 200) {
+                
+                throw new Error ('Post Request Failed')
+            }
+            
+            return readable_stream_res.json()
+        })
+
+        //the json response is used to display status code/errors to the client
+        .then( parsedResponse => { console.log(parsedResponse); })
+
+        .catch( err => { console.log(err); })
+
+        .finally( () => { setTimeout( () => { location = 'http://localhost:3000/user/profile'; }, 300); })
 
     }
 
