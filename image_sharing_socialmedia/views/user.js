@@ -7,10 +7,16 @@ window.onload = () => {
     //get accesss to buttons on JS
     let picturesSubmit = document.getElementById('picPostBtn'),
         deleteAllBtn = document.getElementById('deleteAllPostBtn'),
-        everyDeletePostButton = document.getElementsByClassName('postDeleteBtn');
+        everyDeletePostButton = document.getElementsByClassName('postDeleteBtn'),
+        logOutOneBtn = document.getElementById('logOutOne'), 
+        logOutAllBtn = document.getElementById('logOutAll');
 
     //set the onclick events
     picturesSubmit.onclick = postPictureRequest;
+    
+    logOutOneBtn.onclick = logOutOneRequest;
+    
+    logOutAllBtn.onclick = logOutAllRequest;
 
     deleteAllBtn.onclick = deleteAllPost;
 
