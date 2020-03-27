@@ -1,0 +1,33 @@
+doctype html 
+html
+    head
+        title Logout Page
+
+        style
+             include ../public/signin.css
+
+        script
+             include ../public/homeroute.js
+
+    body
+        .mainContainer
+            h1#message Log Into Your Account
+
+            form#signupform
+                label.lables(for='name') Full Name - 
+                input#name.form-control(type='text', placeholder='Full Name' name='name')
+                br 
+                br
+                label.lables(for='username') User Name - 
+                input#username.form-control(type='text', placeholder='User Name' name='username')
+                br
+                br
+                label.lables(for='email') Email - 
+                input#email.form-control(type='text', placeholder='Account Email' name='email')
+                br 
+                br
+                label.lables(for='password') Password - 
+                input#password.form-control(type='text', placeholder='Password' name='password')
+                br
+                br
+            button#signup Sign Up

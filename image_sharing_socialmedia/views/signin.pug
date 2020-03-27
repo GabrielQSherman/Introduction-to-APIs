@@ -1,0 +1,25 @@
+doctype html 
+html
+    head
+        title Logout Page
+
+        style
+             include ../public/signin.css
+
+        script
+             include ../public/homeroute.js
+
+    body
+        .mainContainer
+            h1#message Log Into Your Account
+
+            form#signinform
+                label.lables(for='email') Email - 
+                input#email.form-control(type='text', placeholder='Account Email' name='email')
+                br 
+                br
+                label.lables(for='password') Password - 
+                input#password.form-control(type='text', placeholder='Password' name='password')
+                br
+                br
+            button#signin Sign In
