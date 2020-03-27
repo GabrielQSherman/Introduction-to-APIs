@@ -19,6 +19,12 @@ const express = require('express'),
 
       })
 
+      //if the user gets signed out
+
+      router.get('/signedout', (req, res) => {
+          res.render('logout')
+      })
+
 
     //general get request to get all documents in database
       router.get('/users/allpost', async (req, res) => {

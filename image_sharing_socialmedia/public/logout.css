@@ -1,0 +1,37 @@
+body {
+    background-color: black;
+}
+
+.mainContainer {
+    margin-left: 37%;
+    margin-right: 37%;
+    margin-top: 20%;
+
+    text-align: center;
+    background-color: #222;
+    border-radius: 20px;
+}
+
+#message {
+    padding-top: 10%;
+    color: red;
+}
+
+#signin {
+    
+    margin-bottom: 10%;
+    font-size: x-large;
+    color: white;
+    background-color: #333;
+    border: none;
+    border-radius: 20px;
+    padding: 10%;
+    transition: all 1s ease-out;
+}
+
+#signin:hover {
+    background-color: #444;
+    transform: scale(1.1,1.1);
+    transition-duration: 1s;
+}
+

@@ -262,6 +262,12 @@ window.onload = () => {
 
     async function logOutOneRequest () {
 
+        const logoutObj = {
+                
+                method: 'POST',
+
+        };
+
          await fetch('http://localhost:3000/user/logout', logoutObj)
         
         //returns the response from the api and parses from readableStream to JSON
@@ -282,13 +288,19 @@ window.onload = () => {
 
         .catch( err => { console.log(err); })
 
-        .finally( () => { setTimeout( () => { location = 'http://localhost:3000/user/profile'; }, 300); })
+        .finally( () => { setTimeout( () => { location = 'http://localhost:3000/signedout'; }, 300); })
 
     }
 
     async function logOutAllRequest () {
 
-         await fetch('http://localhost:3000/user/deleteallpost', logoutObj)
+        const logoutObj = {
+                
+                method: 'POST',
+
+        };
+
+         await fetch('http://localhost:3000/user/logoutall', logoutObj)
                 
         //returns the response from the api and parses from readableStream to JSON
         .then( readable_stream_res => { 
@@ -308,11 +320,8 @@ window.onload = () => {
 
         .catch( err => { console.log(err); })
 
-        .finally( () => { setTimeout( () => { location = 'http://localhost:3000/user/profile'; }, 300); })
+        .finally( () => { setTimeout( () => { location = 'http://localhost:3000/signedout'; }, 300); })
 
     }
 
 }
-
-
-
