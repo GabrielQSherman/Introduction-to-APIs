@@ -123,12 +123,12 @@ const express = require('express'),
 //LOGGING IN
       router.post('/login', async (req, res) => {
 
-        // console.log(req.body);
+        console.log(req.body);
         
           try {
 
             //get the email and password from the body
-            const {email, password} = req.body.data;
+            const {email, password} = req.body;
 
             //call the credential check method defined in the model file
             const loginUser = await userSchema.findByCredentials(email, password);
