@@ -37,7 +37,7 @@ body {
 }
 
 
-#signinredirect {
+#signin {
     margin-bottom: 7%;
     font-size: xx-large;
     color: white;
@@ -50,7 +50,7 @@ body {
     border-radius: 10px;
 }
 
-#signinredirect:hover {
+#signin:hover {
     color: #ffd6dd;
     background-color: aquamarine;
     transition-duration: .5s;
@@ -59,7 +59,7 @@ body {
 }
 
 
-#signupredirect{
+#signup{
     margin-bottom: 7%;
     font-size: xx-large;
     color: white;
@@ -72,7 +72,7 @@ body {
     border-radius: 10px;
 }
 
-#signupredirect:hover {
+#signup:hover {
     color: #ffd6dd;
     background-color: aquamarine;
     transition-duration: .5s;

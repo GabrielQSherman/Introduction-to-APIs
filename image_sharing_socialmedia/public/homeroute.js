@@ -1,12 +1,40 @@
 window.onload = () => {
+
+    if (document.getElementById('signin') != null) {
+
+        let signInPageBtn = document.getElementById('signin');
+
+        signInPageBtn.onclick = signInRedirect;
+
+    }
+
+    if (document.getElementById('signup') != null) {
+
+        let signUpPageBtn = document.getElementById('signup');
+
+        signUpPageBtn.onclick = signUpRedirect;
+        
+    }
+
+    if (document.getElementById('signin') != null) {
+
+        let signInPageBtn = document.getElementById('signin');
+
+        signInPageBtn.onclick = signInRedirect;
+        
+    }
     
-    let signInPageBtn = document.getElementById('signin');
+    
 
-    signInPageBtn.onclick = backToSignIn;
+    function signInRedirect() {
 
-    function backToSignIn() {
+        location = 'http://localhost:3000/signin'
+        
+    }
 
-        location = 'http://localhost:3000/'
+    function signUpRedirect() {
+
+        location = 'http://localhost:3000/signup'
         
     }
 }
