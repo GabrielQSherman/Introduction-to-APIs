@@ -12,7 +12,7 @@ html
     body
         .mainContainer
             br
-            h1#message Sign Up For An Account
+            h1.message Sign Up For An Account
             form#signupform
                 label.lables(for='name') Full Name - 
                 input#name.form-control(type='text', placeholder='Full Name' name='name')
@@ -28,4 +28,7 @@ html
                 br
                 label.lables(for='password') Password - 
                 input#password.form-control(type='text', placeholder='Password' name='password')
-            button#signup Sign Up
+            button#signuprequest Sign Up
+
+            h3.message Already Have An Account?
+            button#signin Go To Sign In Page

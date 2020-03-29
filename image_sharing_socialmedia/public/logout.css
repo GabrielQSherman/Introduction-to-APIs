@@ -35,3 +35,20 @@ body {
     transition-duration: 1s;
 }
 
+#home {
+    
+    margin-bottom: 10%;
+    font-size: x-large;
+    color: white;
+    background-color: #333;
+    border: none;
+    border-radius: 20px;
+    padding: 10%;
+    transition: all 1s ease-out;
+}
+
+#home:hover {
+    background-color: #444;
+    transform: scale(1.1,1.1);
+    transition-duration: 1s;
+}

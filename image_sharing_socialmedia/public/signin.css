@@ -21,18 +21,19 @@ body {
     background-color: #333;
 }
 
-#message {
+.message {
     margin-top: 3%;
     margin-left: 30%;
     margin-right: 30%;
     border-radius: 5px;
-
+    padding-top: 3px;
+    padding-bottom: 3px;
     background-color: aquamarine;
     transition: all ease-out 1s;
 
 }
 
-#message:hover {
+.message:hover {
 
     background-color: #ffced6;
     transition-duration: 1s;
@@ -59,7 +60,7 @@ body {
     background-color: #444;
 }
 
-#signin {
+#signinrequest {
     margin-bottom: 7%;
     font-size: xx-large;
     color: white;
@@ -72,7 +73,7 @@ body {
     border-radius: 10px;
 }
 
-#signin:hover {
+#signinrequest:hover {
     color: #ffd6dd;
     background-color: aquamarine;
     transition-duration: .5s;
@@ -106,5 +107,26 @@ body {
 .form-control:hover {
     background-color: #777;
     transition-duration: 2s;
+
+}
+
+#signup {
+    margin-bottom: 7%;
+    font-size: large;
+    color: white;
+    background-color: #ff9aab;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+    transition: all ease-out 1s;
+    border-radius: 5px;
+}
+
+#signup:hover {
+    color: #ffd6dd;
+    background-color: aquamarine;
+    transition-duration: .5s;
+    transform: scale(1.2,1.2);
 
 }
