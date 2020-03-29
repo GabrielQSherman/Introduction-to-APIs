@@ -2,112 +2,80 @@ body {
     background-color: black;
 }
 
-label {
-    background-color: aliceblue;
-    border: 2jpx aqua solid;
-
-    padding: .7%;
-    padding-top: .1%;
-    /* border-color: ; */
-    border-radius: 10px;
-}
-
-.forms {
-    background-image: linear-gradient(rgb(224, 122, 255), rgb(255, 189, 222), yellow);
-
-    display: flex;
-
-    border-radius: 50px;
-}
-
-.forms>div{
-
-    flex: 1;
-    margin: 1%;
-
-}
-
-.signup {
-
-    background-image: linear-gradient(rgb(122, 239, 255), rgb(255, 0, 191), yellow);
-
-    border-radius: 50px;
-    border: 5px;
-    border-style: solid;
-    border-color: rgb(255, 226, 162);
+.mainContainer {
+    margin-left: 37%;
+    margin-right: 37%;
+    margin-top: 20%;
 
     text-align: center;
+    background-color: #222;
+    border-radius: 20px;
 }
 
-#signup_submit {
-    border-style: solid;
-    border-radius: 10px;
+.mainContainer:hover {
+    transform: scale(1.01,1.01);
+    transition-duration: 1s;
+    background-color: #333;
 }
 
-.signin {
-
-    background-image: linear-gradient(rgb(134, 0, 175), rgb(38, 0, 255), rgb(48, 255, 134));
-
-    border-radius: 50px;
-    border: 5px;
-    border-style: solid;
-    border-color: rgb(181, 255, 224);
-
-    text-align: center;
-}
-
-#signin_submit {
-    border-style: solid;
-    border-radius: 10px;
-
-
-}
-
-#go_to_profile {
-    border-style: solid;
-    border-radius: 10px;
-
-    display: none;
-}
-
-
-.request_and_response {
-
-    display: flex;
-
-    background-color: rgb(194, 255, 192);
-
-    border-radius: 50px;
-
-}
-
-.request_and_response>p{
-
-    text-align: center;
-    margin: 3%;
-
-
-    border: 3px;
+#message {
+    margin-top: 3%;
+    margin-left: 30%;
+    margin-right: 30%;
     border-radius: 5px;
-    border-style: groove;
-    border-color: black;
- 
+
+    background-color: aquamarine;
+    transition: all ease-out 1s;
 
 }
 
-#requestInfo {
+#message:hover {
 
-    flex: .35;
-
-    background-color: rgb(255, 255, 112);
+    background-color: #ffced6;
+    transition-duration: 1s;
 
 }
 
-#responseInfo {
 
-    flex: 1;
-
-    background-color: rgb(108, 255, 243);
-    
+#signinredirect {
+    margin-bottom: 7%;
+    font-size: xx-large;
+    color: white;
+    background-color: #ff9aab;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: none;
+    transition: all ease-out 1s;
+    border-radius: 10px;
 }
 
+#signinredirect:hover {
+    color: #ffd6dd;
+    background-color: aquamarine;
+    transition-duration: .5s;
+    transform: scale(1.2,1.2);
+
+}
+
+
+#signupredirect{
+    margin-bottom: 7%;
+    font-size: xx-large;
+    color: white;
+    background-color: #ff9aab;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: none;
+    transition: all ease-out 1s;
+    border-radius: 10px;
+}
+
+#signupredirect:hover {
+    color: #ffd6dd;
+    background-color: aquamarine;
+    transition-duration: .5s;
+    transform: scale(1.2,1.2);
+
+}
