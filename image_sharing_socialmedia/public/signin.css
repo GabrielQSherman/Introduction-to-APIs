@@ -1,16 +1,16 @@
 body {
-    background-color: #333;
+    background-color: #222;
 }
 
 .mainContainer {
 
-    margin-top: 5%;
+    margin-top: 2%;
     margin-left: 20%;
     margin-right: 20%;
     border-radius: 250px;
     transition: all ease-out 1s;
 
-    background-color: #444;
+    background-color: #333;
 
     text-align: center;
 }
@@ -18,7 +18,7 @@ body {
 .mainContainer:hover {
     transform: scale(1.01,1.01);
     transition-duration: 1s;
-    background-color: #333;
+    background-color: #222;
 }
 
 .message {
@@ -74,6 +74,28 @@ body {
 }
 
 #signinrequest:hover {
+    color: #ffd6dd;
+    background-color: aquamarine;
+    transition-duration: .5s;
+    transform: scale(1.2,1.2);
+
+}
+
+#goToProfile {
+    display: none;
+    margin-bottom: 7%;
+    font-size: xx-large;
+    color: white;
+    background-color: #ff9aab;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: none;
+    transition: all ease-out 1s;
+    border-radius: 10px;
+}
+
+#goToProfile:hover {
     color: #ffd6dd;
     background-color: aquamarine;
     transition-duration: .5s;

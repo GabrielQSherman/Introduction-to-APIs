@@ -12,7 +12,7 @@ html
     body
         .mainContainer
             br
-            h1.message Log Into Your Account
+            h1.message#headMsg Log Into Your Account
             form#signinform
                 label.lables(for='email') Email - 
                 input#email.form-control(type='text', placeholder='Account Email' name='email')
@@ -24,5 +24,6 @@ html
                 br
             button#signinrequest Sign In
 
-            h3.message Need An Account? Click Below To Sign Up
+            h3.message#footMsg Need An Account? Click Below To Sign Up
+            button#goToProfile Click To Go To Your Profile
             button#signup Make An Account
