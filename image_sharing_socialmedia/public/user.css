@@ -118,36 +118,44 @@ body {
 
     flex-wrap: wrap;
 
-    background-color: black;
+    background-color: #000;
 
     margin: 10%;
     margin-top: 2%;
+
+    justify-content: center;
 
     border-radius: 30px;
 }
 
 .userpost {
-    flex: 1;
+    /* flex: 1; */
 
     margin: 3%;
 
     border-radius: 20px;
 
     background-color: #444;
+
+        justify-content: center;
+
+    transition: all ease-out 1s;
+
+    width: 400px;
 }
 
 .userpost:hover {
-    background-color: #333;
-    border-radius: 10%;
-    flex:1.1;
+    background-color: #000;
+
     transform: scale(1.1,1.1);
     transition-duration: 1s;
 }
 
 .imgCon {
+
+    background-color: 'white';
     position: relative;
-    display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     margin-top: 7%;
 }
 
@@ -158,20 +166,31 @@ body {
     height: auto;
 }
 
+
+
 .postDeleteBtn {
-    
+
+    opacity: 0%;
+    /* display: none; */
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #555;
-    opacity: 44%;
+
     color: white;
     font-size: 16px;
     padding: 12px 24px;
     border: none;
     cursor: pointer;
     border-radius: 5px;
+
+    transition: all ease-out .45s;
+    
+}
+
+.imgCon:hover>.postDeleteBtn {
+    opacity: 100%;
     
 }
 
@@ -179,7 +198,7 @@ body {
 .imgCon>.postDeleteBtn:hover{
 
     background-color: rgb(114, 44, 44);
-    opacity: 100%;
+
     transition-duration: .7s;
 }
 
@@ -260,8 +279,8 @@ h3#postFormErrMsg {
     border: none;
     cursor: pointer;
     border-radius: 5px;
-    margin-left: 37%;
-    margin-right: 35%;
+    margin-left: 30%;
+    margin-right: 30%;
     margin-bottom: 3%;
 }
 
