@@ -341,11 +341,69 @@ window.onload = () => {
     }
 
 
-    function editThisPostCaption() {
+    //event function that allows user to change a caption of a post
+    async function editThisPostCaption() {
 
 
          const postId = this.attributes.postid.value
-        // console.log(this, postId);
+        console.log(this, postId);
+
+        let newCaption = prompt('Type in a new caption to caption this post');
+
+        if (newCaption != null && newCaption.trim() != ''){
+
+            console.log('update the caption');
+
+             const updateCapObj = { id: postId, caption: newCaption},
+
+              updateCapJson = JSON.stringify(updateCapObj),
+
+              updateRequestObj = {
+        
+                method: 'PATCH',
+
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+
+                body: updateCapJson
+            };
+
+            await fetch('http://localhost:3000/user/updatecaption', updateRequestObj)
+            
+            //returns the response from the api and parses from readableStream to JSON
+            .then( readable_stream_res => { 
+
+            //    console.log(readable_stream_res);
+
+                if (readable_stream_res.status != 200) {
+                    
+                    throw new Error ('Post Request Failed')
+                }
+                
+                return readable_stream_res.json()
+            })
+
+            //the json response is used to display status code/errors to the client
+            .then( parsedResponse => { console.log(parsedResponse); })
+
+            .catch( err => { 
+
+                alert('Error trying to update caption:', err.message)
+                console.log(err); 
+
+            })
+
+            .finally( () => { setTimeout( () => { location = 'http://localhost:3000/user/profile'; }, 300); })
+
+            
+        } else {
+
+            alert('The post\'s caption was not updated');
+
+        }
+
 
     }
 

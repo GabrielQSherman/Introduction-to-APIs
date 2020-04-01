@@ -147,7 +147,7 @@ body {
 .userpost:hover {
     background-color: #222;
 
-    transform: scaleX(1.1);
+    transform: scale(1.1, 1.1);
     transition-duration: 1s;
 }
 
@@ -155,7 +155,6 @@ body {
 
     background-color: 'white';
     position: relative;
-    /* justify-content: center; */
     margin-top: 7%;
 }
 
