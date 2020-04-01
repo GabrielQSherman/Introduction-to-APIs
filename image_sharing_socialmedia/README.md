@@ -167,7 +167,14 @@ In this social media clone, cliental will be able to;
 
         signin and sign up pages css is complete
 
-    []Add api call handling to sign up/in pages
-    []complete home page (root route)
-           
+    3/28-30/20
+
+        implement the api calls for the signin and signup pages, get it to direct the user to the profile once they sign in.
+
+        routes of the homepage can be traversed via buttons on the signin/signup/home/logout page
+
+        creating a new user is working using the form on signup page. users can login with the form on signin page
+
+        add some styling changes so delete button on profile images appear dynamically
+
 
