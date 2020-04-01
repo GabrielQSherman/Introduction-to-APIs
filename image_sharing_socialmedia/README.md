@@ -167,7 +167,7 @@ In this social media clone, cliental will be able to;
 
         signin and sign up pages css is complete
 
-    3/28-30/20
+    3/28-30/2020
 
         implement the api calls for the signin and signup pages, get it to direct the user to the profile once they sign in.
 
@@ -176,5 +176,11 @@ In this social media clone, cliental will be able to;
         creating a new user is working using the form on signup page. users can login with the form on signin page
 
         add some styling changes so delete button on profile images appear dynamically
+    
+    4/1/2020
+
+        implement api request for userprofile page to update a post caption. A prompt will ask user to input a new caption for the post they choose. If the prompt is left blank or cancled the request will not be made. Otherwise a patch request will be made and the caption will be updated on the server. When a sucessfull request is made the page will be reloaded.
+
+        I needed to create the route handling for the patch request in the userRoute file. I was having trouble understanding why the server must delete the old post and insert a new one in order to update the post caption. I was not able to program the logic beileved would work but the route is functional and working perfectly. I will update it in the future to better understand the limitations of express.
 
 
