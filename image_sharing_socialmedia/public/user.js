@@ -7,7 +7,8 @@ window.onload = () => {
     //get accesss to buttons on JS
     let picturesSubmit = document.getElementById('picPostBtn'),
         deleteAllBtn = document.getElementById('deleteAllPostBtn'),
-        everyDeletePostButton = document.getElementsByClassName('postDeleteBtn'),
+        DelPostBtns = document.getElementsByClassName('postDeleteBtn'),
+        editPostCapBtns = document.getElementsByClassName('editPostCap'),
         logOutOneBtn = document.getElementById('logOutOne'), 
         logOutAllBtn = document.getElementById('logOutAll');
 
@@ -18,13 +19,24 @@ window.onload = () => {
 
     logOutAllBtn.onclick = logOutAllRequest;
 
-    deleteAllBtn.onclick = deleteAllPost;
+    if (deleteAllBtn != null) {
+
+        deleteAllBtn.onclick = deleteAllPost;
+    }
 
     //set the onclick event for every deletepostbutton
 
-    for (const button of everyDeletePostButton) {
+    for (const button of DelPostBtns) {
 
         button.onclick = deleteThisPost;
+        
+    }
+
+    //set the onclick event for every edit caption button
+
+    for (const button of editPostCapBtns) {
+
+        button.onclick = editThisPostCaption;
         
     }
 
@@ -168,9 +180,13 @@ window.onload = () => {
     //delete a specific post
     async function deleteThisPost(){
 
-        // console.log(this); //logs the button object information that was click, because the id of the post is set in the button this will be transfered into the request body
+        const postId = this.attributes.postid.value
 
-        const deleteOneObj = { id: this.id},
+        //logs the button object information that was click,
+       // because the id of the post is set as a property of the button it cab be transfered into the request body
+      // console.log(this, postId); 
+
+        const deleteOneObj = { id: postId},
 
               deleteJson = JSON.stringify(deleteOneObj),
 
@@ -321,6 +337,15 @@ window.onload = () => {
         .catch( err => { console.log(err); })
 
         .finally( () => { setTimeout( () => { location = 'http://localhost:3000/signedout'; }, 300); })
+
+    }
+
+
+    function editThisPostCaption() {
+
+
+         const postId = this.attributes.postid.value
+        // console.log(this, postId);
 
     }
 
