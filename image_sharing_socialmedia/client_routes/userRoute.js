@@ -214,6 +214,49 @@ const express = require('express'),
       }
   })
 
+  //update a post's caption
+
+  router.patch('/updatecaption', auth, async(req, res) => {
+
+      try {
+
+          const postId = req.body.id,
+
+                newCaption = req.body.caption;
+
+          let updatedUser = req.user;  
+    
+             for (let i = 0; i < updatedUser.posts.length; i++) {
+
+                if ( updatedUser.posts[i].id == postId ) {
+
+                    let newpost = updatedUser.posts[i];
+
+                    newpost.caption = newCaption
+
+                    updatedUser.posts.splice(i,1,newpost)
+
+                }
+                
+            };
+
+            await updatedUser.save();
+
+            res.status(200).json({
+                message: 'Caption updated successfully',
+                updatedPost: updatedUser
+            });
+      
+
+      } catch (err) {
+          res.status(500).json({
+              message: err.message,
+              error: err
+          })
+      }
+
+  })
+
 
 
 module.exports = router;
