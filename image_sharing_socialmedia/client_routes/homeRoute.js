@@ -80,18 +80,39 @@ const express = require('express'),
 
 //search for a user by username
 
-    router.get('/getuserbyname', async (req, res) => {
+    router.get('/getuserbyname/:username', async (req, res) => {
 
 
         try {
 
-            let userName = req.body.username;
+            let userName = req.params.username;
 
-            let usersPost = await userSchema.find({username: username}).posts
+            console.log(userName, 'test', req.username);
 
-            res.status(200).json({
-                posts: usersPost
+            await userSchema.find({username: userName})
+
+            .then( foundUser => {
+
+                console.log(foundUser);
+                
+
+                if (foundUser.length == 0) {
+
+                    res.status(404).json({
+                        message: `No user with the username ${userName} exist`
+                    })
+                    
+                } else {
+
+                    res.status(200).json({
+                        // message: `${userPost.length} post by ${userName} were found`,
+                        posts: foundUser[0].posts
+                    })
+
+                }
+
             })
+            
 
         } catch (err) {
 

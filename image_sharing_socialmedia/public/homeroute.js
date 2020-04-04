@@ -268,12 +268,34 @@ window.onload = () => {
         
     }
 
-    function searchUser() {
+    async function searchUser() {
         console.log('testing search');
 
         let userName = document.getElementById('userSearch').value;
 
         console.log(userName);
+
+        await fetch(`/getuserbyname/${userName}`)
+        
+        .then( readable_stream_res => { 
+
+            //    console.log(readable_stream_res);
+
+                return readable_stream_res.json()
+                
+        })
+
+        .then( response => {
+            console.log(response);
+            
+        })
+
+        .catch( err => {
+            console.log(err);
+            
+        })
+
+
         
         
     }
