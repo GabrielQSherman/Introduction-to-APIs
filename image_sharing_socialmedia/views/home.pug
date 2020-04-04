@@ -11,10 +11,20 @@ html
 
     body
         .mainContainer
-            br
-            br
-            h1#message Log in or Sign Up
+            .searchForUser
+                br
+                br
+                h1.message Find A User By Username And Browse Their Post
+                input#userSearch(type="text" placeholder="Username")
+                br
+                br
+                button#searchForUserSub Search For A Users
 
-            button#signin Go To Sign In Page
+            .navigation
+                br
+                br
+                h1.message Log in or Sign Up
 
-            button#signup Go To Sign Up Page
+                button#signin Go To Sign In Page
+
+                button#signup Go To Sign Up Page
