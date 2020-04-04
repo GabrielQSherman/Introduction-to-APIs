@@ -16,6 +16,14 @@ window.onload = () => {
         
     }
 
+    if (document.getElementById('searchForUserSub') != null) {
+
+        let searchUserBtn = document.getElementById('searchForUserSub');
+
+        searchUserBtn.onclick = searchUser;
+        
+    }
+
     if (document.getElementById('home') != null) {
 
         let homePageBtn = document.getElementById('home');
@@ -257,6 +265,16 @@ window.onload = () => {
                 return
 
             })
+        
+    }
+
+    function searchUser() {
+        console.log('testing search');
+
+        let userName = document.getElementById('userSearch').value;
+
+        console.log(userName);
+        
         
     }
 

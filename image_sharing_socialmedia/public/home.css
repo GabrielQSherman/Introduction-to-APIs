@@ -20,17 +20,64 @@ body {
     flex: 1;
     background-color: #333;
     margin: 10%;
+    margin-left: 5%;
+
     border-radius: 20px;
 
 }
 
 .searchForUser {
     margin: 10%;
+    margin-right: 5%;
     border-radius: 20px;
-    flex: 1;
+    flex: 1.2;
     background-color: #333;
 }
 
+#userSearch {
+    font-size: large;
+    text-align: center;
+
+    color: white;
+    background-color: black;
+
+    border: none;
+    border-radius: 5px;
+
+    transition: all ease-out 1s;
+
+}
+
+#userSearch:hover{
+    
+    background-color: #444;
+    transition-duration: .5s;
+
+}
+
+#searchForUserSub {
+
+    margin-bottom: 7%;
+    font-size: large;
+    color: white;
+    background-color: #ff9aab;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: none;
+    transition: all ease-out 1s;
+    border-radius: 10px;
+
+}
+
+#searchForUserSub:hover {
+
+    color: #ffd6dd;
+    background-color: black;
+    transition-duration: .5s;
+    transform: scale(1.1,1.1);
+
+}
 
 .message {
     margin-top: 3%;
@@ -49,7 +96,6 @@ body {
     transition-duration: 1s;
 
 }
-
 
 #signin {
     margin-bottom: 7%;
