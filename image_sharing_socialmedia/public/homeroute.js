@@ -271,7 +271,7 @@ window.onload = () => {
     async function searchUser() {
         console.log('testing search');
 
-        let userName = document.getElementById('userSearch').value;
+        let userName = document.getElementById('userSearch').value.trim();
 
         console.log(userName);
 
@@ -281,12 +281,39 @@ window.onload = () => {
 
             //    console.log(readable_stream_res);
 
-                return readable_stream_res.json()
+            if (readable_stream_res.status == 404) {
+
+                document.getElementById('userSearchMsg').innerText = 'No User Could Be Found With That Name'
                 
+            } else {
+
+                return readable_stream_res.json()
+
+            }
         })
 
         .then( response => {
+            
             console.log(response);
+
+            if (response.posts != undefined) {
+
+                let allPost = response.posts
+
+                for (let i = 0; i < allPost.length; i++) {
+                    
+                    console.log(allPost[i]);
+                    
+                    
+                }
+                
+            } else {
+
+                document.getElementById('userSearchMsg').innerHTML =`<u>${ response.un}</u> Has No Posts`
+
+            }
+
+
             
         })
 

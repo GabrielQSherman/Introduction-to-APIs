@@ -102,6 +102,13 @@ const express = require('express'),
                         message: `No user with the username ${userName} exist`
                     })
                     
+                } else if ( foundUser[0].posts.length == 0 ) {
+
+                     res.status(200).json({
+                        un: userName,
+                        message: `The user ${userName} does not have any post to view`
+                    })
+
                 } else {
 
                     res.status(200).json({
