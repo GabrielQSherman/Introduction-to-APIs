@@ -3,9 +3,10 @@ body {
 }
 
 .mainContainer {
-    margin-left: 37%;
-    margin-right: 37%;
-    margin-top: 15%;
+    display: flex;
+    margin-left: 7%;
+    margin-right: 7%;
+    margin-top: 5%;
 
     text-align: center;
     background-color: #222;
@@ -15,13 +16,23 @@ body {
 
 }
 
-.mainContainer:hover {
-    transform: scale(1.1,1.1);
-    transition-duration: 1s;
+.navigation {
+    flex: 1;
+    background-color: #333;
+    margin: 10%;
+    border-radius: 20px;
+
+}
+
+.searchForUser {
+    margin: 10%;
+    border-radius: 20px;
+    flex: 1;
     background-color: #333;
 }
 
-#message {
+
+.message {
     margin-top: 3%;
     margin-left: 20%;
     margin-right: 20%;
@@ -32,7 +43,7 @@ body {
 
 }
 
-#message:hover {
+.message:hover {
 
     background-color: #ffced6;
     transition-duration: 1s;
