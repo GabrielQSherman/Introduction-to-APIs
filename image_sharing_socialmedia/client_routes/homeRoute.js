@@ -78,6 +78,32 @@ const express = require('express'),
 
       })
 
+//search for a user by username
+
+    router.get('/getuserbyname', async (req, res) => {
+
+
+        try {
+
+            let userName = req.body.username;
+
+            let usersPost = await userSchema.find({username: username}).posts
+
+            res.status(200).json({
+                posts: usersPost
+            })
+
+        } catch (err) {
+
+            res.status(500).json({
+                error: err,
+                message: err.message
+            })
+            
+        }
+
+    })
+
 
 
 //CREATING A NEW USER
