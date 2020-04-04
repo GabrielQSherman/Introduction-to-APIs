@@ -37,11 +37,18 @@ body {
     flex: 1;
     background-image: repeating-linear-gradient(white, whitesmoke, grey, #777);
 
+    opacity: 10%;
+
     padding: 10px;
 
     margin: 2%;
 
     border-radius: 20px;
+
+    transition: all ease-out 1s;
+
+    cursor: none;
+
     
 }
 
@@ -49,14 +56,18 @@ body {
 
     background-image: repeating-linear-gradient(45deg, rgb(255, 50, 50), rgb(255, 184, 53), rgb(255, 255, 44), rgb(191, 255, 16), rgb(56, 255, 56), rgb(46, 255, 210), rgb(90, 255, 255), rgb(74, 74, 255), rgb(181, 117, 255), rgb(255, 59, 255), rgb(255, 70, 209));
     /* background-color: #fd9bce; */
+    opacity: 100%;
 
     border-radius: 15px;
+
+    padding-left: 0px;
+    padding-right: -10px;
 
     margin-left: 5%;
     margin-right: 5%;
 
     transform: scale(.93,.93);
-    transition: 2s;
+    transition: 1s;
     transition-delay: .1;
 }
 
@@ -76,6 +87,10 @@ body {
 
     font-size: 15px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+    transition: all ease-out 1s;
+
+    cursor: pointer;
     
 }
 
@@ -215,6 +230,8 @@ body {
 #newposthead {
     background-color: rgb(168, 255, 255);
 
+    cursor: default;
+
     margin-left: 17%;
     margin-right: 17%;
 
@@ -231,6 +248,9 @@ h3#postFormErrMsg {
     color: #888;
     background-color: black;
     border-radius: 5px;
+
+    transition: all ease-out 1s;
+
 }
 
 .form-control:hover{
@@ -247,6 +267,8 @@ h3#postFormErrMsg {
     color: rgb(255, 255, 255);
     background-color: #ffd5eb;
     cursor: pointer;
+
+    transition: all ease-out 1s;
 }
 
 #picPostBtn:hover {
@@ -258,6 +280,8 @@ h3#postFormErrMsg {
 .lables {
     color: rgb(122, 122, 224);
     font-size: x-large;
+
+    cursor: pointer;
 }
 
 .lables:hover {
