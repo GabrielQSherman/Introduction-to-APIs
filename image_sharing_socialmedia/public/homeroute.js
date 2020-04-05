@@ -285,11 +285,10 @@ window.onload = () => {
 
                 document.getElementById('userSearchMsg').innerText = 'No User Could Be Found With That Name'
                 
-            } else {
-
-                return readable_stream_res.json()
-
             }
+
+            return readable_stream_res.json()
+
         })
 
         .then( response => {
@@ -297,6 +296,8 @@ window.onload = () => {
             console.log(response);
 
             if (response.posts != undefined) {
+
+                document.getElementById('userSearchMsg').innerText = 'View Post Below'
 
                 let allPost = response.posts
 
@@ -307,7 +308,7 @@ window.onload = () => {
                     
                 }
                 
-            } else {
+            } else if (response.un != undefined) {
 
                 document.getElementById('userSearchMsg').innerHTML =`<u>${ response.un}</u> Has No Posts`
 
