@@ -183,4 +183,8 @@ In this social media clone, cliental will be able to;
 
         I needed to create the route handling for the patch request in the userRoute file. I was having trouble understanding why the server must delete the old post and insert a new one in order to update the post caption. I was not able to program the logic beileved would work but the route is functional and working perfectly. I will update it in the future to better understand the limitations of express.
 
+    4/2-4/2020
+
+        created route for user search from the homepage. 
+        add styling and template to suport client-side search for a user's post by username
 
