@@ -299,6 +299,17 @@ window.onload = () => {
 
                 document.getElementById('userSearchMsg').innerText = 'View Post Below'
 
+                document.getElementById('searchForUserSub').style.display = 'none';
+
+                let publicProfileBtn = document.getElementById('publicProfile');
+
+                publicProfileBtn.style.display = 'inline';
+
+                publicProfileBtn.innerText = `View ${response.username}'s ${response.posts} Posts`;
+
+                publicProfileBtn.username = response.username;
+
+                publicProfileBtn.onclick = publicProfileRequest;
                 
                 
             } else if (response.un != undefined) {
@@ -319,6 +330,17 @@ window.onload = () => {
 
         
         
+    }
+
+    //request a public profile
+
+    function publicProfileRequest() {
+
+        console.log(`Going to the public profile of ${this.username}`);
+
+        location = `/${this.username}`
+        
+
     }
 
 

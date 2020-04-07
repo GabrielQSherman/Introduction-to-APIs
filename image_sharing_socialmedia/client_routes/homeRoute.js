@@ -33,7 +33,7 @@ const express = require('express'),
    
 
 //view a users post, bring client to homepage if they have no post or the user doesnt exist
-    router.get('/public/:username', async (req, res) => {
+    router.get('/:username', async (req, res) => {
 
         try {
 
@@ -59,9 +59,11 @@ const express = require('express'),
                         message: `The user ${userName} does not have any post to view`
                     })
 
-                } else {
+                } else if ( foundUser[0].posts.length > 0 )  {
 
-                     res.render('pubpro');
+                    let allPost = foundUser[0].posts;
+
+                     res.render('pubpro', {username: userName, totalPosts: allPost.length, totalLikes: 10, posts: allPost});
 
                 }
 
@@ -106,7 +108,7 @@ const express = require('express'),
                 } else if ( foundUser[0].posts.length == 0 ) {
 
                      res.status(200).json({
-                        un: userName,
+                        username: userName,
                         message: `The user ${userName} does not have any post to view`
                     })
 
