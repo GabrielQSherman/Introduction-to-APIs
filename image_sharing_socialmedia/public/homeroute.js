@@ -299,14 +299,7 @@ window.onload = () => {
 
                 document.getElementById('userSearchMsg').innerText = 'View Post Below'
 
-                let allPost = response.posts
-
-                for (let i = 0; i < allPost.length; i++) {
-                    
-                    console.log(allPost[i]);
-                    
-                    
-                }
+                
                 
             } else if (response.un != undefined) {
 

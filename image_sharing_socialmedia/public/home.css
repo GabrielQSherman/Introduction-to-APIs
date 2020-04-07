@@ -79,6 +79,33 @@ body {
 
 }
 
+#publicProfile {
+
+    display: none;
+    
+    margin-bottom: 7%;
+    font-size: large;
+    color: white;
+    background-color: #ff9aab;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: none;
+    transition: all ease-out 1s;
+    border-radius: 10px;
+
+}
+
+#publicProfile:hover {
+
+    color: #ffd6dd;
+    background-color: black;
+    transition-duration: .5s;
+    transform: scale(1.1,1.1);
+
+}
+
+
 .message {
     margin-top: 3%;
     margin-left: 20%;
