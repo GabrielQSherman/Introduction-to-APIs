@@ -30,55 +30,58 @@ const express = require('express'),
       })
 
 
-    //general get request to get all documents in database
-      router.get('/users/allpost', async (req, res) => {
+   
+
+//view a users post, bring client to homepage if they have no post or the user doesnt exist
+    router.get('/public/:username', async (req, res) => {
+
+        try {
+
+             let userName = req.params.username;
+
+            await userSchema.find({username: userName})
+
+            .then( foundUser => {
+
+                console.log(foundUser);
                 
-                await userSchema.find()
 
-                .then ( allUsers => {
+                if (foundUser.length == 0) {
 
-                    let allSitesPost = [];
-
-                    for (let i = 0; i < allUsers.length; i++) {
-
-                            allUsers[i].posts.forEach(post => {
-
-                                let tempPost = {};
-
-                                tempPost.username = allUsers[i].username;
-                                tempPost.url = post.url;
-                                tempPost.caption = post.caption;
-                                tempPost.likesNum = post.likes.length;
-
-                                // console.log(`\nUrl:${post.url}\nCaption:${post.caption}\nLikes:${post.likes.length}`);
-                                
-                                allSitesPost.push(tempPost);
-                                
-                            });
-                    
-                    }
-
-                    res.status(200).json({
-    
-                        message: 'all users posts retrieved',
-                        allpost: allSitesPost
-    
-                    })
-
-                })
-                
-                .catch ( err => {
-
-                    res.status(500).json({
-                        message: 'server error',
-                        error: err.message
+                    res.status(404).json({
+                        message: `No user with the username ${userName} exist`
                     })
                     
-                })
+                } else if ( foundUser[0].posts.length == 0 ) {
 
-      })
+                     res.status(200).json({
+                        un: userName,
+                        message: `The user ${userName} does not have any post to view`
+                    })
 
-//search for a user by username
+                } else {
+
+                     res.render('pubpro');
+
+                }
+
+            })
+            
+        } catch (error) {
+
+             res.status(200).json({
+
+                // message: `${userPost.length} post by ${userName} were found`,
+                posts: foundUser[0].posts.length,
+                username: userName
+
+            })
+            
+        }
+
+    })
+
+//search for a user by username on homepage
 
     router.get('/getuserbyname/:username', async (req, res) => {
 
@@ -86,8 +89,6 @@ const express = require('express'),
         try {
 
             let userName = req.params.username;
-
-            console.log(userName, 'test', req.username);
 
             await userSchema.find({username: userName})
 
@@ -113,7 +114,8 @@ const express = require('express'),
 
                     res.status(200).json({
                         // message: `${userPost.length} post by ${userName} were found`,
-                        posts: foundUser[0].posts
+                        posts: foundUser[0].posts.length,
+                        username: userName
                     })
 
                 }
@@ -235,3 +237,53 @@ const express = require('express'),
 
 
 module.exports = router;
+
+//test routes
+
+ //general get request to get all documents in database
+    //   router.get('/users/allpost', async (req, res) => {
+                
+    //             await userSchema.find()
+
+    //             .then ( allUsers => {
+
+    //                 let allSitesPost = [];
+
+    //                 for (let i = 0; i < allUsers.length; i++) {
+
+    //                         allUsers[i].posts.forEach(post => {
+
+    //                             let tempPost = {};
+
+    //                             tempPost.username = allUsers[i].username;
+    //                             tempPost.url = post.url;
+    //                             tempPost.caption = post.caption;
+    //                             tempPost.likesNum = post.likes.length;
+
+    //                             // console.log(`\nUrl:${post.url}\nCaption:${post.caption}\nLikes:${post.likes.length}`);
+                                
+    //                             allSitesPost.push(tempPost);
+                                
+    //                         });
+                    
+    //                 }
+
+    //                 res.status(200).json({
+    
+    //                     message: 'all users posts retrieved',
+    //                     allpost: allSitesPost
+    
+    //                 })
+
+    //             })
+                
+    //             .catch ( err => {
+
+    //                 res.status(500).json({
+    //                     message: 'server error',
+    //                     error: err.message
+    //                 })
+                    
+    //             })
+
+    //   })
