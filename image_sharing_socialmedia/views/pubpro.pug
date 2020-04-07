@@ -16,6 +16,10 @@ html
             h2#username= username
             h2= "Posts " + totalPosts
             h2= "Likes " + totalLikes
+            if signedIn == true
+                h2= "Signed In As " + loggedInUN
+            else 
+                button#signin Sign In To Like Posts
             
         .posts
             each post in posts

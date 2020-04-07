@@ -269,8 +269,7 @@ window.onload = () => {
     }
 
     async function searchUser() {
-        console.log('testing search');
-
+        
         let userName = document.getElementById('userSearch').value.trim();
 
         console.log(userName);
@@ -312,9 +311,9 @@ window.onload = () => {
                 publicProfileBtn.onclick = publicProfileRequest;
                 
                 
-            } else if (response.un != undefined) {
+            } else if (response.username != undefined) {
 
-                document.getElementById('userSearchMsg').innerHTML =`<u>${ response.un}</u> Has No Posts`
+                document.getElementById('userSearchMsg').innerHTML =`<u>${ response.username}</u> Has No Posts`
 
             }
 

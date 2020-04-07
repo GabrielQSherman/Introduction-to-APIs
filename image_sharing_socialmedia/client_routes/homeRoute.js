@@ -33,7 +33,7 @@ const express = require('express'),
    
 
 //view a users post, bring client to homepage if they have no post or the user doesnt exist
-    router.get('/:username', async (req, res) => {
+    router.get('/:username', auth, async (req, res) => {        
 
         try {
 
@@ -43,7 +43,7 @@ const express = require('express'),
 
             .then( foundUser => {
 
-                console.log(foundUser);
+                // console.log(foundUser);
                 
 
                 if (foundUser.length == 0) {
@@ -61,9 +61,25 @@ const express = require('express'),
 
                 } else if ( foundUser[0].posts.length > 0 )  {
 
-                    let allPost = foundUser[0].posts;
+                    let allPost = foundUser[0].posts, likes = 0,
+                        signedIn = req.user ? true : false, 
+                        signedInUN = req.user ? req.user.username : false;
 
-                     res.render('pubpro', {username: userName, totalPosts: allPost.length, totalLikes: 10, posts: allPost});
+                    allPost.forEach(post => {
+                        likes += post.likes.length
+                    });
+
+                    const renderObject = {
+                        
+                        username: userName, 
+                        totalPosts: allPost.length, 
+                        totalLikes: likes, 
+                        posts: allPost, 
+                        signedIn: signedIn,
+                        loggedInUN: signedInUN
+                    }
+
+                     res.render('pubpro', renderObject);
 
                 }
 
@@ -239,53 +255,3 @@ const express = require('express'),
 
 
 module.exports = router;
-
-//test routes
-
- //general get request to get all documents in database
-    //   router.get('/users/allpost', async (req, res) => {
-                
-    //             await userSchema.find()
-
-    //             .then ( allUsers => {
-
-    //                 let allSitesPost = [];
-
-    //                 for (let i = 0; i < allUsers.length; i++) {
-
-    //                         allUsers[i].posts.forEach(post => {
-
-    //                             let tempPost = {};
-
-    //                             tempPost.username = allUsers[i].username;
-    //                             tempPost.url = post.url;
-    //                             tempPost.caption = post.caption;
-    //                             tempPost.likesNum = post.likes.length;
-
-    //                             // console.log(`\nUrl:${post.url}\nCaption:${post.caption}\nLikes:${post.likes.length}`);
-                                
-    //                             allSitesPost.push(tempPost);
-                                
-    //                         });
-                    
-    //                 }
-
-    //                 res.status(200).json({
-    
-    //                     message: 'all users posts retrieved',
-    //                     allpost: allSitesPost
-    
-    //                 })
-
-    //             })
-                
-    //             .catch ( err => {
-
-    //                 res.status(500).json({
-    //                     message: 'server error',
-    //                     error: err.message
-    //                 })
-                    
-    //             })
-
-    //   })
