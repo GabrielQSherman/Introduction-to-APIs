@@ -1,17 +1,17 @@
 doctype html 
 html
     head
-        title Logout Page
+        title Redirect Page
 
         style
-             include ../public/logout.css
+             include ../public/redirect.css
 
         script
              include ../public/homeroute.js
 
     body
         .mainContainer
-            h1#message You Have Been Logged Out
+            h1#message=redirectMsg
 
             button#signin Go Back To Sign In Page
             br

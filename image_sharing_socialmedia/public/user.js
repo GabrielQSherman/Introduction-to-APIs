@@ -10,7 +10,8 @@ window.onload = () => {
         DelPostBtns = document.getElementsByClassName('postDeleteBtn'),
         editPostCapBtns = document.getElementsByClassName('editPostCap'),
         logOutOneBtn = document.getElementById('logOutOne'), 
-        logOutAllBtn = document.getElementById('logOutAll');
+        logOutAllBtn = document.getElementById('logOutAll'),
+        homePageBtn = document.getElementById('home');
 
     //set the onclick events
     picturesSubmit.onclick = postPictureRequest;
@@ -18,6 +19,8 @@ window.onload = () => {
     logOutOneBtn.onclick = logOutOneRequest;
 
     logOutAllBtn.onclick = logOutAllRequest;
+
+    homePageBtn.onclick = homeRedirect;
 
     if (deleteAllBtn != null) {
 
@@ -37,6 +40,14 @@ window.onload = () => {
     for (const button of editPostCapBtns) {
 
         button.onclick = editThisPostCaption;
+        
+    }
+
+    //direct window.location back to homepage
+
+    function homeRedirect() {
+
+        location = 'http://localhost:3000/'
         
     }
 
@@ -247,7 +258,7 @@ window.onload = () => {
 
             };
 
-                await fetch('http://localhost:3000/user/deleteallpost', delAllRequestObj)
+                await fetch('http://localhost:3000/user/deleteallposts', delAllRequestObj)
                 
                 //returns the response from the api and parses from readableStream to JSON
                 .then( readable_stream_res => { 

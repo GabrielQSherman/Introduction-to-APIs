@@ -13,6 +13,14 @@ const express = require('express'),
       
     router.post('/newpost', auth, (req, res) => {
 
+         if (!req.user) {
+
+            res.status(401).json({
+                message: 'You are not logged into an account, new post request therfore can not be made.'
+            })
+            
+        }
+
         // console.log(req.body);
 
       let newPostId = createId(33, 77, 48);
@@ -57,6 +65,14 @@ const express = require('express'),
     //delete a users post
     router.post('/deletepost', auth, (req, res) => {
 
+         if (!req.user) {
+
+            res.status(401).json({
+                message: 'You are not logged into an account, delete post request therfore can not be made.'
+            })
+            
+        }
+
        const postId = req.body.id
 
         try {
@@ -91,7 +107,15 @@ const express = require('express'),
 
     })
 
-    router.post('/deleteallpost', auth, (req, res) => {
+    router.post('/deleteallposts', auth, (req, res) => {
+
+         if (!req.user) {
+
+            res.status(401).json({
+                message: 'You are not logged into an account, delete all posts request therfore can not be made.'
+            })
+            
+        }
 
 
          try {
@@ -116,6 +140,13 @@ const express = require('express'),
 
     router.get('/profile', auth, userdata, (req, res) => {
 
+         if (!req.user) {
+
+            res.status(401).json({
+                message: 'You are not logged into an account.'
+            })
+            
+        }
 
       let name = req.username,
         
@@ -137,26 +168,18 @@ const express = require('express'),
 
 
     })
-
-    router.get('/page', auth, (req, res) => {
-
-
-        let user = req.user;
-  
-        console.log(user);
-  
-        res.render('user', {username: 'asdf'});
-  
-        // let absolutePath = __dirname.replace(/client_routes/, '') + 'public\\profile.html';
-  
-        // res.sendFile(absolutePath)
-  
-  
-    })
     
 
     //Get Request for specific user, needs authenification for sucessful response
     router.get('/getuser', auth, async(req, res) => {
+
+         if (!req.user) {
+
+            res.status(401).json({
+                message: 'You are not logged into an account.'
+            })
+            
+        }
 
       res.json({ found_user: req.user })
 
@@ -167,6 +190,14 @@ const express = require('express'),
 
     //one device
     router.post('/logout', auth, async (req, res) => {
+
+        if (!req.user) {
+
+            res.status(401).json({
+                message: 'You are not logged into an account, log out request therfore can not be made.'
+            })
+            
+        }
 
       try {
           req.user.tokens = req.user.tokens.filter((databaseStoredToken) => {
@@ -193,6 +224,15 @@ const express = require('express'),
 
   //all devices currently logged in
   router.post('/logoutall', auth, async(req, res) => {
+
+       if (!req.user) {
+
+            res.status(401).json({
+                message: 'You are not logged into an account, log out request therfore can not be made.'
+            })
+            
+        }
+
       try {
 
       //     console.log(req.user.tokens);

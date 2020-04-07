@@ -26,7 +26,7 @@ const express = require('express'),
       })
 
       router.get('/signedout', (req, res) => {
-          res.render('logout');
+          res.render('redirect', {redirectMsg: 'You Have Been Logged Out'});
       })
 
 
@@ -43,21 +43,14 @@ const express = require('express'),
 
             .then( foundUser => {
 
-                // console.log(foundUser);
-                
-
                 if (foundUser.length == 0) {
 
-                    res.status(404).json({
-                        message: `No user with the username ${userName} exist`
-                    })
+                    res.render('redirect', {redirectMsg: `No user with the username ${userName} exist`});
+
                     
                 } else if ( foundUser[0].posts.length == 0 ) {
 
-                     res.status(200).json({
-                        un: userName,
-                        message: `The user ${userName} does not have any post to view`
-                    })
+                    res.render('redirect', {redirectMsg: `The user ${userName} does not have any post to view`});
 
                 } else if ( foundUser[0].posts.length > 0 )  {
 
@@ -87,12 +80,9 @@ const express = require('express'),
             
         } catch (error) {
 
-             res.status(200).json({
-
-                // message: `${userPost.length} post by ${userName} were found`,
-                posts: foundUser[0].posts.length,
-                username: userName
-
+             res.status(500).json({
+                error: err,
+                message: err.message
             })
             
         }
