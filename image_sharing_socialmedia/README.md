@@ -186,5 +186,29 @@ In this social media clone, cliental will be able to;
     4/2-4/2020
 
         created route for user search from the homepage. 
+
+        when a vaild users profile has been search the option to vist their profile page will apear and window.location will update when a button is pressed.
+
+        if the user does not have post or the a username is not in the database the client will be displayed a message regarding the problem
+
         add styling and template to suport client-side search for a user's post by username
+
+
+    4/5/2020
+
+        create a pug template for the public profile. will be rendered if a get request is called at the root route with a single request parameter being the username of the profile 
+
+
+    4/6-7/2020
+
+        implement the template for the public profile page similar to the private(logged in) profile page but lacking the posting of new post and deleting/updating of old
+
+        if the route of a non-existing/no post user is requested then they will be rendered a page where they can direct themselves back to the homepage
+
+        public profiles can be viewed with or without being logged in, when logged in it will display the logged in user's username and grant them access to like photos on anothers page give they are not viewing their own page
+
+        moddifed the auth middleware route to allow it to check if a user does have a vaild JTW but still continues to the next middleware function even if not. They will be passed to the next middleware function so instead of ending the request/response cycle the next middleware function will need to check if the user was authorized and what to do if so/if not.
+
+        reformat logout template page to handle anytime a user needs to be redirected so they can direct themselves to the login page or homepage
+
 
