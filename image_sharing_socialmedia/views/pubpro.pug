@@ -25,6 +25,7 @@ html
             each post in posts
                 .userpost
                     .imgCon
-                        img(src=post.url alt=post.caption + ' url not loadable')
+                        img.likebuttons(src='../public/likebutton.jpg' alt='Like Post')
+                        img.postImg(src=post.url alt=post.caption + ' url not loadable')
                     h3.postCaption= post.caption
                     
