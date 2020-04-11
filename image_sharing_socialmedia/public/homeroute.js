@@ -234,21 +234,52 @@ window.onload = () => {
     //REQUEST FOR SIGNUP 
     async function signUpRequest() {
 
-        let signUpInfo = compile_form_data('signupform'),
-            headMsg = document.getElementById('headmessage'),
-            footMsg = document.getElementById('signinmessage');
+        let returningBool = false;
 
-        console.log(signUpInfo);
+        console.log(document.getElementById('signupform'));
+        const SUF = document.getElementById('signupform');
+
+        console.log(SUF.password.value.length);
         
 
-          if (signUpInfo === false) {
+        if (SUF.password.value != SUF.passwordAgain.value) {
+            console.log('pass mismatch');
+            return 
+        } else if (SUF.password.value.length < 7) {
+            console.log('pass did not meet requirements');
+            
+            return 
+        } 
 
-            headMsg.innerText = 'A Required Input Was Left Blank'
+        for (const input of SUF) {
+            if (input.value.trim() == '') {
+                input.placeholder = 'This is a required value';
+                input.value = ''
+                input.style.color = 'red';
 
+                returningBool = true;
+            }
+        }
+
+
+        if (returningBool) {
+            console.log('signup request could not proceed');
             return
+        }
 
-          } 
-        console.log(signUpInfo);
+
+        let signUpInfo = {
+
+            profileColor: SUF.profileColor.value,
+            name: SUF.name.value.trim(),
+            username: SUF.username.value.trim().replace(/ /g, '-'),
+            email: SUF.email.value.trim(),
+            password: SUF.password.value.trim()
+        },
+        headMsg = document.getElementById('headmessage'),
+        footMsg = document.getElementById('signinmessage');
+
+        // console.log(signUpInfo);
         //  this data will be passed to axios as the 'data' parameter
             const reqData = {
 

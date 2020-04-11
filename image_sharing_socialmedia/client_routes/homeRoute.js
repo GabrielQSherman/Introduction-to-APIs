@@ -55,9 +55,14 @@ const express = require('express'),
                 } else if ( foundUser[0].posts.length > 0 )  {
 
                     let allPost = foundUser[0].posts, likes = 0,
+
+                        userColor = foundUser[0].profileColor != undefined ? foundUser[0].profileColor : 144,
                         signedIn = req.user ? true : false, 
                         signedInUN = req.user ? req.user.username : false;
 
+                    // console.log('proColor' + userColor);
+                    console.log(req.user, userColor);
+                    
                     allPost.forEach(post => {
                         likes += post.likes.length
                     });
@@ -69,6 +74,7 @@ const express = require('express'),
                         totalLikes: likes, 
                         posts: allPost, 
                         signedIn: signedIn,
+                        profileColor: userColor
                         
                     }
 
@@ -108,7 +114,7 @@ const express = require('express'),
 
             .then( foundUser => {
 
-                console.log(foundUser);
+                // console.log(foundUser);
                 
 
                 if (foundUser.length == 0) {
@@ -156,7 +162,6 @@ const express = require('express'),
         console.log(req.body);
 
         const newUserInfo = req.body;
-        
 
             try {
 

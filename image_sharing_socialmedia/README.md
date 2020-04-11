@@ -218,3 +218,10 @@ In this social media clone, cliental will be able to;
         Adding ondblclick functions for each button in the cases that they were created. They will make a fetch request to add a userID to the array of likes
 
         the likes array for each post may be a simple single dimensional array of ids of users who liked your post, it may also be an array of objects that would include this id but then other info, like time at which the user liked an image, and other information;
+
+[*] complete profile color to appear on pub pro
+[] change pro color from priv profile page
+[] go to private/public profile from home, if signed in
+[] update homeroute.js to check for bad submits of new accounts
+[] add home button to public profile template
+[] add color change features to profile pages
