@@ -2,10 +2,9 @@
 
 window.onload = () => {
 
-    console.log('start');
     
-
-
+    const userName = document.getElementById('username').innerText;
+    console.log(userName);
     if (document.getElementById('signin') != null) {
     
     document.getElementById('signin').onclick = signinRedirect;
@@ -38,9 +37,9 @@ window.onload = () => {
 
                 // console.log(this.parentElement.id);
 
-            const updateCapObj = { postId: this.parentElement.id},
+            const likeReqBody = { postId: this.parentElement.id},
 
-            likeReq = JSON.stringify(updateCapObj),
+            likeReq = JSON.stringify(likeReqBody),
 
             likeReqObj = {
         
@@ -57,7 +56,7 @@ window.onload = () => {
 
         try {
 
-            await fetch('', likeReqObj)
+            await fetch(`http://localhost:3000/user/${userName}/likepost`, likeReqObj)
 
             .then(readS => {
                 console.log(readS);
@@ -67,6 +66,8 @@ window.onload = () => {
             .then( parsedRes => {
 
                 console.log(parsedRes);
+
+                this.style.display = 'none'
                 
             })
             

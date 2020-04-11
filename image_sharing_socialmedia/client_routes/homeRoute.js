@@ -69,7 +69,13 @@ const express = require('express'),
                         totalLikes: likes, 
                         posts: allPost, 
                         signedIn: signedIn,
-                        loggedInUN: signedInUN
+                        
+                    }
+
+                    if (signedIn) {
+
+                        renderObject.loggedInUN = signedInUN;
+                        renderObject.loggedInId = req.user.id;
                     }
 
                      res.render('pubpro', renderObject);

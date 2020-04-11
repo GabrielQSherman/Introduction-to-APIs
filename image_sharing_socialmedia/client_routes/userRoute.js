@@ -301,19 +301,21 @@ const express = require('express'),
 
       try {
 
-
-
           const postId = req.body.postId,
+                requestUserId = req.user.id,
+                userName = req.params.username;
 
-          let requestUser = req.user, postOwner =   
-    
+          let postOwner = await userSchema.findOne({ username: userName});
+
              for (let i = 0; i < postOwner.posts.length; i++) {
 
-                if ( postOwner.posts[i].id == postId ) {
+                if ( postOwner.posts[i].id == postId && !(postOwner.posts[i].likes.includes(requestUserId))) {
+
+                    let updatedPost = postOwner.posts[i];
                     
-                    postOwner.posts[i].likes.push(postId)
+                    updatedPost.likes.push(requestUserId)
 
-
+                    postOwner.posts.splice(i, 1, updatedPost)
                 }
                 
             };
@@ -321,12 +323,16 @@ const express = require('express'),
             await postOwner.save();
 
             res.status(200).json({
-                message: 'Like Request Worked',
+                message: 'Like Request Worked'
 
             });
       
 
       } catch (err) {
+
+          console.log(err, err.message);
+          
+
           res.status(500).json({
               message: err.message,
               error: err
