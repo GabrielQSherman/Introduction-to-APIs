@@ -2,7 +2,6 @@
 
 window.onload = () => {
 
-    
     const userName = document.getElementById('username').innerText;
     console.log(userName);
     if (document.getElementById('signin') != null) {

@@ -2,6 +2,14 @@ body {
     background-color: #222;
 }
 
+:focus {
+    outline: none;
+  }
+   
+  ::-moz-focus-inner {
+    border: 0;
+  } 
+
 .mainContainer {
 
     margin-top: 1%;
@@ -41,12 +49,11 @@ body {
 
 }
 
-
 #signupform {
-    padding: 10%;
+    padding: 4%;
     margin-left: 25%;
     margin-right: 25%;
-    margin-bottom: 5%;
+    margin-bottom: 9%;
     margin-top: 5%;
     border-radius: 10px;
 
@@ -82,7 +89,32 @@ body {
 
 }
 
+.colorSelection{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto; 
+}
+.colorLables {
+    cursor: pointer;
+    margin: 2px;
+    padding: 3px;
+    font-size: medium;
+    border: none;
+    border-radius: 3px;
+    color: rgb(241, 241, 241);
+    text-shadow: rgb(19, 19, 19) -1.4px -1px;
+    transition: all ease-in-out .2s;
+}
+
+.colorLables:hover {
+    color: rgb(255, 255, 255);
+    opacity: 50%;
+    transform: scale(.97,.97);
+}
+
+
 .lables {
+    cursor: pointer;
+
     font-size: x-large;
     color: #777;
     transition: all ease-out 1s;

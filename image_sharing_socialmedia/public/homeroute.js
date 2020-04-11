@@ -16,6 +16,12 @@ window.onload = () => {
         
     }
 
+    if (document.getElementById('passwordAgain') != null) {
+
+        document.getElementById('password').oninput = checkPassMatch;
+        document.getElementById('passwordAgain').oninput = checkPassMatch;
+    }
+
     if (document.getElementById('searchForUserSub') != null) {
 
         let searchUserBtn = document.getElementById('searchForUserSub');
@@ -84,6 +90,43 @@ window.onload = () => {
     function userProfileRequest() {    
 
         location = 'http://localhost:3000/user/profile';
+
+    }
+
+    //simple event listener funtion
+    function checkPassMatch() {
+
+        // console.log(document.getElementById('passwordAgain'));
+
+        let input1 = document.getElementById('password'),
+            input2 = document.getElementById('passwordAgain'),
+            lable1 = document.getElementById('passwordL'),
+            lable2 = document.getElementById('passwordAL'),
+            lable3 = document.getElementById('passReq'),
+            lable4 = document.getElementById('passMatch');
+    
+        input2.style.display = 'inline'
+        lable2.style.display = 'inline'
+        lable4.style.display = 'inline'
+        lable3.style.display = 'inline'
+        if (input1.value.length >= 7) {
+            lable3.style.color = 'green';
+        } else {
+            lable3.style.color = 'red';
+
+        }
+
+
+        if (input1.value == input2.value ) {
+
+            lable4.style.color = 'green';
+            
+        } else {
+
+            lable4.style.color = 'red';
+
+        }
+
 
     }
 
