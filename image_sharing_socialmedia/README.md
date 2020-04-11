@@ -211,4 +211,10 @@ In this social media clone, cliental will be able to;
 
         reformat logout template page to handle anytime a user needs to be redirected so they can direct themselves to the login page or homepage
 
+    4/8-10/2020
 
+        public profile allows a user to vist a page logged in or not logged in. When logged in a like button is added to every picure. When not logged in these elements will never be created. also one who is not signed in will see a button on the top infomation bar to allow them to go to the sign in page easily
+
+        Adding ondblclick functions for each button in the cases that they were created. They will make a fetch request to add a userID to the array of likes
+
+        the likes array for each post may be a simple single dimensional array of ids of users who liked your post, it may also be an array of objects that would include this id but then other info, like time at which the user liked an image, and other information;

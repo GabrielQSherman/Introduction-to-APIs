@@ -36,7 +36,7 @@ window.onload = () => {
 
     async function likeRequest () {
 
-            // console.log(this.parentElement.id);
+                // console.log(this.parentElement.id);
 
             const updateCapObj = { postId: this.parentElement.id},
 
