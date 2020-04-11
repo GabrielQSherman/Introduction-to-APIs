@@ -14,6 +14,15 @@ html
             br
             h1.message#headmessage Sign Up For An Account
             form#signupform
+                label.lables(for='profileColor') Pick A Color (you can change this later on)
+                br
+                br
+                .colorSelection
+                    each i in [ ['Hot-Pink', 317], ['Ruby', 333], ['Red', 0], ['Blood-Orange', 17], ['Orange', 30],  ['Orange-Sun', 45], ['Yellow', 60], ['Lime-Green', 80], ['Forest-Green', 130], ['Mint-Green', 155], ['Mint-Blue', 170], ['Cyan', 180], ['Sky-Blue', 190], ['Auga', 210], ['Navy-Blue', 245], ['Indigo', 275], ['Purple', 280], ['Megenta', 300]]
+                        input.colorOptions(type='radio' name='profileColor' value=(i[1]) id=i[0])
+                        label.colorLables(for=i[0] style=`background-color: hsl(${i[1]}, 100%, 50%)`)= i[0]
+                br 
+                br
                 label.lables(for='name') Full Name - 
                 input#name.form-control(type='text', placeholder='Full Name' name='name')
                 br 
@@ -26,8 +35,16 @@ html
                 input#email.form-control(type='text', placeholder='Account Email' name='email')
                 br 
                 br
-                label.lables(for='password') Password - 
+                label#passwordL.lables(for='password') Password - 
                 input#password.form-control(type='text', placeholder='Password' name='password')
+                br
+                br 
+                h5#passMatch(style='display: none;') Both Password Inputs Must Match 
+                br
+                h5#passReq(style='display: none;') Password Length Should Be At Least 7  
+                br 
+                label#passwordAL.lables(for='passwordAgain' style='display: none') Enter Password Again - 
+                input#passwordAgain.form-control(type='text', placeholder='Password' name='passwordAgain' style='display: none')
             button#signuprequest Sign Up
 
             h3.message#signinmessage Already Have An Account?
