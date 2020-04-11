@@ -34,9 +34,47 @@ window.onload = () => {
         location = 'http://localhost:3000/signin'
     }
 
-    function likeRequest () {
+    async function likeRequest () {
 
-        console.log(this);
+            // console.log(this.parentElement.id);
+
+            const updateCapObj = { postId: this.parentElement.id},
+
+            likeReq = JSON.stringify(updateCapObj),
+
+            likeReqObj = {
+        
+                method: 'PATCH',
+
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+
+                body: likeReq
+            };
+
+
+        try {
+
+            await fetch('', likeReqObj)
+
+            .then(readS => {
+                console.log(readS);
+                return readS.json()
+            })
+
+            .then( parsedRes => {
+
+                console.log(parsedRes);
+                
+            })
+            
+        } catch (err) {
+            
+            console.log(err, err.message);
+            
+        }
         
     }
 
