@@ -24,8 +24,9 @@ html
         .posts
             each post in posts
                 .userpost
-                    .imgCon
-                        img.likebuttons(src='../public/likebutton.jpg' alt='Like Post')
+                    .imgCon(id=post.id)
                         img.postImg(src=post.url alt=post.caption + ' url not loadable')
+                        if signedIn == true && username != loggedInUN
+                            img.likebuttons(src='../public/like.png' alt='Like Post')
                     h3.postCaption= post.caption
                     
