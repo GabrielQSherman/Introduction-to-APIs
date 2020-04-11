@@ -297,6 +297,44 @@ const express = require('express'),
 
   })
 
+    router.patch('/:username/likepost', auth, async(req, res) => {
+
+      try {
+
+
+
+          const postId = req.body.postId,
+
+          let requestUser = req.user, postOwner =   
+    
+             for (let i = 0; i < postOwner.posts.length; i++) {
+
+                if ( postOwner.posts[i].id == postId ) {
+                    
+                    postOwner.posts[i].likes.push(postId)
+
+
+                }
+                
+            };
+
+            await postOwner.save();
+
+            res.status(200).json({
+                message: 'Like Request Worked',
+
+            });
+      
+
+      } catch (err) {
+          res.status(500).json({
+              message: err.message,
+              error: err
+          })
+      }
+
+  })
+
 
 
 module.exports = router;
