@@ -158,6 +158,29 @@ body {
 
 .likebuttons {
 
+    opacity: 0%;
+    /* display: none; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #555;
+
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+
+    transition: all ease-out .45s;
+
+}
+
+.imgCon:hover>.likebuttons {
+    opacity: 70%;
+    background-color: red;
+    
 }
 
 .postCaption {
