@@ -38,6 +38,15 @@ const UserSchema = mongoose.Schema({
         minLength: 7
     },
 
+    profileColor: {
+
+        type: String,
+        required: true,
+        minLength: 1,
+        maxLength: 3,
+
+    },
+
     posts: {
 
         type: [Object],
