@@ -124,6 +124,39 @@ body {
 
 }
 
+#privateProfile, #userPublicProfile {
+
+    border: none;
+    border-radius: 5px;
+
+    font-size: large;
+
+    background-color: #ffced6;
+    color: white;
+    text-shadow: black 1px 1px;
+    width: 200px;
+
+    padding: 10px;
+    margin: 3%;
+
+    transition: all ease-in-out 1s;
+}
+
+#privateProfile:hover, #userPublicProfile:hover {
+
+    background-color: #ff93a5;
+    
+    transform: scale(1.1,1.1);
+
+    transition-duration: .4s;
+}
+
+#userNameHeading {
+
+    color: #333;
+    text-shadow: rgb(255, 255, 255) 1px 1px;
+
+}
 #signin {
     margin-bottom: 7%;
     font-size: xx-large;

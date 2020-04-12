@@ -67,6 +67,18 @@ window.onload = () => {
 
         let footMsg = document.getElementById('footMsg');
     }
+
+    if (document.getElementById('privateProfile') != null) {
+
+        document.getElementById('privateProfile').onclick = userProfileRequest
+        
+    }
+
+    if (document.getElementById('userPublicProfile') != null) {
+
+        document.getElementById('userPublicProfile').onclick = publicProfile
+
+    }
     
     //Simple redirect functions, location is a property of the global 'window' object
     function signInRedirect() {
@@ -91,6 +103,15 @@ window.onload = () => {
 
         location = 'http://localhost:3000/user/profile';
 
+    }
+
+    function publicProfile() {
+
+        let username = document.getElementById('userNameHeading').innerText;
+        console.log(username);
+        
+        location = `http://localhost:3000/${username}`;
+        
     }
 
     //simple event listener funtion
@@ -296,34 +317,50 @@ window.onload = () => {
                 method: 'POST',
                 
                 body: JSON.stringify(signUpInfo)
-            };
+            }; 
+
+            let badRequest; //bool to detirm logic path when readable stream shows request failed
 
             await fetch('http://localhost:3000/users', reqData)
 
              .then( readable_stream_res => { 
 
-                //    console.log(readable_stream_res);
+                 badRequest = readable_stream_res.status != 201 ? true : false;
 
-                    if (readable_stream_res.status != 201) {
-                        
-                        throw new Error ('Sign Up Request Failed')
-                    }
-                    
-                    return readable_stream_res.json()
+                return readable_stream_res.json()
             })
 
             .then( response => {
-
-                // console.log(response);
-
-                 clearForm('signupform');
-
-                 this.style = 'display: none';
-
-                headMsg.innerText = 'Successful sign up!!!'
-
-                footMsg.innerText = `Thank you for signing up ${response.document.name}! Click Below To Login`
                 
+                if (badRequest === false) {
+
+                      clearForm('signupform');
+
+                    this.style = 'display: none';
+
+                    headMsg.innerText = 'Successful sign up!!!'
+
+                    footMsg.innerText = `Thank you for signing up ${response.document.name}! Click Below To Login`
+                    
+                    
+                } else {
+
+                    if (response.message.includes('dup key: { email')) {
+
+                        alert('That email is already in user.')
+
+                    } else if (response.message.includes('email')) {
+                        
+                        alert('A Vaild Email Is Needed For Signup')
+                        
+                    } else if (response.message.includes('dup key: { username')) {
+                        alert('That username is already taken. \n:(')
+                    } else if (response.message.includes('password')) {
+                        console.log('A Problem Occured, Try A Diffrent Password');
+                        
+                    } 
+
+                }   
                 
             }) 
 

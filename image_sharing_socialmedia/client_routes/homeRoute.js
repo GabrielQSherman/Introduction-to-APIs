@@ -13,8 +13,17 @@ const express = require('express'),
     //render html pages via templating engine
 
     
-      router.get('/', (req, res) => {
-          res.render('home');
+      router.get('/', auth, (req, res) => {
+
+          if (req.user) {
+
+            res.render('homeSI', {username: req.user.username});
+
+          } else {
+
+            res.render('homeSO');
+
+          }
       })
 
       router.get('/signin', (req, res) => {
@@ -159,7 +168,7 @@ const express = require('express'),
 //CREATING A NEW USER
       router.post('/users', async (req, res) => {
 
-        console.log(req.body);
+        // console.log(req.body);
 
         const newUserInfo = req.body;
 
@@ -198,7 +207,7 @@ const express = require('express'),
 //LOGGING IN
       router.post('/login', async (req, res) => {
 
-        console.log(req.body);
+        // console.log(req.body);
         
           try {
 
