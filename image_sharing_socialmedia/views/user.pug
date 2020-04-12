@@ -36,6 +36,13 @@ html
             button#picPostBtn Post Your Pic!
             br
             br
+
+        .selectAColor
+            form#colorChoice
+                each i in [ ['Hot-Pink', 317], ['Dragon-Fruit', 333], ['Red', 0], ['Blood-Orange', 17], ['Orange', 30],  ['Orange-Sun', 45], ['Lemon-Sun', 55], ['Yellow', 60], ['Lime-Green', 80], ['Forest-Green', 130], ['Mint-Green', 155], ['Mint-Blue', 170], ['Cyan', 180], ['Sky-Blue', 190], ['Auga', 210], ['Navy-Blue', 245], ['Indigo', 275], ['Purple', 280], ['Lavender', 290], ['Megenta', 300]]
+                    input.colorOptions(type='radio' name='profileColor' value=i[1] id=i[0])
+                    label.colorLables(for=i[0] style=`background-color: hsl(${i[1]}, 100%, 50%)`)= i[0]
+        button#requestColorChange Change Your Color Theme
         .posts
             each post in posts
                 .userpost

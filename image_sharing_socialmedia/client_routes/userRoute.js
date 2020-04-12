@@ -342,5 +342,41 @@ const express = require('express'),
   })
 
 
+  router.patch('/profilecolor/:colorNum', auth, async(req, res) => {
+
+      if (req.params.colorNum >= 0 && req.params.colorNum <= 360) {
+
+          try {
+
+              let updatedUser = req.user, newColor = req.params.colorNum;
+
+              updatedUser.profileColor = newColor;
+
+              updatedUser.save()
+
+              res.status(200).json({
+                  message: 'update profile color to ' + newColor
+              })
+              
+          } catch (err) {
+
+              res.status(500).json({
+
+                    message: err.message,
+                    error: err
+              })
+              
+          }
+          
+      } else {
+
+          res.status(401).json({
+              message: 'Bad Number Passed, needs to be in range of 0-360'
+          })
+      }
+
+  })
+
+
 
 module.exports = router;

@@ -221,7 +221,7 @@ In this social media clone, cliental will be able to;
 
 [*] complete profile color to appear on pub pro
 [] change pro color from priv profile page
-[] go to private/public profile from home, if signed in
-[] update homeroute.js to check for bad submits of new accounts
+[*] go to private/public profile from home, if signed in
+[*] update homeroute.js to check for bad submits of new accounts
 [] add home button to public profile template
 [] add color change features to profile pages

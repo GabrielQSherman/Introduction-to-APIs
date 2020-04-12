@@ -11,7 +11,8 @@ window.onload = () => {
         editPostCapBtns = document.getElementsByClassName('editPostCap'),
         logOutOneBtn = document.getElementById('logOutOne'), 
         logOutAllBtn = document.getElementById('logOutAll'),
-        homePageBtn = document.getElementById('home');
+        homePageBtn = document.getElementById('home'),
+        colorChangeBtn = document.getElementById('requestColorChange');
 
     //set the onclick events
     picturesSubmit.onclick = postPictureRequest;
@@ -21,6 +22,8 @@ window.onload = () => {
     logOutAllBtn.onclick = logOutAllRequest;
 
     homePageBtn.onclick = homeRedirect;
+
+    colorChangeBtn.onclick = colorChangeReq;
 
     if (deleteAllBtn != null) {
 
@@ -418,4 +421,43 @@ window.onload = () => {
 
     }
 
+    async function colorChangeReq() {
+
+        let form = document.getElementById('colorChoice')
+
+        let colorChoice = form.profileColor.value;
+
+        if (!isNaN(colorChoice)) {
+
+            console.log('changing color number to', colorChoice);
+            
+            
+        } else {
+            console.log('abort color change');
+            return
+        }
+
+        await fetch(`http://localhost:3000/user/profilecolor/${colorChoice}`, {method: 'PATCH'})
+
+        .then( res => {
+            console.log('RS:', res);
+            
+            return res.json()
+        })
+
+        .then( res => {
+
+            console.log(res);
+            
+        })
+
+        .catch( err => {
+
+            console.log(err, err.message);
+            
+        })
+        
+    }
+
 }
+
