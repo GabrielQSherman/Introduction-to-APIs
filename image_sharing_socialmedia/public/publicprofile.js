@@ -2,15 +2,23 @@
 
 window.onload = () => {
 
-    const userName = document.getElementById('username').innerText;
+    //getting access to DOM elements
+    const userName = document.getElementById('username').innerText,
+          homePageBtn = document.getElementById('home');
+
+    let allLikeButtons = document.getElementsByClassName('likebuttons');
+
     console.log(userName);
+
+    //setting event listeners
     if (document.getElementById('signin') != null) {
     
     document.getElementById('signin').onclick = signinRedirect;
 
     }
 
-    let allLikeButtons = document.getElementsByClassName('likebuttons');
+    homePageBtn.onclick = homeRedirect;
+
 
     if (allLikeButtons.length > 0) {
 
@@ -24,6 +32,8 @@ window.onload = () => {
         
     }
 
+    //simple eventlistener functions, redirects
+
     function signinRedirect() {
 
         // console.log(this);
@@ -32,6 +42,16 @@ window.onload = () => {
         location = 'http://localhost:3000/signin'
     }
 
+     //direct window.location back to homepage
+
+    function homeRedirect() {
+
+        location = 'http://localhost:3000/'
+        
+    }
+
+    //request to like a post
+    
     async function likeRequest () {
 
                 // console.log(this.parentElement.id);

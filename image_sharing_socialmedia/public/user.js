@@ -440,7 +440,17 @@ window.onload = () => {
         await fetch(`http://localhost:3000/user/profilecolor/${colorChoice}`, {method: 'PATCH'})
 
         .then( res => {
-            console.log('RS:', res);
+            if (res.status == 200) {
+
+                document.getElementById('requestColorChange').innerText = 'Color Updated, Page Will Now Reload...'
+              
+                setTimeout(() => { location.reload() }, 2000);
+
+            } else {
+
+                document.getElementById('requestColorChange').innerText = 'Color Update Failed'
+
+            }
             
             return res.json()
         })
@@ -448,6 +458,7 @@ window.onload = () => {
         .then( res => {
 
             console.log(res);
+            
             
         })
 
