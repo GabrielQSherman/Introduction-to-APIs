@@ -70,7 +70,7 @@ const express = require('express'),
                         signedInUN = req.user ? req.user.username : false;
 
                     // console.log('proColor' + userColor);
-                    console.log(req.user, userColor);
+                    // console.log(req.user, userColor);
                     
                     allPost.forEach(post => {
                         likes += post.likes.length

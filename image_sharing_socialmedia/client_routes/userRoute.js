@@ -152,20 +152,24 @@ const express = require('express'),
         
           postNum = req.totalPosts,
 
-          likes = req.totalLikes;
+          likes = req.totalLikes,
 
-          posts = req.posts;
+          posts = req.posts,
 
-    //   console.log(name, postNum, likes);
+          userColor = req.user.profileColor,
 
-        
+          renderObj = {
 
-      res.render('user', {username: name, totalPosts: postNum, totalLikes: likes, posts: posts});
+              username: name, 
+              totalPosts: postNum, 
+              totalLikes: likes, 
+              posts: posts, 
+              profileColor: userColor
 
-      // let absolutePath = __dirname.replace(/client_routes/, '') + 'public\\profile.html';
+          };
 
-      // res.sendFile(absolutePath)
 
+        res.render('user', renderObj);
 
     })
     
@@ -357,7 +361,7 @@ const express = require('express'),
               res.status(200).json({
                   message: 'update profile color to ' + newColor
               })
-              
+
           } catch (err) {
 
               res.status(500).json({
@@ -365,6 +369,8 @@ const express = require('express'),
                     message: err.message,
                     error: err
               })
+
+              alert('Your profile color could not be updated at this time.')
               
           }
           
