@@ -234,7 +234,21 @@ In this social media clone, cliental will be able to;
 [*] go to private/public profile from home, if signed in
 [*] update homeroute.js to check for bad submits of new accounts
 
+    4/12/2020
 
-[] add home button to public profile template
-[] users can double click elements and check their background color on public profiles
-[] private profile background color should reflect users profileColor choice
+[*] add home button to public profile template
+[*] private profile background color should reflect users profileColor choice
+
+    added the home button to all public profile changes
+
+    when making a request to change your profile background color, you are informed via the dom that the request was successful (or not), and in the case of success the window will reload shortly after.
+
+    private profile pages will now have the background to reflect the users color choice, this will be the same color displayed prominetly on their public page
+
+    only minor changes to pug templates
+        add button to public profile template, have .pagebox background change color based on the user's profileColor property/setting
+    updated route handling to pass neccessary values to template. the route handling for public profiles is better orginized to better distuguish what values are being passed to the templating engine. also updated the user route handling so that the user's profileColor can be passed to the templating engine. 
+
+
+[] users can double click elements to change the background color on public profiles, (does not make a permanet change)
+
