@@ -4,7 +4,8 @@ window.onload = () => {
 
     //getting access to DOM elements
     const userName = document.getElementById('username').innerText,
-          homePageBtn = document.getElementById('home');
+          homePageBtn = document.getElementById('home'),
+          pagebox = document.getElementById('pagebox');
 
     let allLikeButtons = document.getElementsByClassName('likebuttons');
 
@@ -20,6 +21,9 @@ window.onload = () => {
     homePageBtn.onclick = homeRedirect;
 
 
+    pagebox.onclick = changeBackground;
+
+
     if (allLikeButtons.length > 0) {
 
         for (let i = 0; i < allLikeButtons.length; i++) {
@@ -33,6 +37,10 @@ window.onload = () => {
     }
 
     //simple eventlistener functions, redirects
+
+    function changeBackground() {
+        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    }
 
     function signinRedirect() {
 
