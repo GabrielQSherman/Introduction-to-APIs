@@ -21,7 +21,7 @@ window.onload = () => {
     homePageBtn.onclick = homeRedirect;
 
 
-    pagebox.onclick = changeBackground;
+    pagebox.ondblclick = changeBackground;
 
 
     if (allLikeButtons.length > 0) {
@@ -38,8 +38,13 @@ window.onload = () => {
 
     //simple eventlistener functions, redirects
 
-    function changeBackground() {
-        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    function changeBackground(evnt) {
+        // console.log(this, evnt,evnt.target);
+
+        if (this == evnt.target) {
+            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        }
+        
     }
 
     function signinRedirect() {
