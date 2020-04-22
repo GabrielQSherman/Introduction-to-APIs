@@ -9,7 +9,7 @@ window.onload = () => {
 
     let allLikeButtons = document.getElementsByClassName('likebuttons');
 
-    console.log(userName);
+    // console.log(userName);
 
     //setting event listeners
     if (document.getElementById('signin') != null) {
@@ -91,13 +91,27 @@ window.onload = () => {
             await fetch(`http://localhost:3000/user/${userName}/likepost`, likeReqObj)
 
             .then(readS => {
-                console.log(readS);
+                // console.log(readS);
                 return readS.json()
             })
 
             .then( parsedRes => {
 
-                console.log(parsedRes);
+
+                let userDiv = this.parentElement.parentElement;
+
+                for (let i = 0; i < userDiv.children.length; i++) {
+
+
+                     if (userDiv.children[i].className == 'likesCount') {
+
+                        let newLikes = parseInt(userDiv.children[i].innerText.replace(/ Likes/, '')) + 1;
+                        
+                        userDiv.children[i].innerText = `${newLikes} Likes`;
+                    }
+                    
+                }
+                // this.parentElement
 
                 this.style.display = 'none'
                 
