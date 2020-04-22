@@ -253,3 +253,7 @@ In this social media clone, cliental will be able to;
 
     users can double click elements to change the background color on public profiles, (does not make a permanet change)
 
+4/20/2020
+
+    when liking a user's post the like count updates without page reload
+
