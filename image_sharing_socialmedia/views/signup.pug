@@ -14,9 +14,8 @@ html
             br
             h1.message#headmessage Sign Up For An Account
             form#signupform
-                label.lables(for='profileColor') Pick A Color (you can change this later on)
-                br
-                br
+                h2(style='color: white;user-select: none') Pick A Color
+                h4(style='color: lightgrey;user-select: none') (you can change this later on)
                 .colorSelection
                     each i in [ ['Hot-Pink', 317], ['Dragon-Fruit', 333], ['Red', 0], ['Blood-Orange', 17], ['Orange', 30],  ['Orange-Sun', 45], ['Lemon-Sun', 55], ['Yellow', 60], ['Lime-Green', 80], ['Forest-Green', 130], ['Mint-Green', 155], ['Mint-Blue', 170], ['Cyan', 180], ['Sky-Blue', 190], ['Auga', 210], ['Navy-Blue', 245], ['Indigo', 275], ['Purple', 280], ['Lavender', 290], ['Megenta', 300]]
                         input.colorOptions(type='radio' name='profileColor' value=i[1] id=i[0])
@@ -36,15 +35,16 @@ html
                 br 
                 br
                 label#passwordL.lables(for='password') Password - 
-                input#password.form-control(type='text', placeholder='Password' name='password')
+                input#password.form-control(type='password', placeholder='Password' name='password')
                 br
                 br 
                 h5#passMatch(style='display: none;') Both Password Inputs Must Match 
                 br
                 h5#passReq(style='display: none;') Password Length Should Be At Least 7  
-                br 
+                br
+                br  
                 label#passwordAL.lables(for='passwordAgain' style='display: none') Enter Password Again - 
-                input#passwordAgain.form-control(type='text', placeholder='Password' name='passwordAgain' style='display: none')
+                input#passwordAgain.form-control(type='password', placeholder='Password' name='passwordAgain' style='display: none')
             button#signuprequest Sign Up
 
             h3.message#signinmessage Already Have An Account?

@@ -51,11 +51,13 @@ body {
 
 #signupform {
     padding: 4%;
-    margin-left: 25%;
-    margin-right: 25%;
+    padding-top: 1%;
+    margin-left: 20%;
+    margin-right: 20%;
     margin-bottom: 9%;
     margin-top: 5%;
     border-radius: 10px;
+    
 
     background-color: #555;
     transition: all ease-out 1s;
@@ -65,7 +67,7 @@ body {
 
     transform: scale(1.07,1.07);
     transition-duration: 1s;
-    background-color: #444;
+    background-color: #222;
 }
 
 #signuprequest {
@@ -91,19 +93,25 @@ body {
 
 .colorSelection{
     display: grid;
+
     grid-template-columns: auto auto auto auto auto auto auto auto; 
+
 }
 .colorLables {
     cursor: pointer;
     margin: 2px;
-    padding: 3px;
-    font-size: medium;
+    margin-top: auto;
+    margin-bottom: auto;
+
+    padding: 5px;
+    font-size: large;
     border: none;
     border-radius: 3px;
     color: rgb(241, 241, 241);
     text-shadow: rgb(19, 19, 19) -1.4px -1px;
     transition: all ease-in-out .2s;
 }
+
 
 .colorLables:hover {
     color: rgb(255, 255, 255);
