@@ -260,16 +260,19 @@ window.onload = () => {
         console.log(document.getElementById('signupform'));
         const SUF = document.getElementById('signupform');
 
-        console.log(SUF.password.value.length);
-        
+        console.log(SUF.profileColor);
+
+        if (SUF.profileColor.value == '') {
+            alert('You must select a profile color')
+            returningBool = true;
+        }
 
         if (SUF.password.value != SUF.passwordAgain.value) {
-            console.log('pass mismatch');
-            return 
+            alert('Passwords do not match')
+            returningBool = true;
         } else if (SUF.password.value.length < 7) {
-            console.log('pass did not meet requirements');
-            
-            return 
+            alert('Password does not meet requirements')
+            returningBool = true;
         } 
 
         for (const input of SUF) {
