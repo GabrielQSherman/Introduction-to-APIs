@@ -257,3 +257,6 @@ In this social media clone, cliental will be able to;
 
     when liking a user's post the like count updates without page reload
 
+4/22/2020 
+
+    update signup page to alert user for bad password inputs and when no profile color is selected. Updated styling to the page
