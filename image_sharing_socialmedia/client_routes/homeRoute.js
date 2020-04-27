@@ -15,15 +15,12 @@ const express = require('express'),
     
       router.get('/', auth, (req, res) => {
 
-          if (req.user) {
+          let username = req.user != undefined ? req.user.username : undefined;
 
-            res.render('homeSI', {username: req.user.username});
+        console.log(username);
+        
+         res.render('home', {username: username});
 
-          } else {
-
-            res.render('homeSO');
-
-          }
       })
 
       router.get('/signin', (req, res) => {
