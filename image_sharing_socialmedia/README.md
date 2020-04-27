@@ -260,3 +260,13 @@ In this social media clone, cliental will be able to;
 4/22/2020 
 
     update signup page to alert user for bad password inputs and when no profile color is selected. Updated styling to the page
+
+4/26/2020
+
+    combine two home pug templates into one, use logic to create a diffrent display for users that are not signed and thoes who are. 
+
+    adding a 'frontpage' to the site that will display all users post, as of todays work all post can be passed to the pug template
+
+[] create a display for the frontend so users can veiw a varity of post from diffrent users
+
+[] allow the option to sort post by diffrent categories
