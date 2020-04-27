@@ -1,5 +1,5 @@
 body {
-    background-color: black;
+    background-color: #222;
 }
 
 .mainContainer {
@@ -9,29 +9,85 @@ body {
     margin-top: 5%;
 
     text-align: center;
-    background-color: #222;
+    background-color: #333;
     border-radius: 20px;
 
     transition: all ease-out 1s;
 
 }
 
+.mainContainer:hover {
+    background-color: #222;
+}
+
 .navigation {
     flex: 1;
-    background-color: #333;
+    background-color: #444;
     margin: 10%;
+    margin-left: 0%;
+    margin-right: 5%;
+    border-radius: 20px;
+    transition: all ease-out 1s;
+}
+
+.navigation:hover {
+    background-color: #222;
+}
+
+.allPost {
+    flex: .4;
+    background-color: #444;
+    margin: 15%;
+    margin-right: 0%;
     margin-left: 5%;
 
     border-radius: 20px;
+    transition: all ease-out 1s;
+}
+
+.allPost:hover {
+    background-color: #222;
+}
+
+.allPost button {
+
+    margin-top: 20%;
+    margin-right: 5%;
+    margin-left: 5%;
+    font-size: large;
+    color: white;
+    background-color: #ff9aab;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+    transition: all ease-out 1s;
+    border-radius: 10px;
+
+}
+
+.allPost button:hover {
+
+    color: #ffd6dd;
+    background-color: black;
+    transition-duration: .5s;
+    transform: scale(.9,.9);
 
 }
 
 .searchForUser {
     margin: 10%;
     margin-right: 5%;
+    margin-left: 5%;
     border-radius: 20px;
     flex: 1.2;
-    background-color: #333;
+    background-color: #444;
+    transition: all ease-out 1s;
+
+}
+
+.searchForUser:hover {
+    background-color: #222;
 }
 
 #userSearch {

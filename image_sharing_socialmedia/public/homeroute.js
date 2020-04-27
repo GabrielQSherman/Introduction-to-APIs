@@ -30,6 +30,12 @@ window.onload = () => {
         
     }
 
+    if (document.getElementById('allPost') != null) {
+
+        document.getElementById('allPost').onclick = allPostRedirect;
+
+    }
+
     if (document.getElementById('home') != null) {
 
         let homePageBtn = document.getElementById('home');
@@ -112,6 +118,10 @@ window.onload = () => {
         
         location = `http://localhost:3000/${username}`;
         
+    }
+
+    function allPostRedirect() {
+        location = `http://localhost:3000/frontpage`;
     }
 
     //simple event listener funtion
@@ -255,12 +265,17 @@ window.onload = () => {
     //REQUEST FOR SIGNUP 
     async function signUpRequest() {
 
+        const namesNotAllowed = ['user', 'login', 'signin', 'signup', 'signedout', 'home', 'frontpage', 'landingpage', 'latestpost', 'popularpost', 'newestpost', 'post', 'posts'];
+
         let returningBool = false;
 
-        console.log(document.getElementById('signupform'));
+        // console.log(document.getElementById('signupform'));
         const SUF = document.getElementById('signupform');
 
-        console.log(SUF.profileColor);
+        if (namesNotAllowed.include(SUF.name.value.trim())) {
+            alert('You attempted to signup with a username that is not allowed, try a diffrent one.')
+            returningBool = true;
+        }
 
         if (SUF.profileColor.value == '') {
             alert('You must select a profile color')

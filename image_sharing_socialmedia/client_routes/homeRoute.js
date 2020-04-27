@@ -17,10 +17,36 @@ const express = require('express'),
 
           let username = req.user != undefined ? req.user.username : undefined;
 
-        console.log(username);
+        // console.log(username);
         
          res.render('home', {username: username});
 
+      })
+
+      router.get('/frontpage', async (req, res) => {
+
+          await userSchema.find({})
+
+          .then(allusers => {
+
+
+            console.log(allusers);
+            
+
+            let postArr = [];
+
+            for (let i = 0; i < allusers.length; i++) {
+                
+                postArr.push(...allusers[i].posts)
+                
+            }
+
+            console.log(postArr);
+            
+
+            res.render('frontpage', {allposts: postArr});
+
+          })
       })
 
       router.get('/signin', (req, res) => {
