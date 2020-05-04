@@ -29,9 +29,7 @@ const express = require('express'),
 
           .then(allusers => {
 
-
-            console.log(allusers);
-            
+            // console.log(allusers);
 
             let postArr = [];
 
@@ -41,9 +39,8 @@ const express = require('express'),
                 
             }
 
-            console.log(postArr);
+            // console.log(postArr);
             
-
             res.render('frontpage', {allposts: postArr});
 
           })
